@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://fl2knjkdirn0"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_gv5m4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
+
+[node name="Terrain" type="Node3D" unique_id=1393607273]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1698704857]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=356413957]
+shape = SubResource("SeparationRayShape3D_gv5m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=858168955]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gv5m4")

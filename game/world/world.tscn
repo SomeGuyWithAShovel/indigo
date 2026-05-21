@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ctixn2ovn721f"]
+
+[ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
+
+[node name="World" type="Node3D" unique_id=1613566239]
+
+[node name="Terrain" parent="." unique_id=1393607273 instance=ExtResource("1_aqibe")]

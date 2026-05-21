@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://6dxux7xq7ohu"]
+
+[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_yj27i"]
+
+[node name="Monster" type="Node3D" unique_id=19439401]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=569542414]
+script = ExtResource("1_yj27i")
+max_health = 100
+invincibility_duration = 0.1
