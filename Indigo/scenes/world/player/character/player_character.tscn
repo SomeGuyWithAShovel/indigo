@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://8i6fud1etfy3"]
+
+[ext_resource type="Script" uid="uid://cpx6nrha08rse" path="res://scenes/world/player/character/player_character.gd" id="1_hntsk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
+no_depth_test = true
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4flbx"]
+material = SubResource("StandardMaterial3D_4flbx")
+size = Vector2(0.01, 0.01)
+
+[node name="PlayerCharacter" type="Node3D" unique_id=1002718433 node_paths=PackedStringArray("cam_pivot", "raycast")]
+script = ExtResource("1_hntsk")
+cam_pivot = NodePath("Pivot")
+raycast = NodePath("Pivot/Camera3D/RayCast3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=563684679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_sh265")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1971601058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Pivot" unique_id=653005159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.2304299)
+
+[node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera3D" unique_id=30169152]
+target_position = Vector3(0, 0, -5)
+collide_with_areas = true
+
+[node name="crosshair" type="MeshInstance3D" parent="Pivot/Camera3D/RayCast3D" unique_id=358428779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("QuadMesh_4flbx")
