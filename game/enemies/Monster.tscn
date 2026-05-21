@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_yj27i"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yj27i"]
+
 [node name="Monster" type="Node3D" unique_id=19439401]
 
 [node name="HealthComponent" type="Node" parent="." unique_id=569542414]
 script = ExtResource("1_yj27i")
 max_health = 100
 invincibility_duration = 0.1
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1698686978]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=336634105]
+shape = SubResource("CapsuleShape3D_yj27i")
