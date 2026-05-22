@@ -1,4 +1,4 @@
-class_name Player
+class_name PlayerCharacter
 extends Node3D
 
 @export var direction_switch_lag : float = 0.01;
@@ -7,8 +7,16 @@ extends Node3D
 @export var desceleration : float = 10.0;
 @onready var gravity : Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
+@export_group("Extern References")
+@export var player: Player = null;
+
+@onready var camera : Camera3D = $"Camera3D";
+@onready var raycast: RayCast3D = $Camera3D/RayCast3D;
 @onready var character : CharacterBody3D = $".";
 @onready var health : HealthComponent = $HealthComponent;
+
+var is_mouse_captured: bool = true;
+var last_point_targeted: Vector2i = Vector2i.ZERO;
 
 var previous_input_direction := Vector3(0, 0, 0);
 var current_input_direction := Vector3(0, 0, 0);
@@ -19,6 +27,7 @@ func _ready() -> void:
 	health.died.connect(kill);
 	$Label.text = str(health.get_health())
 	health.health_changed.connect(func (_a, h): $Label.text = str(h));
+	toggle_mouse_captured();
 
 func kill(_health : HealthComponent) -> void:
 	visible = false;
@@ -56,6 +65,7 @@ func get_move_speed(input_direction : Vector3, delta : float) -> float:
 	return speed;
 
 func _physics_process(delta: float) -> void:
+	update_raycast();
 	if health.get_health() == 0:
 		return;
 	
@@ -79,3 +89,68 @@ func _physics_process(delta: float) -> void:
 	character.velocity = speed*direction;
 	character.velocity += delta*gravity*100.0;
 	character.move_and_slide();
+
+func set_mouse_captured(capture: bool) -> void :
+	if (capture == true) :
+		is_mouse_captured = true;
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+	else :
+		is_mouse_captured = false;
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
+		
+	if (Input.is_action_just_pressed("left_click")) :
+		try_construct();
+		pass;
+	return;
+
+func toggle_mouse_captured() -> void :
+	set_mouse_captured(!is_mouse_captured);
+	return; 
+
+func _input(_event: InputEvent) -> void :
+	if Input.is_action_just_pressed("toggle_cursor") :
+		toggle_mouse_captured();
+		return;
+	if (is_mouse_captured == false) && (Input.is_action_just_pressed("left_click")) :
+		set_mouse_captured(true);
+		return;
+	
+
+func does_raycast_hits_grid() -> ConstructionGrid :
+	if (raycast == null) :
+		return null;
+	if (raycast.is_colliding() == false) :
+		return null;
+	
+	var area_3D_collided = raycast.get_collider() as Area3D;
+	if (area_3D_collided == null) :
+		return null;
+	
+	var grid = area_3D_collided.get_parent() as ConstructionGrid;
+	if (grid == null) :
+		return null;
+	
+	return grid;
+
+func update_raycast() -> void :
+	var grid : ConstructionGrid = does_raycast_hits_grid();
+	if (grid == null) :
+		return;
+	
+	var collision_point_3D : Vector3 = raycast.get_collision_point();
+	
+	last_point_targeted = player.construction_grid.get_grid_coords_from_world_coords(collision_point_3D);
+	
+	# print("collided with grid, at ", last_point_targeted);
+	
+	return;
+	
+static var idk : int = 0;
+func try_construct() -> void :
+	var grid : ConstructionGrid = does_raycast_hits_grid();
+	if (grid == null) :
+		print("raycast does not hit the grid");
+		return;
+	
+	player.construction.try_build_base_cell(last_point_targeted);
+	return;

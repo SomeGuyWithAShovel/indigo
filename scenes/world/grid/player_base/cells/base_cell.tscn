@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0lmulj0w7iqq"]
+
+[ext_resource type="Script" uid="uid://bbymu5xo56lt6" path="res://scenes/world/grid/player_base/cells/base_cell.gd" id="1_cdva1"]
+
+[node name="PlayerBaseCell" type="Node3D" unique_id=39220363]
+script = ExtResource("1_cdva1")

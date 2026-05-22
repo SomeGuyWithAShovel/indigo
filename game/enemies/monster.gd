@@ -54,8 +54,8 @@ func start_cooldown() -> void:
 	cooldown_timer.start(attack_cooldown);	
 
 func hurt_target() -> void:
-	assert(target is Player);
-	(target as Player).health.hurt(attack_damage);
+	assert(target is PlayerCharacter);
+	(target as PlayerCharacter).health.hurt(attack_damage);
 	
 func _physics_process(_delta: float) -> void:
 	var direction = get_target_position() - global_position;
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 	character.move_and_slide();
 
 func _on_player_entered_sight(body: Node3D) -> void:
-	assert(body is Player);
+	assert(body is PlayerCharacter);
 	print("Player entered monster sight");
 	target = body;
 
@@ -74,12 +74,12 @@ func _on_player_exited_sight(body: Node3D) -> void:
 		target = null;
 
 func _on_player_entered_attack_range(body: Node3D) -> void:
-	assert(body is Player);
+	assert(body is PlayerCharacter);
 	print("Player entered monster range");
 	rampup_timer.start(attack_rampup);
 
 func _on_player_exited_attack_range(body: Node3D) -> void:
-	assert(body is Player);
+	assert(body is PlayerCharacter);
 	print("Player exited monster range");
 	rampup_timer.stop();
 	if not cooldown_timer.is_stopped():
