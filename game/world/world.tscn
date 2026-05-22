@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
 [ext_resource type="PackedScene" uid="uid://dmj1g581wlinx" path="res://game/debug_interact.tscn" id="3_k7f6b"]
 [ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/Monster.tscn" id="4_4adp2"]
+[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="5_dess5"]
 
 [node name="World" type="Node3D" unique_id=1613566239]
 
@@ -26,3 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.708318, 0.5, -4.85729)
 
 [node name="Monster" parent="." unique_id=906645411 instance=ExtResource("4_4adp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -20)
+
+[node name="Turret" parent="." unique_id=395245931 instance=ExtResource("5_dess5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6145744, 1, 2.568266)

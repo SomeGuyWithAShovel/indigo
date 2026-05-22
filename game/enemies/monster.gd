@@ -38,6 +38,15 @@ func _ready() -> void:
 	cooldown_timer.timeout.connect(start_rampup);
 	add_child(cooldown_timer);
 	
+	health_component.died.connect(on_monster_death);
+	
+func on_monster_death(_from : HealthComponent) -> void:
+	set_physics_process(false);
+	visible = false;
+	await get_tree().create_timer(1.0).timeout;
+	queue_free();
+	get_tree().reload_current_scene();
+	
 func start_rampup() -> void:
 	rampup_timer.start(attack_rampup)
 

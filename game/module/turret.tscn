@@ -5,6 +5,9 @@
 [sub_resource type="BoxMesh" id="BoxMesh_w0prb"]
 size = Vector3(1, 2, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0prb"]
+albedo_color = Color(1, 1, 0.3529412, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0prb"]
 margin = 0.0
 size = Vector3(1, 2, 1)
@@ -15,17 +18,20 @@ radius = 10.0
 [node name="Turret" type="Node3D" unique_id=395245931]
 script = ExtResource("1_w0prb")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=274420374]
+mesh = SubResource("BoxMesh_w0prb")
+surface_material_override/0 = SubResource("StandardMaterial3D_w0prb")
+
 [node name="Timer" type="Timer" parent="." unique_id=1903341105]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1616738968]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=274420374]
-mesh = SubResource("BoxMesh_w0prb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2003108133]
 shape = SubResource("BoxShape3D_w0prb")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=424394434]
+collision_layer = 8
+collision_mask = 16
 
 [node name="TowerRadius" type="CollisionShape3D" parent="Area3D" unique_id=790276947]
 shape = SubResource("SphereShape3D_elsym")

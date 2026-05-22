@@ -1,8 +1,7 @@
 extends Node3D
 
-var range = 20.0
-var damage = 10
-var shot_cd = 1.0
+@export var damage := 10
+@export var shot_cd := 0.5
 var cur_enemie: Array[Monster]
 var target:Monster = null
 
@@ -21,8 +20,8 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("Rentreer")
-	if body.get_parent_node_3d() is Monster:
-		cur_enemie.append(body.get_parent_node_3d())
+	if body is Monster:
+		cur_enemie.append(body)
 		var timer:Timer = get_node("Timer")
 		print("Ajout !")
 		if timer.is_stopped():
@@ -32,7 +31,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	var index = cur_enemie.find(body.get_parent_node_3d())
+	var index = cur_enemie.find(body)
 	if index != -1 :
 		cur_enemie.remove_at(index)
 		if cur_enemie.is_empty():
