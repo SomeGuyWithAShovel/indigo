@@ -1,16 +1,23 @@
 [gd_scene format=3 uid="uid://fl2knjkdirn0"]
 
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_gv5m4"]
+[ext_resource type="Texture2D" uid="uid://chpqq1g0ux86d" path="res://assets/Horror_Floor_03-512x512.png" id="1_ig0dc"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ig0dc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_konwf"]
+albedo_texture = ExtResource("1_ig0dc")
+
 [node name="Terrain" type="Node3D" unique_id=1393607273]
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1698704857]
+[node name="Area3D" type="StaticBody3D" parent="." unique_id=1940965157]
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=356413957]
-shape = SubResource("SeparationRayShape3D_gv5m4")
+shape = SubResource("WorldBoundaryShape3D_ig0dc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=858168955]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 mesh = SubResource("PlaneMesh_gv5m4")
+surface_material_override/0 = SubResource("StandardMaterial3D_konwf")
