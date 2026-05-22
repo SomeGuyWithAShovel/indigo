@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://7aj3gv7i5ivh"]
+
+[ext_resource type="Script" uid="uid://de677b7lx7mpr" path="res://paul/logic/player/resources/player_resources.gd" id="1_j82sr"]
+[ext_resource type="Script" uid="uid://du6e1dlj15ka8" path="res://paul/logic/player/resources/resource/player_resource.gd" id="2_7jpnf"]
+
+[sub_resource type="Resource" id="Resource_r3jbs"]
+script = ExtResource("2_7jpnf")
+_amount = 5000
+metadata/_custom_type_script = "uid://du6e1dlj15ka8"
+
+[node name="PlayerResources" type="Node" unique_id=1511684329]
+script = ExtResource("1_j82sr")
+crystals = SubResource("Resource_r3jbs")

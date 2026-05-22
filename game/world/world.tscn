@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://ctixn2ovn721f"]
 
 [ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
-[ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://scenes/world/grid/construction_grid.tscn" id="1_ibfx6"]
-[ext_resource type="PackedScene" uid="uid://cymas65gbt1hv" path="res://scenes/logic/player/player.tscn" id="1_uynus"]
+[ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://paul/world/grid/construction_grid.tscn" id="1_ibfx6"]
+[ext_resource type="PackedScene" uid="uid://cymas65gbt1hv" path="res://paul/logic/player/player.tscn" id="1_uynus"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
 [ext_resource type="PackedScene" uid="uid://dmj1g581wlinx" path="res://game/debug_interact.tscn" id="3_k7f6b"]
+[ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/Monster.tscn" id="4_4adp2"]
 [ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="5_dess5"]
-[ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://scenes/world/grid/player_base/player_base.tscn" id="8_vwhhl"]
+[ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://paul/world/grid/player_base/player_base.tscn" id="8_vwhhl"]
 
 [node name="World" type="Node3D" unique_id=1613566239]
 
@@ -40,3 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6145744, 1, 2.568266)
 
 [node name="PlayerBase" parent="." unique_id=2139156727 node_paths=PackedStringArray("construction_grid") instance=ExtResource("8_vwhhl")]
 construction_grid = NodePath("../ConstructionGrid")
+
+[node name="Monster" parent="." unique_id=906645411 instance=ExtResource("4_4adp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.05189, 1, -22.70575)
