@@ -28,7 +28,6 @@ func decide_interaction_target() -> void:
 			interaction_target = candidate;
 
 func entered(node : Node3D) -> void:
-	print("Entered");
 	var node_parent : Node3D = node.get_parent();
 	assert(node_parent.has_method("interact"), 
 		"Area3D found by interactor on interact layer but whose parent script does not implement an interact method");;
@@ -37,7 +36,6 @@ func entered(node : Node3D) -> void:
 		interactibles.push_back(node_parent);
 		
 func exited(node : Node3D) -> void:
-	print("Exited");
 	interactibles.erase(node.get_parent());
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:

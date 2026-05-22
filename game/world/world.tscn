@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
 [ext_resource type="PackedScene" uid="uid://dmj1g581wlinx" path="res://game/debug_interact.tscn" id="3_k7f6b"]
+[ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/Monster.tscn" id="4_4adp2"]
 
 [node name="World" type="Node3D" unique_id=1613566239]
 
 [node name="Terrain" parent="." unique_id=1393607273 instance=ExtResource("1_aqibe")]
 
 [node name="Player" parent="." unique_id=1581018594 instance=ExtResource("2_ufdhy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3791513, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=284671496]
 transform = Transform3D(1, 0, 0, 0, -0.010471792, 0.99994516, 0, -0.99994516, -0.010471792, 0, 40.01224, 0)
@@ -22,3 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7846937, 0.5, 0.9592978)
 
 [node name="DebugInteract3" parent="." unique_id=1712296653 instance=ExtResource("3_k7f6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.708318, 0.5, -4.85729)
+
+[node name="Monster" parent="." unique_id=906645411 instance=ExtResource("4_4adp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -20)

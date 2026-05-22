@@ -1,3 +1,4 @@
+class_name Player
 extends Node3D
 
 @export var direction_switch_lag : float = 0.01;
@@ -17,13 +18,15 @@ var acceleration_weight := 0.0;
 func _ready() -> void:
 	health.died.connect(kill);
 	$Label.text = str(health.get_health())
-	health.was_hurt.connect(func (_a, h, _b): $Label.text = str(h));
+	health.health_changed.connect(func (_a, h): $Label.text = str(h));
 
 func kill(_health : HealthComponent) -> void:
 	visible = false;
+	character.set_collision_layer_value(2, false);
 	await get_tree().create_timer(1.0).timeout;
-	health.reset();
 	position = Vector3(0, 10, 0);
+	character.set_collision_layer_value(2, true);
+	health.reset();
 	visible = true;
 
 func get_input_direction() -> Vector3:
@@ -76,7 +79,3 @@ func _physics_process(delta: float) -> void:
 	character.velocity = speed*direction;
 	character.velocity += delta*gravity*100.0;
 	character.move_and_slide();
-
-
-func _on_area_3d_body_exited(body: Node3D) -> void:
-	pass # Replace with function body.
