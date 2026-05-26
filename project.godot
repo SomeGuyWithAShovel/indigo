@@ -15,9 +15,18 @@ run/main_scene="uid://ctixn2ovn721f"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
+BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
+
 [dotnet]
 
 project/assembly_name="Indigo"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [input]
 
@@ -109,6 +118,7 @@ toggle_cursor={
 3d_physics/layer_4="zones"
 3d_physics/layer_5="monster"
 3d_physics/layer_6="grid"
+3d_physics/layer_7="base"
 
 [physics]
 
