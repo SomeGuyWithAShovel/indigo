@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://rdv4qkxl4odu"]
+
+[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="1_2c3rk"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_3wcmu"]
+[ext_resource type="Script" uid="uid://ds7mpu2gd07bn" path="res://game/enemies/ai/is_straight_to_target.gd" id="2_i4ejb"]
+[ext_resource type="Script" uid="uid://c18r38x2em82e" path="res://game/enemies/ai/move_straight.gd" id="4_3wcmu"]
+[ext_resource type="Script" uid="uid://fvlmi83rs5he" path="res://game/enemies/ai/a_star.gd" id="4_m84vg"]
+
+[node name="Approach" type="Node" unique_id=1797630232]
+script = ExtResource("1_2c3rk")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="StraightLine" type="Node" parent="." unique_id=1929482479]
+script = ExtResource("2_3wcmu")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsStraightToTarget" type="Node" parent="StraightLine" unique_id=1755586576]
+script = ExtResource("2_i4ejb")
+target_name = "target"
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="MoveStraight" type="Node" parent="StraightLine" unique_id=1972994740]
+script = ExtResource("4_3wcmu")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="AStar" type="Node" parent="." unique_id=304432520]
+script = ExtResource("4_m84vg")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"

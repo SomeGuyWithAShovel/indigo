@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://grt0wxjjupom"]
 
+[ext_resource type="Script" uid="uid://8b3kro7lcxr4" path="res://paul/logic/player/player.gd" id="1_a4w0n"]
 [ext_resource type="Script" uid="uid://b3e86rany81pw" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_obar5"]
 [ext_resource type="Script" uid="uid://b5wv0hi7typfg" path="res://game/player/interactor.gd" id="3_8soms"]
+[ext_resource type="PackedScene" uid="uid://c3x5aj72d66ec" path="res://paul/logic/player/construction/player_construction.tscn" id="5_epvkq"]
+[ext_resource type="PackedScene" uid="uid://7aj3gv7i5ivh" path="res://paul/logic/player/resources/player_resources.tscn" id="6_5ghna"]
+[ext_resource type="Script" uid="uid://du6e1dlj15ka8" path="res://paul/logic/player/resources/resource/player_resource.gd" id="7_j0mij"]
+[ext_resource type="PackedScene" uid="uid://y5yfmp6u70yl" path="res://paul/UI/player/player_ui.tscn" id="8_gb4gm"]
+
+[sub_resource type="Environment" id="Environment_b2mth"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_obar5"]
 
@@ -11,36 +18,17 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2mth"]
 albedo_color = Color(1, 0.3019608, 0.29411766, 1)
 
-[sub_resource type="Environment" id="Environment_b2mth"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a4w0n"]
 height = 1.0
 radius = 3.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1686404839]
-collision_layer = 2
-collision_mask = 7
-script = ExtResource("1_b2mth")
-direction_switch_lag = 0.1
-max_speed = 20.0
+[sub_resource type="Resource" id="Resource_uv2nh"]
+script = ExtResource("7_j0mij")
+_amount = 5000000
+metadata/_custom_type_script = "uid://du6e1dlj15ka8"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=351625866]
-shape = SubResource("CapsuleShape3D_obar5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1809189893]
-mesh = SubResource("CapsuleMesh_b2mth")
-surface_material_override/0 = SubResource("StandardMaterial3D_b2mth")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=182410785]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8, 0)
-environment = SubResource("Environment_b2mth")
-
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=961147872]
-target_position = Vector3(0, 0, -20)
-collision_mask = 32
-collide_with_areas = true
-debug_shape_custom_color = Color(1, 1, 1, 1)
-debug_shape_thickness = 1
+[node name="PlayerSpawn" type="Node3D" unique_id=1899147477]
+script = ExtResource("1_a4w0n")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=109923609]
 script = ExtResource("1_obar5")
@@ -51,17 +39,51 @@ invincibility_duration = 0.5
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Interactor" type="Node3D" parent="." unique_id=2010030431]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1686404839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_b2mth")
+direction_switch_lag = 0.1
+max_speed = 20.0
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=182410785]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8, 0)
+environment = SubResource("Environment_b2mth")
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/Camera3D" unique_id=961147872]
+target_position = Vector3(0, 0, -20)
+collision_mask = 32
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 1, 1, 1)
+debug_shape_thickness = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=351625866]
+shape = SubResource("CapsuleShape3D_obar5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1809189893]
+mesh = SubResource("CapsuleMesh_b2mth")
+surface_material_override/0 = SubResource("StandardMaterial3D_b2mth")
+
+[node name="Interactor" type="Node3D" parent="CharacterBody3D" unique_id=2010030431]
 script = ExtResource("3_8soms")
 
-[node name="Area3D" type="Area3D" parent="Interactor" unique_id=1340248979]
+[node name="Area3D" type="Area3D" parent="CharacterBody3D/Interactor" unique_id=1340248979]
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactor/Area3D" unique_id=153790821]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Interactor/Area3D" unique_id=153790821]
 shape = SubResource("CylinderShape3D_a4w0n")
 
-[connection signal="area_entered" from="Interactor/Area3D" to="Interactor" method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Interactor/Area3D" to="Interactor" method="_on_area_3d_area_exited"]
-[connection signal="body_entered" from="Interactor/Area3D" to="Interactor" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Interactor/Area3D" to="Interactor" method="_on_area_3d_body_exited"]
+[node name="PlayerConstruction" parent="." unique_id=1053297640 instance=ExtResource("5_epvkq")]
+
+[node name="PlayerResources" parent="." unique_id=1511684329 instance=ExtResource("6_5ghna")]
+crystals = SubResource("Resource_uv2nh")
+
+[node name="PlayerUI" parent="." unique_id=1727217067 instance=ExtResource("8_gb4gm")]
+
+[connection signal="area_entered" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_area_exited"]
+[connection signal="body_entered" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_body_exited"]

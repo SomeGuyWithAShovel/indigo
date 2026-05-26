@@ -12,16 +12,11 @@ func _ready() -> void:
 	print("test")
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("Rentreer")
-	if body is Monster:
-		cur_enemie.append(body)
+	var monster = body.get_parent();
+	if monster is Monster:
+		cur_enemie.append(monster)
 		var timer:Timer = get_node("Timer")
 		print("Ajout !")
 		if timer.is_stopped():
@@ -31,7 +26,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	var index = cur_enemie.find(body)
+	var index = cur_enemie.find(body.get_parent())
 	if index != -1 :
 		cur_enemie.remove_at(index)
 		if cur_enemie.is_empty():
@@ -55,9 +50,9 @@ func getShortestMonster() -> Monster:
 	var turret_postion = position
 	for monster in cur_enemie:
 		#division en plusieur variable pour clarete du code
-		var cur_Xdistance = (monster.position.x-turret_postion.x)**2 
-		var cur_Ydistance = (monster.position.y-turret_postion.y)**2 
-		var cur_Zdistance = (monster.position.z-turret_postion.z)**2
+		var cur_Xdistance = (monster.character.position.x-turret_postion.x)**2 
+		var cur_Ydistance = (monster.character.position.y-turret_postion.y)**2 
+		var cur_Zdistance = (monster.character.position.z-turret_postion.z)**2
 		var cur_distance = cur_Xdistance + cur_Ydistance + cur_Zdistance
 		if cur_distance<best_distance:
 			cur_monster = monster
@@ -73,16 +68,4 @@ func damage_Monster(monster: Monster)-> void:
 
 func _on_timer_timeout() -> void:
 	shoot()
-	pass # Replace with function body.
-
-
-func _on_area_3d_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	print("Rentreer area")
-	_on_area_3d_body_entered(area)
-	pass # Replace with function body.
-
-
-func _on_area_3d_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	print("Sortie area")
-	_on_area_3d_body_exited(area)
 	pass # Replace with function body.

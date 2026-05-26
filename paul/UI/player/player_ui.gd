@@ -1,9 +1,9 @@
 class_name PlayerUI
 extends Control
 
-@export var player: Player = null;
+@onready var player: Player = $"..";
 
-func _enter_tree() -> void :
+func _ready() -> void :
 	assert(player != null);
 	return;
 

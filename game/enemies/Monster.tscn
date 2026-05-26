@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3jajg4o4y0wd" path="res://game/enemies/monster.gd" id="1_okd12"]
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_yj27i"]
+[ext_resource type="PackedScene" uid="uid://dwnbx8ofh71c1" path="res://game/enemies/ai/MonsterAI.tscn" id="3_jpady"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_okd12"]
 
@@ -18,10 +19,7 @@ radius = 8.0
 height = 1.0
 radius = 2.0
 
-[node name="Monster" type="CharacterBody3D" unique_id=906645411]
-collision_layer = 16
-collision_mask = 19
-floor_stop_on_slope = false
+[node name="MonsterSpawn" type="Node3D" unique_id=208271244]
 script = ExtResource("1_okd12")
 speed = 5.0
 attack_damage = 20
@@ -33,28 +31,40 @@ script = ExtResource("1_yj27i")
 max_health = 100
 invincibility_duration = 0.1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1576624042]
+[node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
+actor_node_path = NodePath("..")
+blackboard = NodePath("@Node@67524")
+
+[node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 19
+floor_stop_on_slope = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monster" unique_id=1576624042]
 mesh = SubResource("CapsuleMesh_okd12")
 surface_material_override/0 = SubResource("StandardMaterial3D_okd12")
 
-[node name="Sight" type="Area3D" parent="." unique_id=1420014928]
+[node name="Sight" type="Area3D" parent="Monster" unique_id=1420014928]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 66
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sight" unique_id=1627796633]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monster/Sight" unique_id=1627796633]
 shape = SubResource("CylinderShape3D_okd12")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=336634105]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]
 shape = SubResource("CapsuleShape3D_yj27i")
 
-[node name="Range" type="Area3D" parent="." unique_id=1397932486]
+[node name="Range" type="Area3D" parent="Monster" unique_id=1397932486]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 66
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Range" unique_id=1385042218]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monster/Range" unique_id=1385042218]
 shape = SubResource("CylinderShape3D_jpady")
 
-[connection signal="body_entered" from="Sight" to="." method="_on_player_entered_sight"]
-[connection signal="body_exited" from="Sight" to="." method="_on_player_exited_sight"]
-[connection signal="body_entered" from="Range" to="." method="_on_player_entered_attack_range"]
-[connection signal="body_exited" from="Range" to="." method="_on_player_exited_attack_range"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Monster" unique_id=1725574038]
+
+[connection signal="body_entered" from="Monster/Sight" to="." method="_on_entered_sight"]
+[connection signal="body_exited" from="Monster/Sight" to="." method="_on_exited_sight"]
+[connection signal="body_entered" from="Monster/Range" to="." method="_on_entered_attack_range"]
+[connection signal="body_exited" from="Monster/Range" to="." method="_on_exited_attack_range"]

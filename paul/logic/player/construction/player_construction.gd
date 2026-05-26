@@ -1,12 +1,11 @@
 class_name PlayerConstruction
 extends Node
 
-@export var player: Player = null;
-@export var construction_grid: ConstructionGrid = null;
+@onready var player: Player = $"..";
+var construction_grid: ConstructionGrid = null;
 
-func _enter_tree() -> void :
+func _ready() -> void :
 	assert(player != null);
-	assert(construction_grid != null);
 	return;
 
 func try_build_base_cell(coords: Vector2i) -> bool :

@@ -1,18 +1,17 @@
 class_name Player
-extends Node
+extends Node3D
 
 # handles the "abstract" Player
 # not the in-world character, but everything player related (including the in-world character)
 
-@export_group("Local References")
-@export var resources: PlayerResources = null;
-@export var construction: PlayerConstruction = null;
+@onready var resources: PlayerResources = $PlayerResources;
+@onready var construction: PlayerConstruction = $PlayerConstruction;
+@onready var character: PlayerCharacter = $CharacterBody3D;
 
 @export_group("Extern References")
-@export var character: PlayerCharacter = null;
 @export var construction_grid: ConstructionGrid = null;
 
-func _enter_tree() -> void :
+func _ready() -> void :
 	assert(resources != null);
 	assert(character != null);
 	assert(construction_grid != null);

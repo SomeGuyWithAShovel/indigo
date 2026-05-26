@@ -1,19 +1,18 @@
 class_name PlayerCharacter
 extends Node3D
 
+@export_group("Movement parameters")
 @export var direction_switch_lag : float = 0.01;
 @export var max_speed : float = 10.0;
 @export var acceleration : float = 10.0;
 @export var desceleration : float = 10.0;
 @onready var gravity : Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
-@export_group("Extern References")
-@export var player: Player = null;
-
+@onready var player: Player = $"..";
 @onready var camera : Camera3D = $"Camera3D";
 @onready var raycast: RayCast3D = $Camera3D/RayCast3D;
 @onready var character : CharacterBody3D = $".";
-@onready var health : HealthComponent = $HealthComponent;
+@onready var health : HealthComponent = $"../HealthComponent";
 
 var is_mouse_captured: bool = true;
 var last_point_targeted: Vector2i = Vector2i.ZERO;
@@ -25,8 +24,8 @@ var acceleration_weight := 0.0;
 
 func _ready() -> void:
 	health.died.connect(kill);
-	$Label.text = str(health.get_health())
-	health.health_changed.connect(func (_a, h): $Label.text = str(h));
+	$"../Label".text = str(health.get_health())
+	health.health_changed.connect(func (_a, h): $"../Label".text = str(h));
 	toggle_mouse_captured();
 
 func kill(_health : HealthComponent) -> void:
@@ -89,6 +88,10 @@ func _physics_process(delta: float) -> void:
 	character.velocity = speed*direction;
 	character.velocity += delta*gravity*100.0;
 	character.move_and_slide();
+	# On veut récupérer la position depuis le Player, pas le PlayerCharacter
+	# CharacterBody3D ne peut pas déplacer autre chose qu'un Collider malheureusement...
+	player.global_position = character.global_position;
+	character.position = Vector3.ZERO;
 
 func set_mouse_captured(capture: bool) -> void :
 	if (capture == true) :
