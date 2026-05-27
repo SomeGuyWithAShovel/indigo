@@ -19,7 +19,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	# La valeur par défaut "actor" est parce qu'on veut pas que previous_target soit null
 	# mais qu'on veut quand même une valeur pour laquelle element == previous_target soit 
 	# toujours fausse.
-	var previous_target : Node3D = blackboard.get_value("target", monster.character);
+	var previous_target : Node3D = blackboard.get_value("target", monster.default_target);
 	for element in monster.in_sight:
 		var colliders := element.find_children("*", "CollisionObject3D", false);
 		if colliders.is_empty():

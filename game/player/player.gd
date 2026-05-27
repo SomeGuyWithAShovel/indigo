@@ -68,9 +68,6 @@ func _physics_process(delta: float) -> void:
 	if health.get_health() == 0:
 		return;
 	
-	if Input.is_action_just_pressed(&"ui_cancel"): # DEBUG
-		health.hurt(10);
-	
 	var input_direction := get_input_direction();
 	if not input_direction.is_equal_approx(current_input_direction):
 		previous_input_direction = current_input_direction;
