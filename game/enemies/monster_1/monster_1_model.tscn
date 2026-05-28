@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ciwe57nl7pa6p"]
+
+[ext_resource type="PackedScene" uid="uid://dq7w7n60veneq" path="res://assets/3dModels/Monster_1.blend" id="1_fmbie"]
+[ext_resource type="Script" uid="uid://bvpq8ciaqcgo5" path="res://game/enemies/monster_1/monster_1_animations.gd" id="2_085fy"]
+
+[node name="Model" unique_id=2059798611 instance=ExtResource("1_fmbie")]
+script = ExtResource("2_085fy")
+
+[node name="CharacterArmature_041" parent="." index="0" unique_id=988218051]
+transform = Transform3D(0.62748575, 0, -0.12612303, 0, 0.6400354, 0, 0.12612303, 0, 0.62748575, 0, 0, 0)
+
+[node name="Skeleton3D" parent="CharacterArmature_041" index="0" unique_id=964210037]
+bones/0/position = Vector3(0, 8.9614005e-05, 0.001451665)
+bones/0/rotation = Quaternion(-0.0030102986, 0, 0, 0.99999547)
+bones/1/position = Vector3(0, 0.48309425, -0.0016079105)
+bones/1/rotation = Quaternion(-0.012334666, 0, 0, 0.99992394)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/3/rotation = Quaternion(-0.0043201484, -1.1405113e-05, -0.00417102, 0.999982)

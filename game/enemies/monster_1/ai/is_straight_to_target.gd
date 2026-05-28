@@ -2,7 +2,7 @@
 extends ConditionLeaf
 
 @export var target_name : String;
-@export_flags_3d_physics var exclude_layers : int;
+@export_flags_3d_physics var layers : int;
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var monster_char : Node3D = (actor as Monster).character;
@@ -13,7 +13,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	var collision_shape := (monster_char.find_child("CollisionShape3D") as CollisionShape3D).shape;
 	params.shape = collision_shape;
 	params.motion = target.global_position - monster_char.global_position;
-	params.collision_mask &= ~exclude_layers;
+	params.collision_mask &= layers;
 	
 	var space_state := (monster_char as Node3D).get_world_3d().direct_space_state;
 	var intersections := space_state.intersect_shape(params);

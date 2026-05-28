@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://paul/world/grid/player_base/cells/base_cell.tscn" id="1_yyou5"]
 [ext_resource type="ArrayMesh" path="res://assets/OBJ format/corridor_cross.obj" id="2_6dosc"]
-[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/OBJ format/corridor.obj" id="3_dytrs"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_dytrs"]
 
 [node name="Cell" unique_id=39220363 instance=ExtResource("1_yyou5")]
 

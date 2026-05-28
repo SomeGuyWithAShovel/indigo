@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://2qri6rrfv8ui" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="1_rbpqy"]
 [ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="2_rbpqy"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="3_atiyv"]
-[ext_resource type="Script" uid="uid://dg8p7k5d3moir" path="res://game/enemies/ai/attack.gd" id="4_dl76g"]
-[ext_resource type="Script" uid="uid://dopjycrw05x7c" path="res://game/enemies/ai/animate.gd" id="5_vuyg6"]
+[ext_resource type="Script" uid="uid://dg8p7k5d3moir" path="res://game/enemies/monster_1/ai/attack.gd" id="4_dl76g"]
+[ext_resource type="Script" uid="uid://dopjycrw05x7c" path="res://game/enemies/monster_1/ai/animate.gd" id="5_vuyg6"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="6_w6kk2"]
 
 [node name="AlwaysSucceedDecorator" type="Node" unique_id=205774600]
@@ -22,6 +22,7 @@ metadata/_custom_type_script = "uid://bbaojjriq676j"
 
 [node name="StartAttackAnimation" type="Node" parent="AttackCooldown/SequenceComposite" unique_id=1129460107]
 script = ExtResource("5_vuyg6")
+animation = 2
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="AttackRampup" type="Node" parent="AttackCooldown/SequenceComposite" unique_id=553369716]

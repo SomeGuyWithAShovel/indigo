@@ -1,7 +1,7 @@
 class_name Monster
 extends Node3D
 
-@export_category("Movement")
+@export_group("Movement")
 @export var default_target : Node3D;
 @export var speed : float;
 
@@ -14,11 +14,13 @@ extends Node3D
 @onready var gravity : Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 @onready var character : CharacterBody3D = $Monster;
 @onready var navigation : NavigationAgent3D = $Monster/NavigationAgent3D;
+@onready var animations : Monster1Animations = $Monster/MonsterAnimation;
 var in_sight : Array[Node3D];
 var in_attack_range : Array[Node3D];
 
 func _ready() -> void:
 	health_component.died.connect(on_monster_death);
+	health_component.health_changed.connect(on_monster_hit);
 	navigation.max_speed = speed;
 	
 func on_monster_death(_from : HealthComponent) -> void:
@@ -28,7 +30,13 @@ func on_monster_death(_from : HealthComponent) -> void:
 	queue_free();
 	get_tree().reload_current_scene();
 	
+func on_monster_hit(_from : HealthComponent, _new_hp: int) -> void:
+	animations.start_hurt();
+	
 func _physics_process(_delta: float) -> void:
+	character.move_and_slide();
+	if not character.velocity.is_zero_approx():
+		character.look_at(character.global_position + character.velocity, Vector3.UP, true);
 	global_position = character.global_position;
 	character.position = Vector3.ZERO;
 	

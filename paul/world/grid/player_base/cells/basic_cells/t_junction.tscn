@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://g8d5ilcm6tyn"]
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://paul/world/grid/player_base/cells/base_cell.tscn" id="1_2j6fc"]
-[ext_resource type="ArrayMesh" uid="uid://mgiypqpnka7d" path="res://assets/OBJ format/corridor_split.obj" id="2_4buqp"]
-[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/OBJ format/corridor.obj" id="3_1ra6t"]
+[ext_resource type="ArrayMesh" uid="uid://mgiypqpnka7d" path="res://assets/3dModels/corridor_split.obj" id="2_4buqp"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_1ra6t"]
 
 [node name="Cell" unique_id=39220363 instance=ExtResource("1_2j6fc")]
 

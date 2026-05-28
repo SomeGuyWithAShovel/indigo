@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6sb0ehl5gnwt"]
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://paul/world/grid/player_base/cells/base_cell.tscn" id="1_s75pl"]
-[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/OBJ format/corridor_cornerRound.obj" id="2_el8rh"]
+[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="2_el8rh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bt0m"]
 

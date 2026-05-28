@@ -1,23 +1,20 @@
 [gd_scene format=3 uid="uid://6dxux7xq7ohu"]
 
-[ext_resource type="Script" uid="uid://d3jajg4o4y0wd" path="res://game/enemies/monster.gd" id="1_okd12"]
+[ext_resource type="Script" uid="uid://d3jajg4o4y0wd" path="res://game/enemies/monster_1/monster.gd" id="1_okd12"]
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_yj27i"]
-[ext_resource type="PackedScene" uid="uid://dwnbx8ofh71c1" path="res://game/enemies/ai/MonsterAI.tscn" id="3_jpady"]
+[ext_resource type="PackedScene" uid="uid://dwnbx8ofh71c1" path="res://game/enemies/monster_1/ai/MonsterAI.tscn" id="3_jpady"]
+[ext_resource type="PackedScene" uid="uid://ciwe57nl7pa6p" path="res://game/enemies/monster_1/monster_1_model.tscn" id="4_xlnnv"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_okd12"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okd12"]
-albedo_color = Color(0.28235295, 0, 1, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_cfxws"]
+radius = 0.8
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okd12"]
 height = 1.0
 radius = 8.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yj27i"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jpady"]
 height = 1.0
-radius = 1.0
+radius = 2.0
 
 [node name="MonsterSpawn" type="Node3D" unique_id=208271244]
 script = ExtResource("1_okd12")
@@ -33,29 +30,29 @@ invincibility_duration = 0.1
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@153735")
+blackboard = NodePath("@Node@70260")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 16
 collision_mask = 83
 floor_stop_on_slope = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Monster" unique_id=1576624042]
-mesh = SubResource("CapsuleMesh_okd12")
-surface_material_override/0 = SubResource("StandardMaterial3D_okd12")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_cfxws")
+
+[node name="MonsterAnimation" parent="Monster" unique_id=695942752 instance=ExtResource("4_xlnnv")]
 
 [node name="Sight" type="Area3D" parent="Monster" unique_id=1420014928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 8
 collision_mask = 66
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Monster/Sight" unique_id=1627796633]
 shape = SubResource("CylinderShape3D_okd12")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]
-shape = SubResource("CapsuleShape3D_yj27i")
-
 [node name="Range" type="Area3D" parent="Monster" unique_id=1397932486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 8
 collision_mask = 66
 

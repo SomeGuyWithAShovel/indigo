@@ -11,5 +11,4 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	monster.navigation.target_position = target.global_position;
 
 	monster.character.velocity = current_agent_position.direction_to(next_path_position) * monster.speed;
-	monster.character.move_and_slide();
 	return SUCCESS;
