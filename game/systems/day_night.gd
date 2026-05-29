@@ -51,7 +51,7 @@ func next_quota(player : Player) -> int:
 	if quota_amount == crystal_quota:
 		day_since_last_pay_up = 0;
 	else:
-		# player.crystals.override_amount(0);
+		# player.crystals.override_amount(0); # I commented that because otherwise we start at 0 crystals, no matter what the resource in the player scene is initialized to. We might want to uncomment it again.
 		GameOverSystem.end_game(GameOver.Reason.QUOTA_NOT_MET);
 	return crystal_quota;
 	

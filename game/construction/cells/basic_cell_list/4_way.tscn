@@ -13,22 +13,27 @@ size = Vector3(0.1, 0.8, 0.5)
 [node name="Cell" unique_id=39220363 instance=ExtResource("1_yyou5")]
 
 [node name="CorridorCross" type="MeshInstance3D" parent="." index="0" unique_id=850865211]
+layers = 2
 mesh = ExtResource("2_4wynd")
 
 [node name="CorridorE" type="MeshInstance3D" parent="CorridorCross" index="0" unique_id=2113404024]
 transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 0.75, 0, 0)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
 [node name="CorridorN" type="MeshInstance3D" parent="CorridorCross" index="1" unique_id=1265460909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, -0.75)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
 [node name="CorridorW" type="MeshInstance3D" parent="CorridorCross" index="2" unique_id=1927788069]
 transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, -0.75, 0, 0)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
 [node name="CorridorS" type="MeshInstance3D" parent="CorridorCross" index="3" unique_id=1425955074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0.75)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1977217085]

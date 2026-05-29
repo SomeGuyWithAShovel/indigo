@@ -17,18 +17,22 @@ size = Vector3(0.1, 0.8, 0.5)
 
 [node name="CorridorSplit" type="MeshInstance3D" parent="." index="0" unique_id=292892330]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+layers = 2
 mesh = ExtResource("2_4buqp")
 
 [node name="CorridorE" type="MeshInstance3D" parent="CorridorSplit" index="0" unique_id=698324659]
 transform = Transform3D(-1, 0, -4.371139e-08, 0, 1, 0, 8.742278e-08, 0, -0.5, -3.278354e-08, 0, -0.75)
+layers = 2
 mesh = ExtResource("3_1ra6t")
 
 [node name="CorridorN" type="MeshInstance3D" parent="CorridorSplit" index="1" unique_id=1147382503]
 transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, -0.75, 0, 3.278354e-08)
+layers = 2
 mesh = ExtResource("3_1ra6t")
 
 [node name="CorridorW" type="MeshInstance3D" parent="CorridorSplit" index="2" unique_id=1167394544]
 transform = Transform3D(-1, 0, -4.371139e-08, 0, 1, 0, 8.742278e-08, 0, -0.5, 3.278354e-08, 0, 0.75)
+layers = 2
 mesh = ExtResource("3_1ra6t")
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1933767641]

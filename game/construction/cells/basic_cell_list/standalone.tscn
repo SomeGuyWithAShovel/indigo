@@ -18,22 +18,27 @@ height = 0.8
 
 [node name="CorridorCornerRoundNE" type="MeshInstance3D" parent="." index="0" unique_id=810568265]
 transform = Transform3D(3.774895e-08, 0, -0.5, 0, 1, 0, 0.5, 0, 3.774895e-08, 0.25, 0, -0.25)
+layers = 2
 mesh = ExtResource("2_el8rh")
 
 [node name="CorridorCornerRoundNW" type="MeshInstance3D" parent="CorridorCornerRoundNE" index="0" unique_id=5639777]
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -8.940697e-08, 0, 1)
+layers = 2
 mesh = ExtResource("2_el8rh")
 
 [node name="CorridorCornerRoundSW" type="MeshInstance3D" parent="CorridorCornerRoundNE" index="1" unique_id=847819588]
 transform = Transform3D(-1, 0, 3.1786513e-08, 0, 1, 0, -3.1786513e-08, 0, -1, 0.99999994, 0, 1.0000001)
+layers = 2
 mesh = ExtResource("2_el8rh")
 
 [node name="CorridorCornerRoundSE" type="MeshInstance3D" parent="CorridorCornerRoundNE" index="2" unique_id=171266645]
 transform = Transform3D(-2.2649371e-07, 0, -1, 0, 1, 0, 1, 0, -2.2649371e-07, 1, 0, 8.940697e-08)
+layers = 2
 mesh = ExtResource("2_el8rh")
 
 [node name="TopCover" type="MeshInstance3D" parent="CorridorCornerRoundNE" index="3" unique_id=1390437007]
 transform = Transform3D(1.509958e-07, 0, 2, 0, 1, 0, -2, 0, 1.509958e-07, 0.49999997, 1.01, 0.50000006)
+layers = 2
 mesh = SubResource("QuadMesh_6vd4w")
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1598464990]

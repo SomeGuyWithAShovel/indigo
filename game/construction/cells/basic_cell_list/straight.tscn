@@ -10,6 +10,7 @@ size = Vector3(2, 0.8, 0.1)
 
 [node name="Corridor" type="MeshInstance3D" parent="." index="0" unique_id=299499403]
 transform = Transform3D(-4.371139e-08, 0, 2, 0, 1, 0, -1, 0, -8.742278e-08, 0, 0, 0)
+layers = 2
 mesh = ExtResource("2_rs1y8")
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1814063526]
