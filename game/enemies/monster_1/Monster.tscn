@@ -18,10 +18,8 @@ radius = 2.0
 
 [node name="MonsterSpawn" type="Node3D" unique_id=208271244]
 script = ExtResource("1_okd12")
-speed = 5.0
+speed = 1.0
 attack_damage = 20
-attack_rampup = 0.2
-attack_cooldown = 0.8
 
 [node name="HealthComponent" type="Node" parent="." unique_id=569542414]
 script = ExtResource("1_yj27i")
@@ -29,23 +27,21 @@ max_health = 100
 invincibility_duration = 0.1
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
-tick_rate = 5
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@387918")
+blackboard = NodePath("@Node@18813")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 collision_layer = 16
-collision_mask = 67
+collision_mask = 71
 floor_stop_on_slope = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_cfxws")
 
 [node name="MonsterAnimation" parent="Monster" unique_id=695942752 instance=ExtResource("4_xlnnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Sight" type="Area3D" parent="Monster" unique_id=1420014928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 8
 collision_mask = 66
 
@@ -53,7 +49,6 @@ collision_mask = 66
 shape = SubResource("CylinderShape3D_okd12")
 
 [node name="Range" type="Area3D" parent="Monster" unique_id=1397932486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 8
 collision_mask = 66
 

@@ -14,8 +14,6 @@ var index : int;
 
 @export_group("Damage")
 @export var attack_damage : int;
-@export var attack_rampup : float;
-@export var attack_cooldown : float;
 
 @onready var health_component : HealthComponent = $HealthComponent;
 @onready var gravity : Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
