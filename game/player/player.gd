@@ -24,9 +24,9 @@ var acceleration_weight := 0.0;
 
 func _ready() -> void:
 	health.died.connect(kill);
-	$"../Label".text = str(health.get_health())
-	health.health_changed.connect(func (_a, h): $"../Label".text = str(h));
-	toggle_mouse_captured();
+	DayNightSystem.on_day_start.connect(func () :
+		health.reset();	
+	);
 
 func kill(_health : HealthComponent) -> void:
 	visible = false;

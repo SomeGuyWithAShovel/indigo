@@ -1,6 +1,13 @@
 class_name Monster
 extends Node3D
 
+# Pour le wave manager, pas touche
+var index : int;
+
+@export_group("Power")
+# Pour la génération de vagues
+@export var strength : int = 1;
+
 @export_group("Movement")
 @export var default_target : Node3D;
 @export var speed : float;
@@ -26,9 +33,7 @@ func _ready() -> void:
 func on_monster_death(_from : HealthComponent) -> void:
 	set_physics_process(false);
 	character.visible = false;
-	await get_tree().create_timer(1.0).timeout;
 	queue_free();
-	get_tree().reload_current_scene();
 	
 func on_monster_hit(_from : HealthComponent, _new_hp: int) -> void:
 	animations.start_hurt();

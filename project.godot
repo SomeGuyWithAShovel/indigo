@@ -19,6 +19,8 @@ config/icon="res://assets/icon.svg"
 
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
+DayNightSystem="*uid://c66lcj54vitdf"
+GameOverSystem="*uid://contcextu1sf"
 
 [dotnet]
 

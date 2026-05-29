@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cu4kcfopxete5"]
+
+[ext_resource type="Script" uid="uid://dpusthp48rvhj" path="res://game/enemies/wave_spawn_point/wave_spawn_point.gd" id="1_fhwgp"]
+
+[node name="WaveSpawnPoint" type="Node3D" unique_id=799522413]
+script = ExtResource("1_fhwgp")

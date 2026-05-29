@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://diyi5kf7yk7y2"]
 
 [ext_resource type="Script" uid="uid://2qri6rrfv8ui" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="1_rbpqy"]
-[ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="2_rbpqy"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="3_atiyv"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_cwj3o"]
 [ext_resource type="Script" uid="uid://dg8p7k5d3moir" path="res://game/enemies/monster_1/ai/attack.gd" id="4_dl76g"]
 [ext_resource type="Script" uid="uid://dopjycrw05x7c" path="res://game/enemies/monster_1/ai/animate.gd" id="5_vuyg6"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="6_w6kk2"]
@@ -11,30 +11,29 @@
 script = ExtResource("6_w6kk2")
 metadata/_custom_type_script = "uid://dsf3a8vlolhx8"
 
-[node name="AttackCooldown" type="Node" parent="." unique_id=417631842]
-script = ExtResource("1_rbpqy")
-wait_time = 0.8
-metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+[node name="SequenceComposite" type="Node" parent="." unique_id=623657788]
+script = ExtResource("3_cwj3o")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="SequenceComposite" type="Node" parent="AttackCooldown" unique_id=370153924]
-script = ExtResource("2_rbpqy")
-metadata/_custom_type_script = "uid://bbaojjriq676j"
-
-[node name="StartAttackAnimation" type="Node" parent="AttackCooldown/SequenceComposite" unique_id=1129460107]
+[node name="StartAttackAnimation" type="Node" parent="SequenceComposite" unique_id=1129460107]
 script = ExtResource("5_vuyg6")
 animation = 2
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="AttackRampup" type="Node" parent="AttackCooldown/SequenceComposite" unique_id=553369716]
+[node name="AttackRampup" type="Node" parent="SequenceComposite" unique_id=553369716]
 script = ExtResource("3_atiyv")
-wait_time = 0.2
+wait_time = 0.1
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="Attack" type="Node" parent="AttackCooldown/SequenceComposite/AttackRampup" unique_id=980792660]
+[node name="Attack" type="Node" parent="SequenceComposite/AttackRampup" unique_id=980792660]
 script = ExtResource("4_dl76g")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="StartRestingAnimation" type="Node" parent="AttackCooldown/SequenceComposite" unique_id=64624654]
+[node name="CooldownDecorator" type="Node" parent="SequenceComposite" unique_id=1038835201]
+script = ExtResource("1_rbpqy")
+wait_time = 0.5
+metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+
+[node name="StartRestingAnimation" type="Node" parent="SequenceComposite/CooldownDecorator" unique_id=64624654]
 script = ExtResource("5_vuyg6")
-animation = "Cooldown..."
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"

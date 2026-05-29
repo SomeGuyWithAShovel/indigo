@@ -27,17 +27,17 @@ script = ExtResource("7_j0mij")
 _amount = 5000000
 metadata/_custom_type_script = "uid://du6e1dlj15ka8"
 
+[sub_resource type="Resource" id="Resource_epvkq"]
+script = ExtResource("7_j0mij")
+metadata/_custom_type_script = "uid://du6e1dlj15ka8"
+
 [node name="PlayerSpawn" type="Node3D" unique_id=1899147477]
 script = ExtResource("1_a4w0n")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=109923609]
 script = ExtResource("1_obar5")
 max_health = 100
-invincibility_duration = 0.5
-
-[node name="Label" type="Label" parent="." unique_id=1400931818]
-offset_right = 40.0
-offset_bottom = 23.0
+invincibility_duration = 0.1
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1686404839]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -80,6 +80,7 @@ shape = SubResource("CylinderShape3D_a4w0n")
 
 [node name="PlayerResources" parent="." unique_id=1511684329 instance=ExtResource("6_5ghna")]
 crystals = SubResource("Resource_uv2nh")
+action_points = SubResource("Resource_epvkq")
 
 [node name="PlayerUI" parent="." unique_id=1727217067 instance=ExtResource("8_gb4gm")]
 

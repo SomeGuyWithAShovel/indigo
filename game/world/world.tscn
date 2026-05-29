@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://paul/world/grid/construction_grid.tscn" id="1_ibfx6"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
 [ext_resource type="PackedScene" uid="uid://dmj1g581wlinx" path="res://game/debug_interact.tscn" id="3_k7f6b"]
-[ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/monster_1/Monster.tscn" id="4_4adp2"]
 [ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="5_dess5"]
+[ext_resource type="PackedScene" uid="uid://comrs3i4lsjuo" path="res://game/systems/UIManager.tscn" id="7_we8ss"]
+[ext_resource type="PackedScene" uid="uid://dgijar3nol6i" path="res://game/systems/WaveGenerator.tscn" id="8_5hesp"]
+[ext_resource type="PackedScene" uid="uid://cu4kcfopxete5" path="res://game/enemies/wave_spawn_point/WaveSpawnPoint.tscn" id="8_ibfx6"]
 [ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://paul/world/grid/player_base/player_base.tscn" id="8_vwhhl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ibfx6"]
@@ -21,10 +23,6 @@ agent_radius = 1.0
 
 [node name="PlayerSpawn" parent="." unique_id=1581018594 node_paths=PackedStringArray("construction_grid") instance=ExtResource("2_ufdhy")]
 construction_grid = NodePath("../ConstructionGrid")
-
-[node name="MonsterSpawn" parent="." unique_id=906645411 node_paths=PackedStringArray("default_target") instance=ExtResource("4_4adp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.228573, 0, -13.944238)
-default_target = NodePath("../PlayerBase")
 
 [node name="ConstructionGrid" parent="." unique_id=1852987913 node_paths=PackedStringArray("player_base") instance=ExtResource("1_ibfx6")]
 player_base = NodePath("../PlayerBase")
@@ -63,3 +61,11 @@ shape = SubResource("BoxShape3D_we8ss")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1555771988]
 mesh = SubResource("BoxMesh_ibfx6")
+
+[node name="UiManager" parent="." unique_id=79220950 instance=ExtResource("7_we8ss")]
+
+[node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target") instance=ExtResource("8_5hesp")]
+default_monster_target = NodePath("../PlayerBase")
+
+[node name="WaveSpawnPoint" parent="WaveGenerator" unique_id=799522413 instance=ExtResource("8_ibfx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.753578, 0, -4.237499)

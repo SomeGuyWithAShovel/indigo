@@ -10,4 +10,5 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	assert(len(health_components) == 1, "Cible de monstre sans HealthComponent ?");
 	(health_components[0] as HealthComponent).hurt(monster.attack_damage);
+	print("Hurt at ", Time.get_ticks_msec());
 	return SUCCESS;

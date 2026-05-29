@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://comrs3i4lsjuo"]
+
+[ext_resource type="Script" uid="uid://bxtv67nnfm8ki" path="res://game/systems/ui_manager.gd" id="1_54ll4"]
+[ext_resource type="PackedScene" uid="uid://djhvmwipns517" path="res://game/ui/Day.tscn" id="2_gjd67"]
+[ext_resource type="PackedScene" uid="uid://ds0reclyxq1ol" path="res://game/ui/Night.tscn" id="3_84o1i"]
+[ext_resource type="PackedScene" uid="uid://bpgru5nlyhokj" path="res://game/ui/GameOver.tscn" id="4_hasba"]
+
+[node name="UiManager" type="Node" unique_id=1533921697]
+script = ExtResource("1_54ll4")
+ui_for_state = Dictionary[int, PackedScene]({
+0: ExtResource("2_gjd67"),
+1: ExtResource("3_84o1i"),
+2: ExtResource("4_hasba")
+})

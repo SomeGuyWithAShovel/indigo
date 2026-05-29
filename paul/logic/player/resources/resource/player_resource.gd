@@ -32,7 +32,7 @@ func remove(amount: int) -> void :
 	return;
 
 func remove_with_check(amount: int) -> bool :
-	if (has_amount(amount) == false) :
+	if not has_amount(amount):
 		return false;
 	remove(amount);
 	return true;

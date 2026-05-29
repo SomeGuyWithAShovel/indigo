@@ -11,11 +11,16 @@ extends Node3D
 @export_group("Extern References")
 @export var construction_grid: ConstructionGrid = null;
 
+# J'en ai besoin pour le day-night -Matéu
+static var instance : Player = null;
+
 func _ready() -> void :
 	assert(resources != null);
 	assert(character != null);
 	assert(construction_grid != null);
 	assert(construction != null);
 	construction.construction_grid = construction_grid;
+	
+	instance = self;
 	
 	return;
