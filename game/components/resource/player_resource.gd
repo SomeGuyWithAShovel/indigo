@@ -9,6 +9,7 @@ signal amount_changed(new_amount: int, delta: int);
 
 # @export var name: String;
 # @export var sprite: Texture2D = null;
+# please don't set directly ._.
 @export var _amount: int = 0;
 
 func get_amount() -> int :

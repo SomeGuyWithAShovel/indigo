@@ -1,14 +1,13 @@
 class_name PlayerConstruction
 extends Node
 
-@onready var player: Player = $"..";
-var construction_grid: ConstructionGrid = null;
+@export var player: Player = null;
 
-func _ready() -> void :
+func _enter_tree() -> void :
 	assert(player != null);
 	return;
 
-func try_build_base_cell(coords: Vector2i) -> bool :
+func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
 	const base_cell_cost: int = 500;
 	var crystals: PlayerResource = player.crystals;
 	if (crystals.has_amount(base_cell_cost) == false) :

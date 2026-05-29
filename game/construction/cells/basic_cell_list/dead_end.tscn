@@ -6,42 +6,69 @@
 [ext_resource type="PackedScene" uid="uid://cb4wuhu1gpd1m" path="res://game/construction/modules/slot/module_slot.tscn" id="4_e60wt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bt0m"]
+albedo_color = Color(0.8389701, 0.859696, 0.89267755, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_e60wt"]
+[sub_resource type="QuadMesh" id="QuadMesh_w1j3n"]
 material = SubResource("StandardMaterial3D_1bt0m")
 size = Vector2(0.5, 0.5)
 orientation = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1j3n"]
+size = Vector3(1, 0.8, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltlhk"]
+size = Vector3(0.1, 0.8, 0.8)
+
 [node name="Cell" unique_id=39220363 instance=ExtResource("1_yaccd")]
 
-[node name="CorridorE" type="MeshInstance3D" parent="." index="0" unique_id=124072515]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0, 0)
+[node name="TopCover" type="MeshInstance3D" parent="." index="0" unique_id=531647458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 2.1855694e-08)
+layers = 2
+mesh = SubResource("QuadMesh_w1j3n")
+
+[node name="CorridorCornerRoundNE" type="MeshInstance3D" parent="TopCover" index="0" unique_id=1526580610]
+transform = Transform3D(3.774895e-08, 0, -0.5, 0, 1, 0, 0.5, 0, 3.774895e-08, 0.25, -1.01, -0.25)
+layers = 2
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundNW" type="MeshInstance3D" parent="TopCover" index="1" unique_id=1240356105]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.25, -1.01, -0.25000003)
+layers = 2
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundSW" type="MeshInstance3D" parent="TopCover" index="2" unique_id=1165383502]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 1, 0, -0.5, 0, -2.1855694e-08, -0.25, -1.01, 0.24999999)
+layers = 2
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundSE" type="MeshInstance3D" parent="TopCover" index="3" unique_id=735095778]
+transform = Transform3D(-0.5, 0, 7.5497894e-08, 0, 1, 0, -7.5497894e-08, 0, -0.5, 0.25, -1.01, 0.24999999)
+layers = 2
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorE" type="MeshInstance3D" parent="TopCover" index="4" unique_id=124072515]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, -1.01, -2.1855694e-08)
+layers = 2
 mesh = ExtResource("3_qlusm")
 
-[node name="CorridorCornerRoundNE" type="MeshInstance3D" parent="." index="1" unique_id=1526580610]
-transform = Transform3D(3.774895e-08, 0, -0.5, 0, 1, 0, 0.5, 0, 3.774895e-08, 0.25, 0, -0.25)
-mesh = ExtResource("3_4w3yg")
-
-[node name="CorridorCornerRoundNW" type="MeshInstance3D" parent="." index="2" unique_id=1240356105]
-transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.25, 0, -0.25)
-mesh = ExtResource("3_4w3yg")
-
-[node name="CorridorCornerRoundSW" type="MeshInstance3D" parent="." index="3" unique_id=1165383502]
-transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 1, 0, -0.5, 0, -2.1855694e-08, -0.25, 0, 0.25)
-mesh = ExtResource("3_4w3yg")
-
-[node name="CorridorCornerRoundSE" type="MeshInstance3D" parent="." index="4" unique_id=735095778]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 1, 0, -7.54979e-08, 0, -0.5, 0.25, 0, 0.25)
-mesh = ExtResource("3_4w3yg")
-
-[node name="TopCover" type="MeshInstance3D" parent="." index="5" unique_id=1985868119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.005, 0)
-mesh = SubResource("QuadMesh_e60wt")
-
-[node name="ModuleSlot" parent="." index="6" unique_id=1830271505 instance=ExtResource("4_e60wt")]
+[node name="ModuleSlot" parent="." index="1" unique_id=1830271505 instance=ExtResource("4_e60wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 
 [node name="CollisionShape3D" parent="ModuleSlot" index="0" unique_id=235013429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999982, 0.39999992, 0)
+
+[node name="CollisionWalls" type="StaticBody3D" parent="." index="2" unique_id=1044701286]
+
+[node name="CollisionShapeS" type="CollisionShape3D" parent="CollisionWalls" index="0" unique_id=947636285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, 0.44999996)
+shape = SubResource("BoxShape3D_w1j3n")
+
+[node name="CollisionShapeW" type="CollisionShape3D" parent="CollisionWalls" index="1" unique_id=1672685344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.4, 0)
+shape = SubResource("BoxShape3D_ltlhk")
+
+[node name="CollisionShapeN" type="CollisionShape3D" parent="CollisionWalls" index="2" unique_id=1233094407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, -0.45000008)
+shape = SubResource("BoxShape3D_w1j3n")
 
 [editable path="ModuleSlot"]

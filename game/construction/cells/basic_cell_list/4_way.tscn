@@ -4,23 +4,69 @@
 [ext_resource type="ArrayMesh" uid="uid://bqtowxqdq205a" path="res://assets/3dModels/corridor_cross.obj" id="2_4wynd"]
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_dytrs"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wabd3"]
+size = Vector3(0.6, 0.8, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wynd"]
+size = Vector3(0.1, 0.8, 0.5)
+
 [node name="Cell" unique_id=39220363 instance=ExtResource("1_yyou5")]
 
 [node name="CorridorCross" type="MeshInstance3D" parent="." index="0" unique_id=850865211]
+layers = 2
 mesh = ExtResource("2_4wynd")
 
-[node name="CorridorE" type="MeshInstance3D" parent="." index="1" unique_id=2113404024]
+[node name="CorridorE" type="MeshInstance3D" parent="CorridorCross" index="0" unique_id=2113404024]
 transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 0.75, 0, 0)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
-[node name="CorridorN" type="MeshInstance3D" parent="." index="2" unique_id=1265460909]
+[node name="CorridorN" type="MeshInstance3D" parent="CorridorCross" index="1" unique_id=1265460909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, -0.75)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
-[node name="CorridorW" type="MeshInstance3D" parent="." index="3" unique_id=1927788069]
+[node name="CorridorW" type="MeshInstance3D" parent="CorridorCross" index="2" unique_id=1927788069]
 transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, -0.75, 0, 0)
+layers = 2
 mesh = ExtResource("3_dytrs")
 
-[node name="CorridorS" type="MeshInstance3D" parent="." index="4" unique_id=1425955074]
+[node name="CorridorS" type="MeshInstance3D" parent="CorridorCross" index="3" unique_id=1425955074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0.75)
+layers = 2
 mesh = ExtResource("3_dytrs")
+
+[node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1977217085]
+collision_layer = 65
+
+[node name="CollisionShapeEL" type="CollisionShape3D" parent="CollisionWalls" index="0" unique_id=103507497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, 0.45)
+shape = SubResource("BoxShape3D_wabd3")
+
+[node name="CollisionShapeER" type="CollisionShape3D" parent="CollisionWalls" index="1" unique_id=284731430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, -0.45000005)
+shape = SubResource("BoxShape3D_wabd3")
+
+[node name="CollisionShapeWL" type="CollisionShape3D" parent="CollisionWalls" index="2" unique_id=544862871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.5, -0.45000005)
+shape = SubResource("BoxShape3D_wabd3")
+
+[node name="CollisionShapeWR" type="CollisionShape3D" parent="CollisionWalls" index="3" unique_id=1779214460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.4, 0.45)
+shape = SubResource("BoxShape3D_wabd3")
+
+[node name="CollisionShapeNL" type="CollisionShape3D" parent="CollisionWalls" index="4" unique_id=78381031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45000005, 0.5, -0.75)
+shape = SubResource("BoxShape3D_4wynd")
+
+[node name="CollisionShapeNR" type="CollisionShape3D" parent="CollisionWalls" index="5" unique_id=1093034734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.5, -0.75)
+shape = SubResource("BoxShape3D_4wynd")
+
+[node name="CollisionShapeSL" type="CollisionShape3D" parent="CollisionWalls" index="6" unique_id=792270516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.4, 0.75)
+shape = SubResource("BoxShape3D_4wynd")
+
+[node name="CollisionShapeSR" type="CollisionShape3D" parent="CollisionWalls" index="7" unique_id=133826508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45000005, 0.5, 0.75)
+shape = SubResource("BoxShape3D_4wynd")
