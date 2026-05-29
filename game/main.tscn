@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ctixn2ovn721f" path="res://game/world/world.tscn" id="2_emt18"]
 [ext_resource type="Shader" uid="uid://bkfh5sv5ylp5b" path="res://assets/see_through_shader.gdshader" id="2_vop5m"]
 [ext_resource type="Script" uid="uid://d6v46o5jplx5" path="res://game/see_through_system/see_through_system.gd" id="3_vop5m"]
+[ext_resource type="PackedScene" uid="uid://comrs3i4lsjuo" path="res://game/systems/UIManager.tscn" id="5_5un7r"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o5qli"]
 viewport_path = NodePath("NormalViewport")
@@ -46,3 +47,5 @@ render_target_update_mode = 4
 
 [node name="SeeThroughCamera" type="Camera3D" parent="SeeThroughViewport" unique_id=1222048423]
 cull_mask = 1048573
+
+[node name="UiManager" parent="." unique_id=1533921697 instance=ExtResource("5_5un7r")]
