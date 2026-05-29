@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bj3ny3707ltws"]
+
+[ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_yyou5"]
+[ext_resource type="ArrayMesh" uid="uid://bqtowxqdq205a" path="res://assets/3dModels/corridor_cross.obj" id="2_4wynd"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_dytrs"]
+
+[node name="Cell" unique_id=39220363 instance=ExtResource("1_yyou5")]
+
+[node name="CorridorCross" type="MeshInstance3D" parent="." index="0" unique_id=850865211]
+mesh = ExtResource("2_4wynd")
+
+[node name="CorridorE" type="MeshInstance3D" parent="." index="1" unique_id=2113404024]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 0.75, 0, 0)
+mesh = ExtResource("3_dytrs")
+
+[node name="CorridorN" type="MeshInstance3D" parent="." index="2" unique_id=1265460909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, -0.75)
+mesh = ExtResource("3_dytrs")
+
+[node name="CorridorW" type="MeshInstance3D" parent="." index="3" unique_id=1927788069]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, -0.75, 0, 0)
+mesh = ExtResource("3_dytrs")
+
+[node name="CorridorS" type="MeshInstance3D" parent="." index="4" unique_id=1425955074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0.75)
+mesh = ExtResource("3_dytrs")

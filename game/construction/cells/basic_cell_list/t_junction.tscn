@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://g8d5ilcm6tyn"]
+
+[ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_2j6fc"]
+[ext_resource type="ArrayMesh" uid="uid://mgiypqpnka7d" path="res://assets/3dModels/corridor_split.obj" id="2_4buqp"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_1ra6t"]
+
+[node name="Cell" unique_id=39220363 instance=ExtResource("1_2j6fc")]
+
+[node name="CorridorSplit" type="MeshInstance3D" parent="." index="0" unique_id=292892330]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("2_4buqp")
+
+[node name="CorridorE" type="MeshInstance3D" parent="." index="1" unique_id=698324659]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 0.75, 0, 0)
+mesh = ExtResource("3_1ra6t")
+
+[node name="CorridorN" type="MeshInstance3D" parent="." index="2" unique_id=1147382503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, -0.75)
+mesh = ExtResource("3_1ra6t")
+
+[node name="CorridorW" type="MeshInstance3D" parent="." index="3" unique_id=1167394544]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, -0.75, 0, 0)
+mesh = ExtResource("3_1ra6t")

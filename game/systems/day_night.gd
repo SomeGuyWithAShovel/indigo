@@ -36,9 +36,9 @@ func _ready() -> void:
 	setup_day_night.call_deferred();
 
 func fill_quota() -> void:
-	var crystal_amount := Player.instance.resources.crystals.get_amount();
+	var crystal_amount := Player.instance.crystals.get_amount();
 	var pay_amount = max(crystal_quota - quota_amount, crystal_amount);
-	Player.instance.resources.crystals.remove(pay_amount);
+	Player.instance.crystals.remove(pay_amount);
 	quota_amount += pay_amount;
 
 func setup_day_night() -> void:
@@ -51,7 +51,7 @@ func next_quota(player : Player) -> int:
 	if quota_amount == crystal_quota:
 		day_since_last_pay_up = 0;
 	else:
-		player.resources.crystals.override_amount(0);
+		player.crystals.override_amount(0);
 		GameOverSystem.end_game(GameOver.Reason.QUOTA_NOT_MET);
 	return crystal_quota;
 	
@@ -59,7 +59,7 @@ func start_day(player : Player) -> void:
 	night_number += 1;
 	if day_since_last_pay_up < days_before_pay_up:
 		next_quota(player);
-	player.resources.action_points.override_amount(action_points_per_day);
+	player.action_points.override_amount(action_points_per_day);
 	on_day_start.emit();
 	print("Day start");
 	

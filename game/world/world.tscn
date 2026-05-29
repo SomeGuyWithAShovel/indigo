@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ctixn2ovn721f"]
 
 [ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
-[ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://paul/world/grid/construction_grid.tscn" id="1_ibfx6"]
+[ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://game/construction/construction_grid.tscn" id="1_ibfx6"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
 [ext_resource type="PackedScene" uid="uid://dmj1g581wlinx" path="res://game/debug_interact.tscn" id="3_k7f6b"]
 [ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="5_dess5"]
 [ext_resource type="PackedScene" uid="uid://comrs3i4lsjuo" path="res://game/systems/UIManager.tscn" id="7_we8ss"]
 [ext_resource type="PackedScene" uid="uid://dgijar3nol6i" path="res://game/systems/WaveGenerator.tscn" id="8_5hesp"]
 [ext_resource type="PackedScene" uid="uid://cu4kcfopxete5" path="res://game/enemies/wave_spawn_point/WaveSpawnPoint.tscn" id="8_ibfx6"]
-[ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://paul/world/grid/player_base/player_base.tscn" id="8_vwhhl"]
+[ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://game/construction/player_base.tscn" id="8_vwhhl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ibfx6"]
 vertices = PackedVector3Array(4.75, 0.12897313, -2.25, 6.5, 0.12897313, -3.5, 6.5, 0.12897313, -5, 3, 0.12897313, -2.25, -5.25, 0.12897313, 1.75, -4.5, 0.12897313, 1, 4.5, 0.12897313, -14.75, 7, 0.12897313, -199, -199, 0.12897313, -199, -199, 0.12897313, 2.5, 7.25, 0.12897313, -5.75, 8, 0.12897313, -5.75, 8, 0.12897313, -10.25, 5.25, 0.12897313, -10.25, 5.25, 0.12897313, -15.5, 4.5, 0.12897313, -11, -2.75, 0.12897313, 1, 2.25, 0.12897313, 0, 2.25, 0.12897313, -1.5, -5.25, 0.12897313, 2.5, 7, 0.12897313, -15.5, 9, 0.12897313, -15.5, 9.75, 0.12897313, -14.75, 199, 0.12897313, -13.5, 199, 0.12897313, -199, 9.75, 0.12897313, -13.25, 6.5, 2.628973, -13.5, 6.5, 2.628973, -12.25, 7.75, 2.628973, -12.25, 7.75, 2.628973, -13.5, 9.75, 0.12897313, -12.5, 199, 0.12897313, -12.25, 6.75, 0.12897313, -13.25, 6.75, 0.12897313, -12.5, 7.5, 0.12897313, -12.5, 7.5, 0.12897313, -13.25, 9, 0.12897313, -5.75, 9, 0.12897313, -10.25, 9.75, 0.12897313, -5, 9.75, 0.12897313, -4.25, 199, 0.12897313, -4.25, 9.75, 0.12897313, -11, 5.25, 0.12897313, 0.5, 6.5, 0.12897313, 1.25, 7.25, 0.12897313, 0.25, 5.5, 0.12897313, -1.5, 7.25, 0.12897313, -2.5, 9.75, 0.12897313, -3.25, 9, 0.12897313, -2.5, 9, 0.12897313, 0.25, 9.75, 0.12897313, 1, 199, 0.12897313, 2, 9.75, 0.12897313, 2, 4.75, 0.12897313, 1, 6.5, 0.12897313, 2.75, 3, 0.12897313, 1, -2.75, 0.12897313, 4.25, -3.75, 0.12897313, 4.25, -3.75, 0.12897313, 199, -2, 0.12897313, 1.75, 7.25, 0.12897313, 3.5, -2, 0.12897313, 3.5, 8.25, 0.12897313, 3.5, 8.25, 0.12897313, 199, 9.75, 0.12897313, 2.75, 9, 0.12897313, 3.5, 199, 0.12897313, 199, -5.25, 0.12897313, 3.5, -4.5, 0.12897313, 4.25, -199, 0.12897313, 199)

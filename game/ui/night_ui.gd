@@ -15,7 +15,7 @@ func setup_events() -> void:
 	DayNightSystem.quota_changed.connect(func (curr : int, quota : int):
 		set_quota_progress(float(curr) / quota);	
 	);
-	Player.instance.resources.crystals.amount_changed.connect(func (new_amount : int, _ignore):
+	Player.instance.crystals.amount_changed.connect(func (new_amount : int, _ignore):
 		set_crystal_count(new_amount);
 	);
 	
@@ -23,7 +23,7 @@ func init_values() -> void:
 	var player_health := Player.instance.character.health;
 	set_health_progress(float(player_health.get_health()) / player_health.max_health);
 	set_quota_progress(float(DayNightSystem.quota_amount) / DayNightSystem.crystal_quota);
-	set_crystal_count(Player.instance.resources.crystals.get_amount());
+	set_crystal_count(Player.instance.crystals.get_amount());
 
 func set_health_progress(percent : float) -> void:
 	health_bar.value = percent;

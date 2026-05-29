@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://q8qbis8p52pt"]
+
+[ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_yaccd"]
+[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="3_4w3yg"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_qlusm"]
+[ext_resource type="PackedScene" uid="uid://cb4wuhu1gpd1m" path="res://game/construction/modules/slot/module_slot.tscn" id="4_e60wt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bt0m"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e60wt"]
+material = SubResource("StandardMaterial3D_1bt0m")
+size = Vector2(0.5, 0.5)
+orientation = 1
+
+[node name="Cell" unique_id=39220363 instance=ExtResource("1_yaccd")]
+
+[node name="CorridorE" type="MeshInstance3D" parent="." index="0" unique_id=124072515]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0, 0)
+mesh = ExtResource("3_qlusm")
+
+[node name="CorridorCornerRoundNE" type="MeshInstance3D" parent="." index="1" unique_id=1526580610]
+transform = Transform3D(3.774895e-08, 0, -0.5, 0, 1, 0, 0.5, 0, 3.774895e-08, 0.25, 0, -0.25)
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundNW" type="MeshInstance3D" parent="." index="2" unique_id=1240356105]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.25, 0, -0.25)
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundSW" type="MeshInstance3D" parent="." index="3" unique_id=1165383502]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 1, 0, -0.5, 0, -2.1855694e-08, -0.25, 0, 0.25)
+mesh = ExtResource("3_4w3yg")
+
+[node name="CorridorCornerRoundSE" type="MeshInstance3D" parent="." index="4" unique_id=735095778]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 1, 0, -7.54979e-08, 0, -0.5, 0.25, 0, 0.25)
+mesh = ExtResource("3_4w3yg")
+
+[node name="TopCover" type="MeshInstance3D" parent="." index="5" unique_id=1985868119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.005, 0)
+mesh = SubResource("QuadMesh_e60wt")
+
+[node name="ModuleSlot" parent="." index="6" unique_id=1830271505 instance=ExtResource("4_e60wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="CollisionShape3D" parent="ModuleSlot" index="0" unique_id=235013429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999982, 0.39999992, 0)
+
+[editable path="ModuleSlot"]

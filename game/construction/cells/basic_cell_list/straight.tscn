@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d1gbaei5exbn6"]
+
+[ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_stdyo"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="2_rs1y8"]
+
+[node name="Cell" unique_id=39220363 instance=ExtResource("1_stdyo")]
+
+[node name="Corridor" type="MeshInstance3D" parent="." index="0" unique_id=299499403]
+transform = Transform3D(-4.371139e-08, 0, 2, 0, 1, 0, -1, 0, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("2_rs1y8")

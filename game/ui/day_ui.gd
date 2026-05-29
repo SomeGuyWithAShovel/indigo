@@ -15,10 +15,10 @@ func setup_events() -> void:
 	DayNightSystem.quota_changed.connect(func (curr : int, quota : int):
 		set_quota_progress(float(curr) / quota);	
 	);
-	Player.instance.resources.crystals.amount_changed.connect(func (new_amount : int, _ignore):
+	Player.instance.crystals.amount_changed.connect(func (new_amount : int, _ignore):
 		set_crystal_count(new_amount);
 	);
-	Player.instance.resources.action_points.amount_changed.connect(func (new_amount : int, _ignore):
+	Player.instance.action_points.amount_changed.connect(func (new_amount : int, _ignore):
 		var max_action_points = DayNightSystem.action_points_per_day;
 		set_action_point_progress(float(new_amount)/max_action_points)	
 	);
@@ -27,8 +27,8 @@ func init_values() -> void:
 	var player_health := Player.instance.character.health;
 	set_health_progress(float(player_health.get_health()) / player_health.max_health);
 	set_quota_progress(float(DayNightSystem.quota_amount) / DayNightSystem.crystal_quota);
-	set_crystal_count(Player.instance.resources.crystals.get_amount());
-	set_action_point_progress(float(Player.instance.resources.action_points.get_amount()) / DayNightSystem.action_points_per_day);
+	set_crystal_count(Player.instance.crystals.get_amount());
+	set_action_point_progress(float(Player.instance.action_points.get_amount()) / DayNightSystem.action_points_per_day);
 
 func set_health_progress(percent : float) -> void:
 	health_bar.value = percent;
@@ -44,7 +44,7 @@ func set_action_point_progress(percent : float) -> void:
 
 const confirmation_box = preload("res://game/ui/confirmation.tscn");
 func _on_night_requested() -> void:
-	var ap_amount := Player.instance.resources.action_points.get_amount();
+	var ap_amount := Player.instance.action_points.get_amount();
 	if ap_amount > 0:
 		var box : Confirmation = confirmation_box.instantiate();
 		add_child(box);

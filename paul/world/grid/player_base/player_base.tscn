@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://ce1ho4l4xpaci"]
-
-[ext_resource type="Script" uid="uid://d1cwir1sjmlsu" path="res://paul/world/grid/player_base/player_base.gd" id="1_tm8g5"]
-
-[node name="PlayerBase" type="Node3D" unique_id=2139156727]
-script = ExtResource("1_tm8g5")

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cymas65gbt1hv"]
-
-[ext_resource type="Script" uid="uid://8b3kro7lcxr4" path="res://paul/logic/player/player.gd" id="1_5bbuf"]
-
-[node name="Player" type="Node" unique_id=1719105503]
-script = ExtResource("1_5bbuf")
