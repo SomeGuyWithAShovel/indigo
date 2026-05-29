@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://biuhe5sp5haeu"]
+
+[ext_resource type="Script" uid="uid://b10pt0ehuijqe" path="res://game/module/projectile.gd" id="1_gasbo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_limw7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_limw7"]
+radius = 1.0
+height = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gasbo"]
+radius = 8.0
+
+[node name="Projectile" type="Node3D" unique_id=2011740857]
+script = ExtResource("1_gasbo")
+damage = 50
+speed = 10
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=675444078]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_limw7")
+
+[node name="CollisionRadius" type="Area3D" parent="." unique_id=1739838529]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionRadius" unique_id=2039153808]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_limw7")
+
+[node name="ExplosionRadius" type="Area3D" parent="." unique_id=422291646]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius" unique_id=474301478]
+shape = SubResource("SphereShape3D_gasbo")
+
+[connection signal="body_entered" from="CollisionRadius" to="." method="_on_area_3d_body_entered"]

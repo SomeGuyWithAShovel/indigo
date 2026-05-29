@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wrcj8s7kfaxs"]
+
+[ext_resource type="Texture2D" uid="uid://ca6bk3ehcmp5g" path="res://assets/Material/PolyAngel_SpacePack.png" id="1_n8e2r"]
+
+[resource]
+albedo_texture = ExtResource("1_n8e2r")

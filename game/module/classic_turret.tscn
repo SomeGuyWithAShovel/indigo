@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cb28u5kwf447k"]
+
+[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="1_g5ill"]
+[ext_resource type="Script" uid="uid://ca5m4bp0apskx" path="res://game/module/classic_turret.gd" id="2_om3al"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_om3al"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om3al"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_om3al"]
+radius = 10.0
+
+[node name="Turret" unique_id=395245931 instance=ExtResource("1_g5ill")]
+script = ExtResource("2_om3al")
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=274420374]
+mesh = SubResource("BoxMesh_om3al")
+surface_material_override/0 = SubResource("StandardMaterial3D_om3al")
+
+[node name="TowerRadius" parent="Area3D" parent_id_path=PackedInt32Array(424394434) index="0" unique_id=790276947]
+shape = SubResource("SphereShape3D_om3al")

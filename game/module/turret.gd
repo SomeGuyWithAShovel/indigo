@@ -1,24 +1,33 @@
 extends Node3D
+class_name Turret
 
 @export var damage := 10
 @export var shot_cd := 0.5
+@export var projectile_scene:PackedScene
 var cur_enemie: Array[Monster]
 var target:Monster = null
+var turretlist: Array[String] = [
+	"res://game/module/heavy_turret.tscn",
+	"res://game/module/classic_turret.tscn"
+]
+
+enum turret_type {
+	HEAVY = 0,
+	SMALL = 1
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var timer:Timer = get_node("Timer")
 	timer.wait_time = shot_cd;
-	print("test")
+	
 	pass # Replace with function body.
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("Rentreer")
-	var monster = body.get_parent();
+	var monster = body.owner;
 	if monster is Monster:
 		cur_enemie.append(monster)
 		var timer:Timer = get_node("Timer")
-		print("Ajout !")
 		if timer.is_stopped():
 			timer.start();
 	
@@ -26,7 +35,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	var index = cur_enemie.find(body.get_parent())
+	var index = cur_enemie.find(body.owner)
 	if index != -1 :
 		cur_enemie.remove_at(index)
 		if cur_enemie.is_empty():
@@ -37,26 +46,43 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func shoot() -> void:
-	
 	target = getShortestMonster()
 	if target == null:
-		pass
+		return
+	#si on a un prjectil (pas de type de tour avec plusieur projectile
+	
+	if projectile_scene != null:
+		var projectile = projectile_scene.instantiate()
+		projectile.global_position = global_position + $SpawnPoint.position
+		projectile.direction = (target.global_position - (global_position + $SpawnPoint.position)).normalized()
+		get_parent().add_child(projectile)
+		return
+		
 	damage_Monster(target)
 	pass
 
 func getShortestMonster() -> Monster:
 	var cur_monster:Monster = null;
+	var valid_monster:Array[Monster]
 	var best_distance = INF
 	var turret_postion = position
 	for monster in cur_enemie:
-		#division en plusieur variable pour clarete du code
-		var cur_Xdistance = (monster.character.position.x-turret_postion.x)**2 
-		var cur_Ydistance = (monster.character.position.y-turret_postion.y)**2 
-		var cur_Zdistance = (monster.character.position.z-turret_postion.z)**2
-		var cur_distance = cur_Xdistance + cur_Ydistance + cur_Zdistance
-		if cur_distance<best_distance:
-			cur_monster = monster
-			best_distance = cur_distance
+		if is_instance_valid(monster):
+			
+			#division en plusieur variable pour clarete du code
+			var cur_Xdistance = (monster.character.position.x-turret_postion.x)**2 
+			var cur_Ydistance = (monster.character.position.y-turret_postion.y)**2 
+			var cur_Zdistance = (monster.character.position.z-turret_postion.z)**2
+			var cur_distance = cur_Xdistance + cur_Ydistance + cur_Zdistance
+			if cur_distance<best_distance:
+				cur_monster = monster
+				best_distance = cur_distance
+			valid_monster.append(monster)
+	cur_enemie = valid_monster
+	if cur_enemie.is_empty():
+		$Timer.stop()
+	else:
+		print("Pas empty")
 	return cur_monster
 	
 	
@@ -69,3 +95,6 @@ func damage_Monster(monster: Monster)-> void:
 func _on_timer_timeout() -> void:
 	shoot()
 	pass # Replace with function body.
+
+func getTurretScene(type:turret_type) -> PackedScene:
+	return load(turretlist[type])
