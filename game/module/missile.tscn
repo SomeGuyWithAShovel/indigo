@@ -2,15 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://biuhe5sp5haeu" path="res://game/module/projectile.tscn" id="1_kscij"]
 [ext_resource type="Script" uid="uid://bdi74lgj7txco" path="res://game/module/missile.gd" id="2_sn23x"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sn23x"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txyvs"]
-albedo_color = Color(1, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://12jliyq6aw3e" path="res://assets/3dModels/Missile .fbx" id="3_txyvs"]
 
 [node name="Projectile" unique_id=2011740857 instance=ExtResource("1_kscij")]
 script = ExtResource("2_sn23x")
+speed = 8
 
-[node name="MeshInstance3D" parent="." index="0" unique_id=675444078]
-mesh = SubResource("CapsuleMesh_sn23x")
-surface_material_override/0 = SubResource("StandardMaterial3D_txyvs")
+[node name="Missile " parent="." index="0" unique_id=862030397 instance=ExtResource("3_txyvs")]
+transform = Transform3D(-0.4, -5.2453668e-08, 1.5285484e-15, 0, -2.6226834e-08, -0.4, 3.4969112e-08, -0.6, 1.7484556e-08, 0.259535, 0, 0.55694854)
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=675444078]
+mesh = null
