@@ -27,4 +27,7 @@ func _ready() -> void :
 	assert(construction_grid != null);
 	assert(construction != null);
 	construction.construction_grid = construction_grid;
+	
+	assert(crystals != null);
+	assert(action_points != null);
 	return;
