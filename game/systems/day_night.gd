@@ -51,7 +51,7 @@ func next_quota(player : Player) -> int:
 	if quota_amount == crystal_quota:
 		day_since_last_pay_up = 0;
 	else:
-		player.crystals.override_amount(0);
+		# player.crystals.override_amount(0);
 		GameOverSystem.end_game(GameOver.Reason.QUOTA_NOT_MET);
 	return crystal_quota;
 	
