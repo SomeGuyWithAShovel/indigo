@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bheawcvrepst7"]
+
+[ext_resource type="Texture2D" uid="uid://bbcyrghwe2qpf" path="res://assets/ui/buildings/demo_1.svg" id="1_84q21"]
+[ext_resource type="Texture2D" uid="uid://c08mbuff4s4sq" path="res://assets/ui/buildings/icons/turret_double_SW.png" id="2_iwtdy"]
+
+[node name="MarginContainer" type="MarginContainer" unique_id=1075134111]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=172189055]
+layout_mode = 2
+texture = ExtResource("1_84q21")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1497560610]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="MarginContainer" unique_id=2008104066]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+icon = ExtResource("2_iwtdy")
+alignment = 2
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=589050163]
+layout_mode = 2
+size_flags_vertical = 1
+text = "4"
+horizontal_alignment = 2
+vertical_alignment = 2
