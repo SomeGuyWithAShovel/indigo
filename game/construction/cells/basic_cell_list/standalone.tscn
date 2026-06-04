@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://c6sb0ehl5gnwt"]
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_s75pl"]
-[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="2_el8rh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxmga"]
-albedo_color = Color(0.8389701, 0.859696, 0.89267755, 1)
+[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/OBJ format/corridor_cornerRound.obj" id="2_el8rh"]
+[ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="3_1h0p1"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6vd4w"]
-material = SubResource("StandardMaterial3D_nxmga")
+material = ExtResource("3_1h0p1")
 size = Vector2(0.5, 0.5)
 orientation = 1
 

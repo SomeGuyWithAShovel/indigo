@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://sfq26ie65jsd"]
+
+[ext_resource type="ArrayMesh" uid="uid://ugh0iww2ltbb" path="res://assets/3dModels/supports_low.obj" id="1_y8vi8"]
+[ext_resource type="ArrayMesh" uid="uid://bat45aot327gc" path="res://assets/3dModels/structure.obj" id="2_kawp1"]
+[ext_resource type="ArrayMesh" uid="uid://cbbe2jdpeoxo6" path="res://assets/3dModels/machine_barrel.obj" id="3_kawp1"]
+[ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="3_y8vi8"]
+[ext_resource type="ArrayMesh" uid="uid://bi70qfebeeu80" path="res://assets/3dModels/rocket_topA.obj" id="4_y8vi8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8vi8"]
+size = Vector3(1.2, 1.5, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kawp1"]
+albedo_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+metallic = 1.0
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_kawp1"]
+material = ExtResource("3_y8vi8")
+size = Vector3(0.225, 0.7, 0.45)
+
+[node name="Node3D" type="Node3D" unique_id=1227523252]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1162578280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.75, -5.9604645e-08)
+shape = SubResource("BoxShape3D_y8vi8")
+
+[node name="Supports" type="MeshInstance3D" parent="." unique_id=902104736]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = ExtResource("1_y8vi8")
+
+[node name="Supports2" type="MeshInstance3D" parent="." unique_id=220338653]
+transform = Transform3D(1.215, 0, 0, 0, 1.15, 0, 0, 0, 1.215, 0, 0.295, 0)
+mesh = ExtResource("2_kawp1")
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=600039960]
+transform = Transform3D(1.5, 0, 0, 0, 1.25, 0, 0, 0, 1.5, 0, 0.675154, 0)
+mesh = ExtResource("3_kawp1")
+
+[node name="Drill" type="MeshInstance3D" parent="Head" unique_id=187217813]
+transform = Transform3D(-0.33333334, 5.0331934e-08, 0, -6.039832e-08, -0.4, 0, 0, 0, 0.33333334, 0, 0.03864014, 0)
+mesh = ExtResource("4_y8vi8")
+surface_material_override/0 = SubResource("StandardMaterial3D_kawp1")
+surface_material_override/1 = SubResource("StandardMaterial3D_kawp1")
+surface_material_override/2 = SubResource("StandardMaterial3D_kawp1")
+surface_material_override/3 = SubResource("StandardMaterial3D_kawp1")
+
+[node name="Reservoir" type="MeshInstance3D" parent="Head" unique_id=1755403923]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.8, 0, 0, 0, 0.6666667, -0.34800002, -0.26012316, 0)
+mesh = SubResource("BoxMesh_kawp1")
