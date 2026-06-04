@@ -124,5 +124,7 @@ func do_all_mining_operations() -> void :
 
 # TODO : CHANGE THIS, IT'S JUST TO SHOWCASE HOW MINING WORKS
 func _on_timer_timeout() -> void:
+	# if is_day == false :
+	#	return;
 	do_all_mining_operations();
 	return;

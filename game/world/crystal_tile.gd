@@ -4,6 +4,8 @@ extends Node3D
 var terrain: Terrain = null;
 @export var crystal_amount_per_operation: int = 20;
 
+const manual_multiplier: int = 5;
+
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :
@@ -30,4 +32,17 @@ func set_tile_as_crystals() -> void :
 		print("CrystalTile: ", name, " is not placed inside a cell!");
 		return;
 	terrain.construction_grid.set_tile_as_crystal_tile(grid_coords, self);
+	return;
+	
+func interact() -> void :
+	# if (is_day == false) :
+	#	return;
+	
+	var player: Player = Player.instance; # should probably be a parameter of interact ?
+	
+	const act_pts_per_interaction: int = 5;
+	
+	if (player.action_points.remove_with_check(act_pts_per_interaction)) :
+		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
+		pass;
 	return;
