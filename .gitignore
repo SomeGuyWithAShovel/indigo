@@ -16,4 +16,4 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 
-Indigo/assets/OBJ format/*
+assets/OBJ format/*
