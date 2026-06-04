@@ -1,23 +1,98 @@
 [gd_scene format=3 uid="uid://fl2knjkdirn0"]
 
-[ext_resource type="Texture2D" uid="uid://chpqq1g0ux86d" path="res://assets/Horror_Floor_03-512x512.png" id="1_ig0dc"]
+[ext_resource type="Script" uid="uid://dswbd32w7d7mg" path="res://game/world/terrain.gd" id="1_ig0dc"]
+[ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal_tile.tscn" id="2_konwf"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ig0dc"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_konwf"]
+plane = Plane(-1, 0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_konwf"]
-albedo_texture = ExtResource("1_ig0dc")
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bpb7u"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3rkxp"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1tq5a"]
+plane = Plane(0, 0, -1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
+size = Vector2(152, 152)
+subdivide_width = 38
+subdivide_depth = 38
+center_offset = Vector3(-1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pp0dj"]
+resource_name = "rock"
+albedo_color = Color(0.9098039, 0.5176471, 0.3882353, 1)
 
 [node name="Terrain" type="Node3D" unique_id=1393607273]
+script = ExtResource("1_ig0dc")
 
-[node name="Area3D" type="StaticBody3D" parent="." unique_id=1940965157]
+[node name="Bounds" type="StaticBody3D" parent="." unique_id=1940965157]
 collision_mask = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=356413957]
+[node name="Ground" type="CollisionShape3D" parent="Bounds" unique_id=356413957]
 shape = SubResource("WorldBoundaryShape3D_ig0dc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=858168955]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+[node name="East" type="CollisionShape3D" parent="Bounds" unique_id=1310687471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_konwf")
+
+[node name="North" type="CollisionShape3D" parent="Bounds" unique_id=113871856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75)
+shape = SubResource("WorldBoundaryShape3D_bpb7u")
+
+[node name="West" type="CollisionShape3D" parent="Bounds" unique_id=1843830275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_3rkxp")
+
+[node name="South" type="CollisionShape3D" parent="Bounds" unique_id=1212593789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 77)
+shape = SubResource("WorldBoundaryShape3D_1tq5a")
+
+[node name="FlatTerrainMesh" type="MeshInstance3D" parent="." unique_id=858168955]
 mesh = SubResource("PlaneMesh_gv5m4")
-surface_material_override/0 = SubResource("StandardMaterial3D_konwf")
+surface_material_override/0 = SubResource("StandardMaterial3D_pp0dj")
+
+[node name="Crystals" type="Node3D" parent="." unique_id=981225805]
+
+[node name="CrystalTile" parent="Crystals" unique_id=1366619670 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="CrystalTile2" parent="Crystals" unique_id=49848832 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2)
+
+[node name="CrystalTile3" parent="Crystals" unique_id=1233327427 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -10)
+
+[node name="CrystalTile4" parent="Crystals" unique_id=847115672 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="CrystalTile5" parent="Crystals" unique_id=439997505 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 14)
+
+[node name="CrystalTile6" parent="Crystals" unique_id=1008688596 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -12)
+
+[node name="CrystalTile7" parent="Crystals" unique_id=2130380878 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -18)
+
+[node name="CrystalTile8" parent="Crystals" unique_id=926903673 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -4)
+
+[node name="CrystalTile9" parent="Crystals" unique_id=1570128868 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -26)
+
+[node name="CrystalTile10" parent="Crystals" unique_id=1499680263 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
+
+[node name="CrystalTile11" parent="Crystals" unique_id=1239186616 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -28)
+
+[node name="CrystalTile12" parent="Crystals" unique_id=1297329809 instance=ExtResource("2_konwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12)
+
+[node name="CrystalTile13" parent="Crystals" unique_id=33586969 instance=ExtResource("2_konwf")]
+transform = Transform3D(-0.49933654, 0.25453815, -0.82817477, -0.19360517, 0.8989204, 0.39301327, 0.8445, 0.35658482, -0.39958385, -22, 0, 8)

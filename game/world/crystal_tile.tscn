@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cwlol3sfbyroq"]
+
+[ext_resource type="Script" uid="uid://dqrbt1u3i7w3r" path="res://game/world/crystal_tile.gd" id="1_3hh5r"]
+[ext_resource type="ArrayMesh" uid="uid://ceqoi47cbed0" path="res://assets/3dModels/rock_largeB.obj" id="2_lqysk"]
+[ext_resource type="Material" uid="uid://bffnx17vcf57x" path="res://assets/Material/crystals_material.tres" id="3_n8v7u"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lqysk"]
+points = PackedVector3Array(0.47, 0, 0.29484442, 0.4115102, 0.15500195, 0.27921328, 0.30552003, 0, 0.45933905, 0.40978453, 0, 0.07021585, 0.27200648, 0.5, 0.003921449, 0.16102108, 0.5, 0.19618437, 0.2898077, 0.15500195, 0.40086028, 0.080824584, 0, 0.39911327, -0.34913018, 0.27197534, 0.23094067, 0.25702068, 0, -0.4198661, 0.2142432, 0.15500195, -0.37711036, 0.16102108, 0.5, -0.18834147, -0.060949683, 0.5, 0.19618437, -0.38182637, 0, 0.27268496, -0.17202586, 0.5, 0.003921449, -0.40534946, 0.27197534, 0.09090409, -0.457845, 0, 0.0833644, 0.032325268, 0, -0.48, 0.04803762, 0.15500195, -0.42161313, 0.005441755, 0.39996085, -0.31403416, -0.060949683, 0.5, -0.18834147, -0.21652901, 0.39996085, -0.31403416, -0.32751438, 0.39996085, -0.12177122, -0.4055311, 0, -0.12177122, -0.25558278, 0, -0.38161582)
+
+[node name="CrystalTile" type="Node3D" unique_id=1366619670]
+script = ExtResource("1_3hh5r")
+
+[node name="CrystalsMesh" type="MeshInstance3D" parent="." unique_id=580234786]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("2_lqysk")
+surface_material_override/0 = ExtResource("3_n8v7u")
+surface_material_override/1 = ExtResource("3_n8v7u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CrystalsMesh" unique_id=661798567]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrystalsMesh/StaticBody3D" unique_id=862629073]
+shape = SubResource("ConvexPolygonShape3D_lqysk")

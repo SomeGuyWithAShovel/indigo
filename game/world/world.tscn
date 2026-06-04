@@ -25,9 +25,6 @@ agent_radius = 1.0
 [node name="ConstructionGrid" parent="." unique_id=1852987913 node_paths=PackedStringArray("player_base") instance=ExtResource("1_ibfx6")]
 player_base = NodePath("../PlayerBase")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=284671496]
-transform = Transform3D(0.8660254, 0.43301272, -0.24999999, 0, 0.49999997, 0.86602545, 0.5, -0.75, 0.43301266, 0, 10, 0)
-
 [node name="PlayerBase" parent="." unique_id=2139156727 node_paths=PackedStringArray("construction_grid") instance=ExtResource("8_vwhhl")]
 construction_grid = NodePath("../ConstructionGrid")
 
@@ -35,8 +32,9 @@ construction_grid = NodePath("../ConstructionGrid")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16106021, 0)
 navigation_mesh = SubResource("NavigationMesh_ibfx6")
 
-[node name="Terrain" parent="NavigationRegion3D" unique_id=1393607273 instance=ExtResource("1_aqibe")]
+[node name="Terrain" parent="NavigationRegion3D" unique_id=1393607273 node_paths=PackedStringArray("construction_grid") instance=ExtResource("1_aqibe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16106021, 0)
+construction_grid = NodePath("../../ConstructionGrid")
 
 [node name="DebugInteract" parent="NavigationRegion3D" unique_id=1093040610 instance=ExtResource("3_k7f6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 0.23893979, -0.741)
@@ -65,3 +63,6 @@ default_monster_target = NodePath("../PlayerBase")
 
 [node name="WaveSpawnPoint" parent="WaveGenerator" unique_id=799522413 instance=ExtResource("8_ibfx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.753578, 0, -4.237499)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=787963714]
+transform = Transform3D(0.8660254, 0.43301272, -0.25, 0, 0.49999997, 0.86602545, 0.5, -0.75, 0.4330127, 0, 10, 0)
