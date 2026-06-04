@@ -87,5 +87,13 @@ func raycast_on_construction_grid(raycast_result: Dictionary) -> void :
 	
 	var raycast_position: Vector3 = raycast_result["position"];
 	var cell_coord: Vector2 = collided_grid.get_grid_coords_from_world_coords(raycast_position);
-	construction.try_build_base_cell(collided_grid, cell_coord);
+	
+	if collided_grid.is_terrain_ok_to_build(cell_coord) :
+		if collided_grid.can_build_miner(cell_coord) :
+			construction.try_build_mining_cell(collided_grid, cell_coord);
+			pass;
+		else :
+			construction.try_build_base_cell(collided_grid, cell_coord);
+			pass;
+		pass;
 	return;

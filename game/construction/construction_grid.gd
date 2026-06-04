@@ -5,9 +5,11 @@ extends Node3D
 
 @export var cell_size: float = 2.0;
 @export var player_base: PlayerBase = null;
+@export var terrain: Terrain = null;
 
 func _enter_tree() -> void :
 	assert(player_base != null);
+	assert(terrain != null);
 	return;
 
 func get_grid_coords_from_world_coords(world_coords: Vector3) -> Vector2i :
@@ -32,23 +34,31 @@ func _process(_delta: float) -> void :
 func is_terrain_ok_to_build(_grid_coords: Vector2i) -> bool :
 	return true;
 
+# still need to check is_terrain_ok_to_build() manually !
+func can_build_base(_grid_coords: Vector2i) -> bool :
+	return crystal_tiles.has(_grid_coords as Vector2) == false;
+
+# still need to check is_terrain_ok_to_build() manually !
 func can_build_miner(_grid_coords: Vector2i) -> bool :
 	return crystal_tiles.has(_grid_coords as Vector2);
 
-var crystal_tiles:PackedVector2Array = PackedVector2Array();
 
-func set_tile_as_crystal_tile(grid_coords: Vector2i) :
+
+var crystal_tiles: Dictionary[Vector2i, CrystalTile];
+
+func set_tile_as_crystal_tile(grid_coords: Vector2i, crystal_tile: CrystalTile) :
+	assert(crystal_tile != null);
 	if crystal_tiles.has(grid_coords) : 
 		print("ConstructionGrid::add_crystal_tile(%d;%d) : already set as crystal tile" % 
 			[grid_coords.x, grid_coords.y]
 		);
 		return;
-	crystal_tiles.push_back(grid_coords as Vector2);
+	crystal_tiles[grid_coords] = crystal_tile;
 	return;
 
+# not tested
 func remove_tile_from_crystal_tiles(grid_coords: Vector2i) :
-	var find_id:= crystal_tiles.find(grid_coords as Vector2); # TODO : sort and bsearch ?
-	if (find_id >= 0) :
-		crystal_tiles.remove_at(find_id);
+	if (crystal_tiles.has(grid_coords)) :
+		crystal_tiles.erase(grid_coords);
 		pass;
 	return;

@@ -22,11 +22,13 @@ agent_radius = 1.0
 
 [node name="PlayerNode" parent="." unique_id=1899147477 instance=ExtResource("2_ufdhy")]
 
-[node name="ConstructionGrid" parent="." unique_id=1852987913 node_paths=PackedStringArray("player_base") instance=ExtResource("1_ibfx6")]
+[node name="ConstructionGrid" parent="." unique_id=1852987913 node_paths=PackedStringArray("player_base", "terrain") instance=ExtResource("1_ibfx6")]
 player_base = NodePath("../PlayerBase")
+terrain = NodePath("../NavigationRegion3D/Terrain")
 
-[node name="PlayerBase" parent="." unique_id=2139156727 node_paths=PackedStringArray("construction_grid") instance=ExtResource("8_vwhhl")]
+[node name="PlayerBase" parent="." unique_id=2139156727 node_paths=PackedStringArray("construction_grid", "player") instance=ExtResource("8_vwhhl")]
 construction_grid = NodePath("../ConstructionGrid")
+player = NodePath("../PlayerNode")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1488026506]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16106021, 0)

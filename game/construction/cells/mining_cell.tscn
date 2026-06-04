@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://sfq26ie65jsd"]
 
+[ext_resource type="Script" uid="uid://bxh4r1k2356fr" path="res://game/construction/cells/mining_cell.gd" id="1_kawp1"]
 [ext_resource type="ArrayMesh" uid="uid://ugh0iww2ltbb" path="res://assets/3dModels/supports_low.obj" id="1_y8vi8"]
 [ext_resource type="ArrayMesh" uid="uid://bat45aot327gc" path="res://assets/3dModels/structure.obj" id="2_kawp1"]
 [ext_resource type="ArrayMesh" uid="uid://cbbe2jdpeoxo6" path="res://assets/3dModels/machine_barrel.obj" id="3_kawp1"]
@@ -18,7 +19,8 @@ roughness = 0.5
 material = ExtResource("3_y8vi8")
 size = Vector3(0.225, 0.7, 0.45)
 
-[node name="Node3D" type="Node3D" unique_id=1227523252]
+[node name="MiningCell" type="Node3D" unique_id=1227523252]
+script = ExtResource("1_kawp1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608]
 

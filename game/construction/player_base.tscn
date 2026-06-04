@@ -4,3 +4,9 @@
 
 [node name="PlayerBase" type="Node3D" unique_id=2139156727]
 script = ExtResource("1_tm8g5")
+
+[node name="Timer" type="Timer" parent="." unique_id=1594716814]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

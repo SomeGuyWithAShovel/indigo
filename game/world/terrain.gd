@@ -8,5 +8,5 @@ func _enter_tree() -> void :
 	return;
 
 func _ready() -> void :
-	print("Terrain: CrystalTiles=", construction_grid.crystal_tiles);
+	print("Terrain: CrystalTiles=", construction_grid.crystal_tiles.keys());
 	return;

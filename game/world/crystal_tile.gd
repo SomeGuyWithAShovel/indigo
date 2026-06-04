@@ -2,6 +2,7 @@ class_name CrystalTile
 extends Node3D
 
 var terrain: Terrain = null;
+@export var crystal_amount_per_operation: int = 20;
 
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
@@ -28,5 +29,5 @@ func set_tile_as_crystals() -> void :
 	if (Vector2(grid_coords) != coords_2d) :
 		print("CrystalTile: ", name, " is not placed inside a cell!");
 		return;
-	terrain.construction_grid.set_tile_as_crystal_tile(grid_coords);
+	terrain.construction_grid.set_tile_as_crystal_tile(grid_coords, self);
 	return;
