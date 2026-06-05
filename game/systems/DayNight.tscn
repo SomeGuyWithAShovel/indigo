@@ -4,3 +4,4 @@
 
 [node name="DayNight" type="Node" unique_id=2667518]
 script = ExtResource("1_qxla0")
+amount_per_fill = 5

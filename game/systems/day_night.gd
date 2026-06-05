@@ -70,8 +70,8 @@ func next_quota(player : Player) -> int:
 	return crystal_quota;
 	
 func start_day(player : Player) -> void:
-	night_number += 1;
-	if day_since_last_pay_up < days_before_pay_up:
+	day_since_last_pay_up += 1
+	if day_since_last_pay_up >= days_before_pay_up:
 		next_quota(player);
 	player.action_points.override_amount(action_points_per_day);
 	on_day_start.emit();
