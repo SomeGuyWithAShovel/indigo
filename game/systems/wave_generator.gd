@@ -11,12 +11,17 @@ var current_wave_strength : int = 0;
 @export var instantiatable_monsters : Array[PackedScene];
 @export var default_monster_target : Node3D;
 
+@export_group("Indicator management")
+@export var indicator_scene : PackedScene;
+
 @onready var spawn_timer : Timer = $SpawnTimer;
+@onready var check_distance_timer : Timer = $CheckDistanceTimer;
 
 # Ordonné par ordre décroissant de force
 var monster_types : Array[Monster];
-
 var wave_spawn_points : Array[WaveSpawnPoint];
+
+var camera : Camera3D;
 
 class MonsterSpawn:
 	var kind : Monster;
@@ -30,6 +35,7 @@ class MonsterSpawn:
 
 var left_to_spawn : Array[MonsterSpawn] = [];
 var ennemies_spawned : Array[Monster] = [];
+var indicators : Dictionary[Monster, PositionIndicator] = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,8 +48,13 @@ func _ready() -> void:
 		
 	monster_types.sort_custom(func (m1 : Monster, m2 : Monster): return m1.strength > m2.strength);
 	spawn_timer.timeout.connect(spawn_next_enemy, CONNECT_PERSIST);
+	check_distance_timer.timeout.connect(handle_indicators, CONNECT_PERSIST);
 	DayNightSystem.on_day_start.connect(generate_waves);
 	DayNightSystem.on_night_start.connect(start_waves);
+	DayNightSystem.on_day_start.connect(func () : check_distance_timer.stop());
+	DayNightSystem.on_night_start.connect(func (): check_distance_timer.start());
+	camera = get_viewport().get_camera_3d();
+	assert(camera != null, "Wave generator n'a pas de caméra à sa disposition");
 
 func spawn_interval_after(monster : Monster) -> float:
 	# Plus le monstre est fort, plus on veut de délai après son spawn
@@ -83,8 +94,27 @@ func spawn_next_enemy() -> void:
 func monster_killed(health : HealthComponent) -> void:
 	var monster : Monster = health.get_parent();
 	ennemies_spawned.erase(monster);
+	indicators[monster].queue_free();
+	indicators.erase(monster);
 	if ennemies_spawned.is_empty():
 		DayNightSystem.start_day(Player.instance);
 	
 func start_waves() -> void:
 	spawn_timer.start(time_before_wave_start);
+	
+func handle_indicators() -> void:
+	for monster in ennemies_spawned:
+		var screen_pos = camera.unproject_position(monster.global_position);
+		var on_screen := DisplayServer.screen_get_usable_rect().has_point(screen_pos);
+		print(screen_pos);
+		if monster in indicators and on_screen:
+			print("Removed indicator");
+			remove_child(indicators[monster]);
+			indicators[monster].queue_free();
+			indicators.erase(monster);
+		elif monster not in indicators and not on_screen:
+			print("Added indicator");
+			var indicator : PositionIndicator = indicator_scene.instantiate();
+			indicators[monster] = indicator;
+			add_child(indicator);
+			indicator.follow = monster;	

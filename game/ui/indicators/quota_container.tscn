@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cmrxakogtwgbb"]
 
 [ext_resource type="Script" uid="uid://cinq323mnic4i" path="res://game/ui/indicators/quota_container.gd" id="1_3ap8a"]
-[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="1_4qfpf"]
-[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="2_3ap8a"]
+[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/bars/border.png" id="1_4qfpf"]
+[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/bars/health_bar.png" id="2_3ap8a"]
 
 [node name="QuotaContainer" type="VBoxContainer" unique_id=1956502631]
 script = ExtResource("1_3ap8a")

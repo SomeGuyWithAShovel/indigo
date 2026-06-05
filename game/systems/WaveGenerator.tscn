@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://di34x7rh83882" path="res://game/systems/wave_generator.gd" id="1_gdnxe"]
 [ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/monster_1/Monster.tscn" id="2_ggau6"]
+[ext_resource type="PackedScene" uid="uid://dcj71hym2004b" path="res://game/enemies/PositionIndicator.tscn" id="3_ekywr"]
 
 [node name="WaveGenerator" type="Node" unique_id=1245934762]
 script = ExtResource("1_gdnxe")
 initial_wave_strength = 1
 instantiatable_monsters = Array[PackedScene]([ExtResource("2_ggau6")])
+indicator_scene = ExtResource("3_ekywr")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=548240301]
 one_shot = true
+
+[node name="CheckDistanceTimer" type="Timer" parent="." unique_id=1265346131]
+wait_time = 0.5

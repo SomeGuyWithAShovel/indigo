@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://blqswb3ur5lce"]
 
 [ext_resource type="Script" uid="uid://spit30yserq6" path="res://game/ui/indicators/bar_container.gd" id="1_03hmq"]
-[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="1_f8p2d"]
-[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="2_03hmq"]
+[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/bars/border.png" id="1_f8p2d"]
+[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/bars/health_bar.png" id="2_03hmq"]
 
 [node name="HealthContainer" type="VBoxContainer" unique_id=609135137]
 script = ExtResource("1_03hmq")

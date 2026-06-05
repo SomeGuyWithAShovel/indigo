@@ -23,10 +23,10 @@ offset_top = 10.0
 offset_right = 311.0
 offset_bottom = 258.0
 
-[node name="HealthContainer2" parent="LeftPanel" unique_id=609135137 instance=ExtResource("3_q2w56")]
+[node name="HealthContainer" parent="LeftPanel" unique_id=609135137 instance=ExtResource("3_q2w56")]
 layout_mode = 2
 
-[node name="QuotaContainer2" parent="LeftPanel" unique_id=1956502631 instance=ExtResource("4_1kmeq")]
+[node name="QuotaContainer" parent="LeftPanel" unique_id=1956502631 instance=ExtResource("4_1kmeq")]
 layout_mode = 2
 
 [node name="CrystalContainer" parent="LeftPanel" unique_id=1988039899 instance=ExtResource("5_xl603")]

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b7bdn0wwa6l8s"]
 
-[ext_resource type="Texture2D" uid="uid://bkjof48p03twr" path="res://assets/ui/clock_available.png" id="1_emxq8"]
+[ext_resource type="Texture2D" uid="uid://bkjof48p03twr" path="res://assets/ui/bars/clock_available.png" id="1_emxq8"]
 [ext_resource type="Script" uid="uid://b8qqmwmpy0ftp" path="res://game/ui/indicators/action_point_container.gd" id="1_ineru"]
-[ext_resource type="Texture2D" uid="uid://dggeuxfb50vni" path="res://assets/ui/clock.png" id="2_ineru"]
+[ext_resource type="Texture2D" uid="uid://dggeuxfb50vni" path="res://assets/ui/bars/clock.png" id="2_ineru"]
 
 [node name="RightPanel" type="VBoxContainer" unique_id=2069910864]
 offset_right = 313.0

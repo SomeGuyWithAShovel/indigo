@@ -21,6 +21,11 @@ script = ExtResource("1_okd12")
 speed = 1.0
 attack_damage = 20
 
+[node name="Viewport" type="SubViewport" parent="." unique_id=2132440114]
+
+[node name="Camera3D" type="Camera3D" parent="Viewport" unique_id=355355909]
+transform = Transform3D(1, 0, 0, 0, 0.67090565, 0.74154276, 0, -0.74154276, 0.67090565, 0, 1.3922431, 1.3120654)
+
 [node name="HealthComponent" type="Node" parent="." unique_id=569542414]
 script = ExtResource("1_yj27i")
 max_health = 100
@@ -28,7 +33,7 @@ invincibility_duration = 0.1
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18813")
+blackboard = NodePath("@Node@302859")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 collision_layer = 16

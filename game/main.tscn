@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cvmagmkw58u2u"]
 
-[ext_resource type="Script" uid="uid://bxl1rbyts833d" path="res://game/main.gd" id="1_oa506"]
+[ext_resource type="Script" path="res://game/main.gd" id="1_oa506"]
 [ext_resource type="PackedScene" uid="uid://ctixn2ovn721f" path="res://game/world/world.tscn" id="2_emt18"]
-[ext_resource type="Shader" uid="uid://bkfh5sv5ylp5b" path="res://assets/see_through_shader.gdshader" id="2_vop5m"]
+[ext_resource type="Shader" path="res://assets/see_through_shader.gdshader" id="2_vop5m"]
 [ext_resource type="Script" uid="uid://d6v46o5jplx5" path="res://game/see_through_system/see_through_system.gd" id="3_vop5m"]
 [ext_resource type="PackedScene" uid="uid://comrs3i4lsjuo" path="res://game/systems/UIManager.tscn" id="5_5un7r"]
 
