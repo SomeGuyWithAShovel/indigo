@@ -14,6 +14,11 @@ static var base_scene_array: Array[PackedScene] = [
 
 static var mining_scene: PackedScene = preload("res://game/construction/cells/mining_cell.tscn");
 
+static var turret_scene_array: Array[PackedScene] = [
+	preload("res://game/construction/cells/turret/classic_turret.tscn"),
+	preload("res://game/construction/cells/turret/heavy_turret.tscn")
+];
+
 static var crystal_costs: Array[int] = [
 	
 ];

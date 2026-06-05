@@ -97,6 +97,7 @@ func raycast_on_construction_grid(raycast_result: Dictionary) -> void :
 	
 	if ((selected_construction_type != ModuleId.Of.NONE) && 
 		(collided_grid.is_terrain_ok_to_build(cell_coord)) ) :
+		
 		construction.try_construct_cell(collided_grid, cell_coord, selected_construction_type);
 		pass;
 	return;

@@ -1,5 +1,5 @@
 class_name MiningCell
-extends Node3D
+extends PlayerBaseCell
 
 var crystal_tile: CrystalTile;
 

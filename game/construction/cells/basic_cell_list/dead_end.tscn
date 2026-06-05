@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_yaccd"]
 [ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="2_ltlhk"]
-[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/OBJ format/corridor_cornerRound.obj" id="3_4w3yg"]
-[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/OBJ format/corridor.obj" id="3_qlusm"]
+[ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="3_4w3yg"]
+[ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_qlusm"]
 [ext_resource type="PackedScene" uid="uid://cb4wuhu1gpd1m" path="res://game/construction/modules/slot/module_slot.tscn" id="4_e60wt"]
+[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="6_r1ras"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1j3n"]
 material = ExtResource("2_ltlhk")
@@ -68,5 +69,10 @@ shape = SubResource("BoxShape3D_ltlhk")
 [node name="CollisionShapeN" type="CollisionShape3D" parent="CollisionWalls" index="2" unique_id=1233094407]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, -0.45000008)
 shape = SubResource("BoxShape3D_w1j3n")
+
+[node name="HealthComponent" type="Node" parent="." index="3" unique_id=1902945997]
+script = ExtResource("6_r1ras")
+max_health = 10
+metadata/_custom_type_script = "uid://ihghtvwq5oex"
 
 [editable path="ModuleSlot"]

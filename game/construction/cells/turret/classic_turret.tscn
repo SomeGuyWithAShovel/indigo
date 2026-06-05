@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cb28u5kwf447k"]
 
-[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="1_g5ill"]
-[ext_resource type="Script" uid="uid://ca5m4bp0apskx" path="res://game/module/classic_turret.gd" id="2_om3al"]
+[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/construction/cells/turret/turret.tscn" id="1_g5ill"]
+[ext_resource type="Script" uid="uid://ca5m4bp0apskx" path="res://game/construction/cells/turret/classic_turret.gd" id="2_om3al"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_om3al"]
 size = Vector3(1, 2, 1)
@@ -13,6 +13,7 @@ albedo_color = Color(0, 1, 0, 1)
 radius = 10.0
 
 [node name="Turret" unique_id=395245931 instance=ExtResource("1_g5ill")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("2_om3al")
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=274420374]

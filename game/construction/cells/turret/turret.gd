@@ -1,4 +1,4 @@
-extends Node3D
+extends PlayerBaseCell
 class_name Turret
 
 @export var damage := 10

@@ -35,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			add_child(building_ui_node);
 		else:
 			remove_child(building_ui_node);
-		is_build_menu_open = !is_build_menu_open;
+		is_build_menu_open = !is_build_menu_open;		
 	
 func bind_to_build_ui(callable : Callable) -> void:
 	assert(callable.get_argument_count() == 1, 

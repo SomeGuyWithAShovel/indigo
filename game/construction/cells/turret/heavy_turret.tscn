@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://caloyjfqxwkg7"]
 
-[ext_resource type="Script" uid="uid://da7dlt3giga7m" path="res://game/module/heavy_turret.gd" id="1_espld"]
-[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="1_hey2q"]
-[ext_resource type="PackedScene" uid="uid://bhyvujg5lhjcd" path="res://game/module/missile.tscn" id="3_i6mve"]
+[ext_resource type="Script" uid="uid://da7dlt3giga7m" path="res://game/construction/cells/turret/heavy_turret.gd" id="1_espld"]
+[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/construction/cells/turret/turret.tscn" id="1_hey2q"]
+[ext_resource type="PackedScene" uid="uid://bhyvujg5lhjcd" path="res://game/construction/cells/turret/projectile/missile.tscn" id="3_i6mve"]
 [ext_resource type="PackedScene" uid="uid://fpiwtw8pgq6k" path="res://assets/3dModels/Missile Space Launcher 01.fbx" id="4_i6mve"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x38vp"]
@@ -13,6 +13,7 @@ size = Vector3(1.8, 2.393702, 1.8819336)
 radius = 10.0
 
 [node name="Turret" unique_id=395245931 instance=ExtResource("1_hey2q")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_espld")
 projectile_scene = ExtResource("3_i6mve")
 

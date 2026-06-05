@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_stdyo"]
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="2_rs1y8"]
+[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="3_kogd3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c4iox"]
 size = Vector3(2, 0.8, 0.1)
@@ -22,3 +23,8 @@ shape = SubResource("BoxShape3D_c4iox")
 [node name="CollisionShapeN" type="CollisionShape3D" parent="CollisionWalls" index="1" unique_id=570957456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.45000008)
 shape = SubResource("BoxShape3D_c4iox")
+
+[node name="HealthComponent" type="Node" parent="." index="2" unique_id=606031182]
+script = ExtResource("3_kogd3")
+max_health = 10
+metadata/_custom_type_script = "uid://ihghtvwq5oex"

@@ -38,6 +38,9 @@ func is_terrain_ok_to_build(_grid_coords: Vector2i) -> bool :
 func can_build_base(_grid_coords: Vector2i) -> bool :
 	return crystal_tiles.has(_grid_coords as Vector2) == false;
 
+func can_build_turret(_grid_coords: Vector2i) -> bool :
+	return crystal_tiles.has(_grid_coords as Vector2) == false;
+
 # still need to check is_terrain_ok_to_build() manually !
 func can_build_miner(_grid_coords: Vector2i) -> bool :
 	return crystal_tiles.has(_grid_coords as Vector2);

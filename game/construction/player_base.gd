@@ -12,6 +12,7 @@ func _enter_tree() -> void :
 	return;
 
 var base_cells: Dictionary[Vector2i, PlayerBaseCell];
+var turret_cells: Dictionary[Vector2i, Turret];
 var mining_cells: Dictionary[Vector2i, MiningCell];
 
 func has_base_cell(coords: Vector2i) -> bool :
@@ -20,8 +21,11 @@ func has_base_cell(coords: Vector2i) -> bool :
 func has_mining_cell(coords: Vector2i) -> bool :
 	return mining_cells.has(coords);
 
+func has_turret_cell(coords: Vector2i) -> bool :
+	return turret_cells.has(coords);
+
 func has_any_cell(coords: Vector2i) -> bool :
-	return (has_base_cell(coords) || has_mining_cell(coords));
+	return (has_base_cell(coords) || has_mining_cell(coords) || has_turret_cell(coords));
 
 var base_cells_dir: Dictionary[Vector2i, Dir.Enum];
 
@@ -98,6 +102,35 @@ func raw_set_mining_cell_at(coords: Vector2i) -> void :
 	mining_cells[coords] = new_cell;
 	return;
 
+func raw_set_turret_cell_at(coords: Vector2i, turret_type:ModuleId.Of) -> void :
+	if (turret_type == ModuleId.Of.MISSILE_LAUNCHER):
+		var new_node = PlayerBaseCells.turret_scene_array[1].instantiate();
+		var new_cell = new_node as Heavy_Turret;
+		assert(new_cell != null);
+		
+		new_cell.name = "TurretCell(%d,%d)" % [coords.x, coords.y];
+		new_cell.position = construction_grid.get_world_coords_from_grid_coords(coords);
+		
+		# all this before doing add_child(), so new_cell._enter_tree() fires after initializations
+		
+		self.add_child(new_cell);
+		new_cell.owner = self;
+		turret_cells[coords] = new_cell;
+	if (turret_type == ModuleId.Of.TURRET):
+		var new_node = PlayerBaseCells.turret_scene_array[0].instantiate();
+		var new_cell = new_node as Classic_Turret;
+		assert(new_cell != null);
+		
+		new_cell.name = "TurretCell(%d,%d)" % [coords.x, coords.y];
+		new_cell.position = construction_grid.get_world_coords_from_grid_coords(coords);
+		
+		# all this before doing add_child(), so new_cell._enter_tree() fires after initializations
+		
+		self.add_child(new_cell);
+		new_cell.owner = self;
+		turret_cells[coords] = new_cell;
+	return;
+
 func try_set_base_cell_at(coords: Vector2i) -> bool :
 	if (has_any_cell(coords)) :
 		print("try_set_base_cell_at(", coords, ") : already a cell here");
@@ -112,6 +145,14 @@ func try_set_mining_cell_at(coords: Vector2i) -> bool :
 		return false;
 	print("try_set_mining_cell_at(", coords, ")");
 	raw_set_mining_cell_at(coords);
+	return true;
+
+func try_set_turret_cell_at(coords: Vector2i, turret_type:ModuleId.Of) -> bool :
+	if (has_any_cell(coords)) :
+		print("try_set_turret_cell_at(", coords, ") : already a cell here");
+		return false;
+	print("try_set_turret_cell_at(", coords, ")");
+	raw_set_turret_cell_at(coords,turret_type);
 	return true;
 
 func do_all_mining_operations() -> void :

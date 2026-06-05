@@ -34,9 +34,32 @@ static func construction_type_is_turret(construction_type: ModuleId.Of) -> bool 
 	return turret_types.has(construction_type);
 
 func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2i, _turret_type: ModuleId.Of) -> bool :
-	# TODO
-	print("try_construct_turret() : not yet implemented");
-	return false;
+	if (_construction_grid.is_terrain_ok_to_build(_coords) == false) :
+		print("trying to build base cell in a cell where the terrain is blocking construction");
+		return false;
+	
+	if (_construction_grid.can_build_turret(_coords) == false) :
+		print("trying to build base cell in a cell where we can't build base cells");
+		return false;
+		
+	#Different cout de tourelle
+	var turret_cell_cost: int = 750;
+	var crystals: PlayerResource = player.crystals;
+	
+	if _turret_type == ModuleId.Of.MISSILE_LAUNCHER:
+		turret_cell_cost = 1000;
+	
+	if (crystals.has_amount(turret_cell_cost) == false) :
+		print("not enough crystals (need %d, have %d)" % [turret_cell_cost, crystals.get_amount()]);
+		return false;
+	
+	var set_result: bool = _construction_grid.player_base.try_set_turret_cell_at(_coords,_turret_type);
+	if (set_result == false) :
+		return false;
+	
+	crystals.remove(turret_cell_cost);
+	print("spent %d crystals (%d remaining)" % [turret_cell_cost, crystals.get_amount()]);
+	return true;
 
 func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
 	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
@@ -86,3 +109,6 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 	crystals.remove(mining_cell_cost);
 	print("spent %d crystals (%d remaining)" % [mining_cell_cost, crystals.get_amount()]);
 	return true;
+
+func try_build_door(slot: PlayerBaseModuleSlot) -> bool :
+	return true

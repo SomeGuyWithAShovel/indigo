@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://biuhe5sp5haeu"]
 
-[ext_resource type="Script" uid="uid://b10pt0ehuijqe" path="res://game/module/projectile.gd" id="1_gasbo"]
+[ext_resource type="Script" uid="uid://b10pt0ehuijqe" path="res://game/construction/cells/turret/projectile/projectile.gd" id="1_gasbo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_limw7"]
 

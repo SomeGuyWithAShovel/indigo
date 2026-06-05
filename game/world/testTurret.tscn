@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caxge83cxxavt"]
 
-[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/module/turret.tscn" id="1_cved6"]
+[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/construction/cells/turret/turret.tscn" id="1_cved6"]
 [ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/monster_1/Monster.tscn" id="2_8kd1p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8kd1p"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhyvujg5lhjcd"]
 
-[ext_resource type="PackedScene" uid="uid://biuhe5sp5haeu" path="res://game/module/projectile.tscn" id="1_kscij"]
-[ext_resource type="Script" uid="uid://bdi74lgj7txco" path="res://game/module/missile.gd" id="2_sn23x"]
+[ext_resource type="PackedScene" uid="uid://biuhe5sp5haeu" path="res://game/construction/cells/turret/projectile/projectile.tscn" id="1_kscij"]
+[ext_resource type="Script" uid="uid://bdi74lgj7txco" path="res://game/construction/cells/turret/projectile/missile.gd" id="2_sn23x"]
 [ext_resource type="PackedScene" uid="uid://12jliyq6aw3e" path="res://assets/3dModels/Missile .fbx" id="3_txyvs"]
 
 [node name="Projectile" unique_id=2011740857 instance=ExtResource("1_kscij")]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://belf5c4gxjj3u"]
 
-[ext_resource type="Script" uid="uid://mavlx3ylpdvn" path="res://game/module/turret.gd" id="1_w0prb"]
+[ext_resource type="Script" uid="uid://mavlx3ylpdvn" path="res://game/construction/cells/turret/turret.gd" id="1_w0prb"]
+[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="2_ygro0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w0prb"]
 size = Vector3(1, 2, 1)
@@ -38,6 +39,11 @@ shape = SubResource("SphereShape3D_elsym")
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=1370035238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1176361867]
+script = ExtResource("2_ygro0")
+max_health = 100
+metadata/_custom_type_script = "uid://ihghtvwq5oex"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
