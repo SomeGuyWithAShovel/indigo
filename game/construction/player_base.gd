@@ -46,6 +46,7 @@ func raw_set_base_cell_at(coords: Vector2i, dir: Dir.Enum, _extra: int) -> void 
 	
 	base_cells[coords] = new_cell;
 	base_cells_dir[coords] = dir;
+	new_cell.health.died.connect(on_base_broke);
 	return;
 
 func raw_set_base_cell_at_with_neighbours(coords: Vector2i, _extra: int) -> void :
@@ -85,6 +86,31 @@ func raw_set_base_cell_at_with_neighbours(coords: Vector2i, _extra: int) -> void
 	raw_set_base_cell_at(coords, new_cell_dir, _extra);
 	
 	return;
+	
+func on_base_broke(health : HealthComponent) -> void:
+	var base : PlayerBaseCell = health.get_parent();
+	
+	var base_pos := base.global_position;
+	var coords = construction_grid.get_grid_coords_from_world_coords(base_pos);
+	var neighbour_coords : Array[Vector2i] = [
+		(coords + Vector2i(  1,  0)),
+		(coords + Vector2i(  0, -1)),
+		(coords + Vector2i( -1,  0)),
+		(coords + Vector2i(  0,  1)),
+	];
+	if coords in base_cells_dir:
+		base_cells_dir.erase(base);
+		for i in range(len(neighbour_coords)):
+			var coord = neighbour_coords[i];
+			if has_base_cell(coord):
+				var neighbour_new_dir = Dir.remove_dirs(base_cells_dir[coord], Dir.opposite_from_int[i]);
+				raw_set_base_cell_at(neighbour_coords[i], neighbour_new_dir, 0);
+	self.remove_child(base);
+	base_cells.erase(coords);
+	mining_cells.erase(coords);
+	turret_cells.erase(coords);
+	base.queue_free();
+	
 
 func raw_set_mining_cell_at(coords: Vector2i) -> void :
 	var new_node = PlayerBaseCells.mining_scene.instantiate();
@@ -98,6 +124,7 @@ func raw_set_mining_cell_at(coords: Vector2i) -> void :
 	
 	self.add_child(new_cell);
 	new_cell.owner = self;
+	new_cell.health.died.connect(on_base_broke);
 	
 	mining_cells[coords] = new_cell;
 	return;
@@ -116,6 +143,8 @@ func raw_set_turret_cell_at(coords: Vector2i, turret_type:ModuleId.Of) -> void :
 		self.add_child(new_cell);
 		new_cell.owner = self;
 		turret_cells[coords] = new_cell;
+		new_cell.health.died.connect(on_base_broke);
+		
 	if (turret_type == ModuleId.Of.TURRET):
 		var new_node = PlayerBaseCells.turret_scene_array[0].instantiate();
 		var new_cell = new_node as Classic_Turret;
@@ -128,6 +157,7 @@ func raw_set_turret_cell_at(coords: Vector2i, turret_type:ModuleId.Of) -> void :
 		
 		self.add_child(new_cell);
 		new_cell.owner = self;
+		new_cell.health.died.connect(on_base_broke);
 		turret_cells[coords] = new_cell;
 	return;
 

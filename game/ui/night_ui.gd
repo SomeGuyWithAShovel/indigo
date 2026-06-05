@@ -11,7 +11,10 @@ func setup_events() -> void:
 	Player.instance.character.health.health_changed.connect(func (h : HealthComponent, hp : int):
 		health.set_progress(hp , h.max_health);
 	);
-	DayNightSystem.quota_changed.connect(func (curr : int, max_quota : int):
+	DayNightSystem.quota_changed.connect(func (max_quota : int):
+		quota.set_progress(0, max_quota);	
+	);
+	DayNightSystem.crystals_spent_on_quota.connect(func (curr : int, max_quota : int):
 		quota.set_progress(curr, max_quota);	
 	);
 	Player.instance.crystals.amount_changed.connect(func (new_amount : int, _ignore):

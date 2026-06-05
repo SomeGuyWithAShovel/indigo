@@ -20,5 +20,8 @@ script = ExtResource("2_om3al")
 mesh = SubResource("BoxMesh_om3al")
 surface_material_override/0 = SubResource("StandardMaterial3D_om3al")
 
+[node name="StaticBody3D" parent="." index="2" unique_id=1616738968]
+collision_layer = 64
+
 [node name="TowerRadius" parent="Area3D" parent_id_path=PackedInt32Array(424394434) index="0" unique_id=790276947]
 shape = SubResource("SphereShape3D_om3al")

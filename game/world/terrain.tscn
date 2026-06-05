@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dswbd32w7d7mg" path="res://game/world/terrain.gd" id="1_ig0dc"]
 [ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal_tile.tscn" id="2_konwf"]
+[ext_resource type="PackedScene" uid="uid://dcobj7squ7ld6" path="res://game/world/QuotaBox.tscn" id="3_3rkxp"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ig0dc"]
 
@@ -96,3 +97,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12)
 
 [node name="CrystalTile13" parent="Crystals" unique_id=33586969 instance=ExtResource("2_konwf")]
 transform = Transform3D(-0.49933654, 0.25453815, -0.82817477, -0.19360517, 0.8989204, 0.39301327, 0.8445, 0.35658482, -0.39958385, -22, 0, 8)
+
+[node name="QuotaBox" parent="." unique_id=482531464 instance=ExtResource("3_3rkxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)

@@ -24,6 +24,7 @@ size = Vector3(0.225, 0.7, 0.45)
 script = ExtResource("1_kawp1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608]
+collision_layer = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1162578280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.75, -5.9604645e-08)

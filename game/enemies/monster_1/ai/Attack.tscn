@@ -27,6 +27,7 @@ metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
 [node name="Attack" type="Node" parent="SequenceComposite/AttackRampup" unique_id=980792660]
 script = ExtResource("4_dl76g")
+hurt_layers = 66
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="CooldownDecorator" type="Node" parent="SequenceComposite" unique_id=1038835201]

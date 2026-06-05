@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dcobj7squ7ld6"]
+
+[ext_resource type="Script" uid="uid://bh3qa51i01xgb" path="res://game/world/quota_box.gd" id="1_anwy0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ikr5w"]
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ikr5w"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anwy0"]
+albedo_color = Color(0.5137255, 0.27058825, 0.8, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_anwy0"]
+height = 1.0
+radius = 2.0
+
+[node name="QuotaBox" type="Node3D" unique_id=482531464]
+script = ExtResource("1_anwy0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1624619686]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=316390167]
+shape = SubResource("CylinderShape3D_ikr5w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=166931184]
+mesh = SubResource("CylinderMesh_ikr5w")
+surface_material_override/0 = SubResource("StandardMaterial3D_anwy0")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=204385113]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=661071692]
+shape = SubResource("CylinderShape3D_anwy0")

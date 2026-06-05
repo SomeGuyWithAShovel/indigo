@@ -24,6 +24,10 @@ static func add_dirs(e: Dir.Enum, dir: Dir.Enum) -> Dir.Enum :
 	assert((dir == Enum.E) or (dir == Enum.N) or (dir == Enum.W) or (dir == Enum.S));
 	return (((e as int) | (dir as int)) as Dir.Enum);
 
+static func remove_dirs(e : Dir.Enum, dir : Dir.Enum) -> Dir.Enum :
+	assert((dir == Enum.E) or (dir == Enum.N) or (dir == Enum.W) or (dir == Enum.S));
+	return ((e as int) & ~(dir as int)) as Dir.Enum;
+
 # NEED TO BE IN THIS ORDER !
 # [standalone, deadend, turn, straight, tjunc, 4way]
 # these arrays are indexed by that : scene_id_from_dir[3] = 2 means that :

@@ -36,18 +36,19 @@ func is_terrain_ok_to_build(_grid_coords: Vector2i) -> bool :
 
 # still need to check is_terrain_ok_to_build() manually !
 func can_build_base(_grid_coords: Vector2i) -> bool :
-	return crystal_tiles.has(_grid_coords as Vector2) == false;
+	return crystal_tiles.has(_grid_coords as Vector2) == false and not obstructed_tile.has(_grid_coords);
 
 func can_build_turret(_grid_coords: Vector2i) -> bool :
-	return crystal_tiles.has(_grid_coords as Vector2) == false;
+	return crystal_tiles.has(_grid_coords as Vector2) == false and not obstructed_tile.has(_grid_coords);
 
 # still need to check is_terrain_ok_to_build() manually !
 func can_build_miner(_grid_coords: Vector2i) -> bool :
-	return crystal_tiles.has(_grid_coords as Vector2);
+	return crystal_tiles.has(_grid_coords as Vector2) and not obstructed_tile.has(_grid_coords);
 
 
 
 var crystal_tiles: Dictionary[Vector2i, CrystalTile];
+var obstructed_tile : Array[Vector2i];
 
 func set_tile_as_crystal_tile(grid_coords: Vector2i, crystal_tile: CrystalTile) :
 	assert(crystal_tile != null);
@@ -57,6 +58,15 @@ func set_tile_as_crystal_tile(grid_coords: Vector2i, crystal_tile: CrystalTile) 
 		);
 		return;
 	crystal_tiles[grid_coords] = crystal_tile;
+	return;
+	
+func set_tile_as_obstructed(grid_coords : Vector2i) -> void:
+	if obstructed_tile.has(grid_coords):
+		print("ConstructionGrid::set_tile_as_obstructed(%d;%d) : already set as obstructed tile" % 
+			[grid_coords.x, grid_coords.y]
+		);
+		return;
+	obstructed_tile.append(grid_coords);
 	return;
 
 # not tested
