@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://jm7w6q82iulm"
+path="res://.godot/imported/turret_double.obj-2c367a3780826735d54acae9bb335c6c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/turret_double.obj-2c367a3780826735d54acae9bb335c6c.mesh"]
+
+source_file="res://assets/3dModels/turret_double.obj"
+dest_files=["res://.godot/imported/turret_double.obj-2c367a3780826735d54acae9bb335c6c.mesh", "res://.godot/imported/turret_double.obj-2c367a3780826735d54acae9bb335c6c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
