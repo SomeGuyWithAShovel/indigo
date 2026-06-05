@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b3ka5r4dxmr1c"]
+
+[node name="CrystalContainer" type="HBoxContainer" unique_id=1988039899]
+
+[node name="Label" type="Label" parent="." unique_id=1371880374]
+layout_mode = 2
+text = "Crystals:"
+
+[node name="Amount" type="Label" parent="." unique_id=981925753]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "42"
+vertical_alignment = 1

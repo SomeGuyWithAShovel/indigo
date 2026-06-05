@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://bheawcvrepst7"]
 
 [ext_resource type="Texture2D" uid="uid://bbcyrghwe2qpf" path="res://assets/ui/buildings/demo_1.svg" id="1_84q21"]
+[ext_resource type="Script" uid="uid://d1wsk6p00sijy" path="res://game/ui/building_ui_button.gd" id="1_iwtdy"]
 [ext_resource type="Texture2D" uid="uid://c08mbuff4s4sq" path="res://assets/ui/buildings/icons/turret_double_SW.png" id="2_iwtdy"]
 
 [node name="MarginContainer" type="MarginContainer" unique_id=1075134111]
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
+script = ExtResource("1_iwtdy")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=172189055]
 layout_mode = 2

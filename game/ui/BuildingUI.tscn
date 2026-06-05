@@ -5,6 +5,8 @@
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="2_txet5"]
 [ext_resource type="PackedScene" uid="uid://bheawcvrepst7" path="res://game/ui/BuildingUI_Button.tscn" id="3_pnvmi"]
 [ext_resource type="Texture2D" uid="uid://b5dqq8mwrvlq7" path="res://assets/ui/buildings/icons/corridor_window_NE.png" id="5_txet5"]
+[ext_resource type="Texture2D" uid="uid://pcw1wdinlqfb" path="res://assets/ui/buildings/icons/corridor_end_SW.png" id="6_7xhvl"]
+[ext_resource type="Texture2D" uid="uid://4nq5kirxuv4n" path="res://assets/ui/buildings/icons/miner.png" id="7_3kdsp"]
 
 [node name="BuildingUi" type="Control" unique_id=585224592]
 layout_mode = 3
@@ -12,7 +14,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_h7t8k")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=905752924]
@@ -22,7 +24,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -216.0
-offset_bottom = 608.0
+offset_bottom = 1000.0
 grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("2_txet5")
@@ -31,32 +33,50 @@ theme = ExtResource("2_txet5")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1075134111 instance=ExtResource("3_pnvmi")]
+[node name="Turret" parent="PanelContainer/VBoxContainer" unique_id=1075134111 instance=ExtResource("3_pnvmi")]
 layout_mode = 2
 
-[node name="MarginContainer3" parent="PanelContainer/VBoxContainer" unique_id=50739 instance=ExtResource("3_pnvmi")]
+[node name="MissileLauncher" parent="PanelContainer/VBoxContainer" unique_id=50739 instance=ExtResource("3_pnvmi")]
 layout_mode = 2
 
-[node name="Button" parent="PanelContainer/VBoxContainer/MarginContainer3/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="0" unique_id=2008104066]
+[node name="Button" parent="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("2_iu5tr")
 
-[node name="Label" parent="PanelContainer/VBoxContainer/MarginContainer3/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="1" unique_id=589050163]
+[node name="Label" parent="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="1" unique_id=589050163]
 text = "2"
 
-[node name="MarginContainer2" parent="PanelContainer/VBoxContainer" unique_id=218553309 instance=ExtResource("3_pnvmi")]
+[node name="Tube" parent="PanelContainer/VBoxContainer" unique_id=218553309 instance=ExtResource("3_pnvmi")]
+layout_mode = 2
+
+[node name="Button" parent="PanelContainer/VBoxContainer/Tube/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="0" unique_id=2008104066]
+icon = ExtResource("5_txet5")
+
+[node name="Label" parent="PanelContainer/VBoxContainer/Tube/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="1" unique_id=589050163]
+text = "1"
+
+[node name="Hatch" parent="PanelContainer/VBoxContainer" unique_id=199520681 instance=ExtResource("3_pnvmi")]
+layout_mode = 2
+
+[node name="Button" parent="PanelContainer/VBoxContainer/Hatch/MarginContainer" parent_id_path=PackedInt32Array(199520681, 1497560610) index="0" unique_id=2008104066]
+icon = ExtResource("6_7xhvl")
+
+[node name="Label" parent="PanelContainer/VBoxContainer/Hatch/MarginContainer" parent_id_path=PackedInt32Array(199520681, 1497560610) index="1" unique_id=589050163]
+text = "2"
+
+[node name="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1756615535 instance=ExtResource("3_pnvmi")]
 layout_mode = 2
 theme_override_constants/margin_bottom = 20
 
-[node name="Button" parent="PanelContainer/VBoxContainer/MarginContainer2/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="0" unique_id=2008104066]
-icon = ExtResource("5_txet5")
+[node name="Button" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer" parent_id_path=PackedInt32Array(1756615535, 1497560610) index="0" unique_id=2008104066]
+icon = ExtResource("7_3kdsp")
 
-[node name="Label" parent="PanelContainer/VBoxContainer/MarginContainer2/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="1" unique_id=589050163]
-text = "1"
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Turret/MarginContainer/Button" to="." method="_turret_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer/Button" to="." method="_missile_launcher_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Tube/MarginContainer/Button" to="." method="_tube_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Hatch/MarginContainer/Button" to="." method="_hatch_button_pressed"]
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/Button" to="." method="_turret_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer3/MarginContainer/Button" to="." method="_missile_launcher_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer2/MarginContainer/Button" to="." method="_tube_button_pressed"]
-
+[editable path="PanelContainer/VBoxContainer/Turret"]
+[editable path="PanelContainer/VBoxContainer/MissileLauncher"]
+[editable path="PanelContainer/VBoxContainer/Tube"]
+[editable path="PanelContainer/VBoxContainer/Hatch"]
 [editable path="PanelContainer/VBoxContainer/MarginContainer"]
-[editable path="PanelContainer/VBoxContainer/MarginContainer3"]
-[editable path="PanelContainer/VBoxContainer/MarginContainer2"]

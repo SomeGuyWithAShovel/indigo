@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://djhvmwipns517"]
 
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_0a0o5"]
-[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="2_5epet"]
 [ext_resource type="Script" uid="uid://dbxx54oo8qydw" path="res://game/ui/day_ui.gd" id="2_twd1r"]
-[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="3_ipj67"]
-[ext_resource type="Texture2D" uid="uid://bkjof48p03twr" path="res://assets/ui/clock_available.png" id="4_ipj67"]
-[ext_resource type="Texture2D" uid="uid://dggeuxfb50vni" path="res://assets/ui/clock.png" id="5_twd1r"]
+[ext_resource type="PackedScene" uid="uid://blqswb3ur5lce" path="res://game/ui/indicators/health_container.tscn" id="3_sir64"]
+[ext_resource type="PackedScene" uid="uid://cmrxakogtwgbb" path="res://game/ui/indicators/quota_container.tscn" id="4_twd1r"]
+[ext_resource type="PackedScene" uid="uid://b3ka5r4dxmr1c" path="res://game/ui/indicators/crystal_container.tscn" id="5_sir64"]
+[ext_resource type="PackedScene" uid="uid://b7bdn0wwa6l8s" path="res://game/ui/indicators/action_points_container.tscn" id="6_wowka"]
 
 [node name="Day" type="Control" unique_id=840050716]
 layout_mode = 3
@@ -19,51 +19,19 @@ script = ExtResource("2_twd1r")
 
 [node name="LeftPanel" type="VBoxContainer" parent="." unique_id=153064278]
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 172.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 311.0
+offset_bottom = 326.0
 
-[node name="HealthContainer" type="VBoxContainer" parent="LeftPanel" unique_id=211575412]
+[node name="HealthContainer" parent="LeftPanel" unique_id=609135137 instance=ExtResource("3_sir64")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LeftPanel/HealthContainer" unique_id=704554564]
-layout_mode = 2
-text = "Health"
-
-[node name="ProgressBar" type="TextureProgressBar" parent="LeftPanel/HealthContainer" unique_id=73047535]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.2
-texture_over = ExtResource("2_5epet")
-texture_progress = ExtResource("3_ipj67")
-tint_progress = Color(1, 0.29411766, 0.36862746, 1)
-
-[node name="QuotaContainer" type="VBoxContainer" parent="LeftPanel" unique_id=846933157]
+[node name="QuotaContainer" parent="LeftPanel" unique_id=1956502631 instance=ExtResource("4_twd1r")]
 layout_mode = 2
 
-[node name="Quota" type="Label" parent="LeftPanel/QuotaContainer" unique_id=761417802]
+[node name="CrystalContainer" parent="LeftPanel" unique_id=1988039899 instance=ExtResource("5_sir64")]
 layout_mode = 2
-text = "Quota"
-
-[node name="ProgressBar" type="TextureProgressBar" parent="LeftPanel/QuotaContainer" unique_id=1800080022]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.7
-texture_over = ExtResource("2_5epet")
-texture_progress = ExtResource("3_ipj67")
-tint_progress = Color(0.29411766, 0, 0.50980395, 1)
-
-[node name="CrystalContainer" type="HBoxContainer" parent="LeftPanel" unique_id=722854679]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="LeftPanel/CrystalContainer" unique_id=117675529]
-layout_mode = 2
-text = "Crystals:"
-
-[node name="Amount" type="Label" parent="LeftPanel/CrystalContainer" unique_id=328024335]
-layout_mode = 2
-text = "42"
 
 [node name="RightPanel" type="VBoxContainer" parent="." unique_id=1768166029]
 layout_mode = 1
@@ -74,23 +42,8 @@ offset_left = -301.0
 offset_bottom = 150.0
 grow_horizontal = 0
 
-[node name="RightPanel" type="HBoxContainer" parent="RightPanel" unique_id=1299505041]
+[node name="ActionPointsContainer" parent="RightPanel" unique_id=1453304355 instance=ExtResource("6_wowka")]
 layout_mode = 2
-alignment = 2
-
-[node name="Label" type="Label" parent="RightPanel/RightPanel" unique_id=1178029306]
-layout_mode = 2
-text = "Action Points"
-horizontal_alignment = 2
-
-[node name="ProgressBar" type="TextureProgressBar" parent="RightPanel/RightPanel" unique_id=1639445515]
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-value = 0.4
-fill_mode = 4
-texture_under = ExtResource("4_ipj67")
-texture_progress = ExtResource("5_twd1r")
 
 [node name="Button" type="Button" parent="RightPanel" unique_id=2086179023]
 layout_mode = 2

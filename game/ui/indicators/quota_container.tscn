@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cmrxakogtwgbb"]
+
+[ext_resource type="Script" uid="uid://cinq323mnic4i" path="res://game/ui/indicators/quota_container.gd" id="1_3ap8a"]
+[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="1_4qfpf"]
+[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="2_3ap8a"]
+
+[node name="QuotaContainer" type="VBoxContainer" unique_id=1956502631]
+script = ExtResource("1_3ap8a")
+
+[node name="Quota" type="Label" parent="." unique_id=69869059]
+layout_mode = 2
+text = "Quota"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=37096283]
+layout_mode = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=1631228192]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.7
+texture_over = ExtResource("1_4qfpf")
+texture_progress = ExtResource("2_3ap8a")
+tint_progress = Color(0.29411766, 0, 0.50980395, 1)
+
+[node name="Text" type="Label" parent="HBoxContainer" unique_id=459787108]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "25 / 100"
+horizontal_alignment = 2

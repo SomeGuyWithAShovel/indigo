@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ds0reclyxq1ol"]
 
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_1y2xa"]
-[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="2_mtmnu"]
 [ext_resource type="Script" uid="uid://caxs708irscxg" path="res://game/ui/night_ui.gd" id="2_q2w56"]
-[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="3_q2w56"]
+[ext_resource type="PackedScene" uid="uid://blqswb3ur5lce" path="res://game/ui/indicators/health_container.tscn" id="3_q2w56"]
+[ext_resource type="PackedScene" uid="uid://cmrxakogtwgbb" path="res://game/ui/indicators/quota_container.tscn" id="4_1kmeq"]
+[ext_resource type="PackedScene" uid="uid://b3ka5r4dxmr1c" path="res://game/ui/indicators/crystal_container.tscn" id="5_xl603"]
 
 [node name="Night" type="Control" unique_id=1144379826]
 layout_mode = 3
@@ -17,48 +18,16 @@ script = ExtResource("2_q2w56")
 
 [node name="LeftPanel" type="VBoxContainer" parent="." unique_id=375013391]
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 172.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 311.0
+offset_bottom = 258.0
 
-[node name="HealthContainer" type="VBoxContainer" parent="LeftPanel" unique_id=883100433]
+[node name="HealthContainer2" parent="LeftPanel" unique_id=609135137 instance=ExtResource("3_q2w56")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LeftPanel/HealthContainer" unique_id=686279316]
-layout_mode = 2
-text = "Health"
-
-[node name="ProgressBar" type="TextureProgressBar" parent="LeftPanel/HealthContainer" unique_id=1822823292]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.2
-texture_over = ExtResource("2_mtmnu")
-texture_progress = ExtResource("3_q2w56")
-tint_progress = Color(1, 0.29411766, 0.36862746, 1)
-
-[node name="QuotaContainer" type="VBoxContainer" parent="LeftPanel" unique_id=2040428202]
+[node name="QuotaContainer2" parent="LeftPanel" unique_id=1956502631 instance=ExtResource("4_1kmeq")]
 layout_mode = 2
 
-[node name="Quota" type="Label" parent="LeftPanel/QuotaContainer" unique_id=780979134]
+[node name="CrystalContainer" parent="LeftPanel" unique_id=1988039899 instance=ExtResource("5_xl603")]
 layout_mode = 2
-text = "Quota"
-
-[node name="ProgressBar" type="TextureProgressBar" parent="LeftPanel/QuotaContainer" unique_id=190583798]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.7
-texture_over = ExtResource("2_mtmnu")
-texture_progress = ExtResource("3_q2w56")
-tint_progress = Color(0.29411766, 0, 0.50980395, 1)
-
-[node name="CrystalContainer" type="HBoxContainer" parent="LeftPanel" unique_id=13069015]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="LeftPanel/CrystalContainer" unique_id=401566996]
-layout_mode = 2
-text = "Crystals:"
-
-[node name="Amount" type="Label" parent="LeftPanel/CrystalContainer" unique_id=1622825427]
-layout_mode = 2
-text = "42"

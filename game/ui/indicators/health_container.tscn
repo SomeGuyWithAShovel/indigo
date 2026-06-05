@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://blqswb3ur5lce"]
+
+[ext_resource type="Script" uid="uid://spit30yserq6" path="res://game/ui/indicators/bar_container.gd" id="1_03hmq"]
+[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/border.png" id="1_f8p2d"]
+[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/health_bar.png" id="2_03hmq"]
+
+[node name="HealthContainer" type="VBoxContainer" unique_id=609135137]
+script = ExtResource("1_03hmq")
+
+[node name="Label" type="Label" parent="." unique_id=2053125570]
+layout_mode = 2
+text = "Health"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1723111998]
+layout_mode = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=556392017]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.2
+texture_over = ExtResource("1_f8p2d")
+texture_progress = ExtResource("2_03hmq")
+tint_progress = Color(1, 0.29411766, 0.36862746, 1)
+
+[node name="Text" type="Label" parent="HBoxContainer" unique_id=1483619337]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "25 / 100"
+horizontal_alignment = 2

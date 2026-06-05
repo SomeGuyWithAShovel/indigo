@@ -39,8 +39,8 @@ func kill(_health : HealthComponent) -> void:
 	visible = true;
 
 func get_input_direction() -> Vector3:
-	var horizontal_axis : float = Input.get_axis(&"ui_left", &"ui_right");
-	var vertical_axis : float = Input.get_axis(&"ui_up", &"ui_down");
+	var horizontal_axis : float = Input.get_axis(&"move_left", &"move_right");
+	var vertical_axis : float = Input.get_axis(&"move_forwards", &"move_backwards");
 	# Repère "Minecraft" : Y = 0
 	var input_direction := Vector3(horizontal_axis, 0, vertical_axis).normalized();
 	return input_direction;

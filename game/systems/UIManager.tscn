@@ -11,7 +11,6 @@ script = ExtResource("1_54ll4")
 ui_for_state = Dictionary[int, PackedScene]({
 0: ExtResource("2_gjd67"),
 1: ExtResource("3_84o1i"),
-2: ExtResource("4_hasba"),
-3: ExtResource("5_gqoja"),
-4: ExtResource("5_gqoja")
+2: ExtResource("4_hasba")
 })
+building_ui = ExtResource("5_gqoja")
