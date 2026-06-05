@@ -21,6 +21,9 @@ func setup_prices() -> void:
 	# TODO
 	pass;
 
+func on_button_down() -> void:
+	Player.instance.set_selected_construction_type(ModuleId.Of.NONE);
+
 func on_button_pressed(id : ModuleId.Of) -> void :
 	# Vérifications dans les ressouces du joueur
 	Player.instance.set_selected_construction_type(id);

@@ -70,10 +70,14 @@ theme_override_constants/margin_bottom = 20
 [node name="Button" parent="PanelContainer/VBoxContainer/Miner/MarginContainer" parent_id_path=PackedInt32Array(1756615535, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("7_3kdsp")
 
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Turret/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Turret/MarginContainer/Button" to="." method="_turret_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer/Button" to="." method="_missile_launcher_button_pressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Tube/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tube/MarginContainer/Button" to="." method="_tube_button_pressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Hatch/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Hatch/MarginContainer/Button" to="." method="_hatch_button_pressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Miner/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Miner/MarginContainer/Button" to="." method="_miner_button_pressed"]
 
 [editable path="PanelContainer/VBoxContainer/Turret"]
