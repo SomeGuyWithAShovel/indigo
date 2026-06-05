@@ -51,10 +51,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5,
 layers = 2
 mesh = ExtResource("3_qlusm")
 
-[node name="ModuleSlot" parent="." index="1" unique_id=1830271505 instance=ExtResource("4_e60wt")]
+[node name="ModuleSlot" parent="." index="1" unique_id=1830271505 node_paths=PackedStringArray("magouille_door") instance=ExtResource("4_e60wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 collision_layer = 64
 allowed_modules = Array[int]([1])
+magouille_door = [NodePath("../CollisionWalls/CollisionShapeW")]
 
 [node name="CollisionShape3D" parent="ModuleSlot" index="0" unique_id=235013429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999982, 0.39999992, 0)

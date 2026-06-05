@@ -11,6 +11,8 @@ extends Node3D
 @export var allowed_modules: Array[PlayerBaseModules.Enum] = [];
 @export var current_module: PlayerBaseModule = null;
 
+@export var magouille_door: Array[CollisionShape3D] = [];
+
 func _enter_tree() -> void :
 	assert(area != null);
 	return;
@@ -39,9 +41,13 @@ func _raw_place_module(module: PlayerBaseModules.Enum) -> bool :
 		return false;
 	
 	var new_node: Node = PlayerBaseModules.scene_array[module as int].instantiate();
+	if (module == PlayerBaseModules.Enum.Door) :
+		for collisionshape in magouille_door:
+			collisionshape.disabled = true
 	var new_module: PlayerBaseModule = new_node as PlayerBaseModule;
 	assert(new_module != null);
 	
+		
 	add_child(new_module);
 	new_module.owner = self;
 	
