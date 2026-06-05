@@ -11,6 +11,7 @@ instantiatable_monsters = Array[PackedScene]([ExtResource("2_ggau6")])
 indicator_scene = ExtResource("3_ekywr")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=548240301]
+wait_time = 0.9
 one_shot = true
 
 [node name="CheckDistanceTimer" type="Timer" parent="." unique_id=1265346131]

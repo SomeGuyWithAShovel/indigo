@@ -26,8 +26,9 @@ func setup_indicator() -> void:
 		viewport_texture.texture = follow.viewport.get_texture();
 		follow.health_component.died.connect(func (): queue_free());
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func update_position() -> void:
+	if follow == null: return;
+	
 	var half_size : Vector2 = (encompassing_texture.size / 2.0)*scale;
 	var pos_on_camera : Vector2 = main_camera.unproject_position(follow.global_position);
 	var own_position := pos_on_camera.clamp(half_size, get_viewport_rect().end - half_size);

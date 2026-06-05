@@ -18,7 +18,7 @@ radius = 2.0
 
 [node name="MonsterSpawn" type="Node3D" unique_id=208271244]
 script = ExtResource("1_okd12")
-speed = 1.0
+speed = 3.0
 attack_damage = 20
 
 [node name="Viewport" type="SubViewport" parent="." unique_id=2132440114]
@@ -36,8 +36,9 @@ actor_node_path = NodePath("..")
 blackboard = NodePath("@Node@302859")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 collision_layer = 16
-collision_mask = 71
+collision_mask = 87
 floor_stop_on_slope = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]

@@ -94,7 +94,6 @@ func spawn_next_enemy() -> void:
 func monster_killed(health : HealthComponent) -> void:
 	var monster : Monster = health.get_parent();
 	ennemies_spawned.erase(monster);
-	indicators[monster].queue_free();
 	indicators.erase(monster);
 	if ennemies_spawned.is_empty():
 		DayNightSystem.start_day(Player.instance);
@@ -106,14 +105,11 @@ func handle_indicators() -> void:
 	for monster in ennemies_spawned:
 		var screen_pos = camera.unproject_position(monster.global_position);
 		var on_screen := DisplayServer.screen_get_usable_rect().has_point(screen_pos);
-		print(screen_pos);
 		if monster in indicators and on_screen:
-			print("Removed indicator");
 			remove_child(indicators[monster]);
 			indicators[monster].queue_free();
 			indicators.erase(monster);
 		elif monster not in indicators and not on_screen:
-			print("Added indicator");
 			var indicator : PositionIndicator = indicator_scene.instantiate();
 			indicators[monster] = indicator;
 			add_child(indicator);

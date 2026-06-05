@@ -43,8 +43,7 @@ func _on_night_requested() -> void:
 		var should_start := await box.is_yes();
 		if should_start:
 			DayNightSystem.start_night();
-		else:
-			remove_child(box);
-			box.queue_free();
+		remove_child(box);
+		box.queue_free();
 	else:
 		DayNightSystem.start_night();
