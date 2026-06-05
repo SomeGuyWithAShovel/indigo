@@ -29,12 +29,21 @@ func _ready() -> void:
 func get_state() -> State:
 	return state;
 	
+func close_building_menu() -> void:
+	remove_child(building_ui_node);
+	is_build_menu_open = false;
+
+func open_building_menu() -> void:	
+	if not is_build_menu_open:
+		add_child(building_ui_node);
+		is_build_menu_open = true;
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"open_build_menu"):
 		if not is_build_menu_open:
-			add_child(building_ui_node);
+			open_building_menu();
 		else:
-			remove_child(building_ui_node);
+			close_building_menu();
 		is_build_menu_open = !is_build_menu_open;		
 	
 func bind_to_build_ui(callable : Callable) -> void:
