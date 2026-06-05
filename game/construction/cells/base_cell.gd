@@ -6,3 +6,8 @@ extends Node3D
 # prefer adding a Dictionary[Vector2i, YourNewData] into player_base.gd
 
 @onready var health : HealthComponent = $HealthComponent;
+
+@export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
+
+func hasModuleAvaibleSlot() -> bool:
+	return moduleslots_array.size() >= 0;

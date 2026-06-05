@@ -13,6 +13,7 @@ func try_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, c
 		ModuleId.Of.MISSILE_LAUNCHER : try_construct_turret,
 		ModuleId.Of.TUBE : try_build_base_cell,
 		ModuleId.Of.AUTO_MINER : try_build_mining_cell ,
+		ModuleId.Of.HATCH: try_build_door,
 	};
 	
 	var return_value: bool = false;
@@ -110,5 +111,19 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 	print("spent %d crystals (%d remaining)" % [mining_cell_cost, crystals.get_amount()]);
 	return true;
 
-func try_build_door(slot: PlayerBaseModuleSlot) -> bool :
-	return true
+func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
+	#Verification que la cellule a un module
+	var cell_to_construct:PlayerBaseCell = construction_grid.player_base.base_cells.get(coords)
+	if cell_to_construct == null:
+		print("No base cell here")
+		return false
+	if !cell_to_construct.hasModuleAvaibleSlot():
+		print("No module slot avaible ine this base cell")
+		print(cell_to_construct.moduleslots_array)
+		return false
+	#On prends la premiere car pas le temps
+	#TODO voir quelle moduleslot le player q cliquer plutot que seulement la cellule de grid
+	#pour avoir plusieur module slote dans une cell
+	var module_slot:PlayerBaseModuleSlot = cell_to_construct.moduleslots_array[0]
+	return try_build_module_in_slot(PlayerBaseModules.Enum.Door,module_slot)
+		
