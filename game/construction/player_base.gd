@@ -6,10 +6,26 @@ extends Node3D
 @export var construction_grid: ConstructionGrid = null;
 @export var player: Player = null;
 
+@export var mining_operations_per_day : int = 5;
+
+@onready var night_timer : Timer = $Timer;
+
 func _enter_tree() -> void :
 	assert(construction_grid != null);
 	assert(player != null);
 	return;
+	
+func _ready() -> void:
+	DayNightSystem.on_day_start.connect(day_mining);
+	DayNightSystem.on_night_start.connect(night_mining);
+
+func day_mining() -> void:
+	night_timer.stop();
+	
+func night_mining() -> void:
+	night_timer.start();
+	for _i in range(mining_operations_per_day):
+		do_all_mining_operations();
 
 var base_cells: Dictionary[Vector2i, PlayerBaseCell];
 var turret_cells: Dictionary[Vector2i, Turret];
@@ -193,9 +209,6 @@ func do_all_mining_operations() -> void :
 	player.crystals.add(new_crystals);
 	return;
 
-# TODO : CHANGE THIS, IT'S JUST TO SHOWCASE HOW MINING WORKS
 func _on_timer_timeout() -> void:
-	# if is_day == false :
-	#	return;
 	do_all_mining_operations();
 	return;
