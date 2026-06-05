@@ -10,4 +10,4 @@ extends Node3D
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
 
 func hasModuleAvaibleSlot() -> bool:
-	return moduleslots_array.size() >= 0;
+	return moduleslots_array.size() > 0;
