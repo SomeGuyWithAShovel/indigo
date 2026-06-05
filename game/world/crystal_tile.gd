@@ -6,6 +6,8 @@ var terrain: Terrain = null;
 
 const manual_multiplier: int = 5;
 
+signal on_being_manually_mined();
+
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :
@@ -44,5 +46,11 @@ func interact() -> void :
 	
 	if (player.action_points.remove_with_check(act_pts_per_interaction)) :
 		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
+		on_being_manually_mined.emit();
 		pass;
+	return;
+
+
+func _on_being_manually_mined() -> void :
+	# animations, sounds, ...
 	return;

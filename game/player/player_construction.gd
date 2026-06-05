@@ -7,6 +7,37 @@ func _enter_tree() -> void :
 	assert(player != null);
 	return;
 
+func try_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of) -> bool :
+	var callables: Dictionary[ModuleId.Of, Callable] = {
+		ModuleId.Of.TURRET : try_construct_turret,
+		ModuleId.Of.MISSILE_LAUNCHER : try_construct_turret,
+		ModuleId.Of.TUBE : try_build_base_cell,
+		ModuleId.Of.AUTO_MINER : try_build_mining_cell ,
+	};
+	
+	var return_value: bool = false;
+	if (callables.has(construction_type) == false) :
+		print("try_construct_cell() : type ", construction_type, " is not implemented");
+		return false;
+	if (construction_type_is_turret(construction_type)) :
+		return_value = callables[construction_type as int].call(construction_grid, coords, construction_type);
+		pass;
+	else:
+		return_value = callables[construction_type as int].call(construction_grid, coords);
+	return return_value;
+
+static func construction_type_is_turret(construction_type: ModuleId.Of) -> bool :
+	const turret_types: Array[ModuleId.Of] = [
+		ModuleId.Of.TURRET, 
+		ModuleId.Of.MISSILE_LAUNCHER
+	];
+	return turret_types.has(construction_type);
+
+func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2i, _turret_type: ModuleId.Of) -> bool :
+	# TODO
+	print("try_construct_turret() : not yet implemented");
+	return false;
+
 func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
 	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
 		print("trying to build base cell in a cell where the terrain is blocking construction");

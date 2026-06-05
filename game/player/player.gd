@@ -18,6 +18,7 @@ extends Node3D
 @export var nodes_to_exclude: Array[CollisionObject3D] = [];
 var last_mouse_pos_clicked: Vector2 = Vector2.ZERO;
 var mouse_clicked: bool = false;
+var selected_construction_type: ModuleId.Of = ModuleId.Of.NONE;
 
 # J'en ai besoin pour le day-night -Matéu
 static var instance : Player = null;
@@ -32,11 +33,12 @@ func _enter_tree() -> void :
 	assert(action_points != null);
 	return;
 
-func _input(_event: InputEvent) -> void :
+func _unhandled_input(_event: InputEvent) -> void :
 	var btn_event = _event as InputEventMouseButton;
 	if ((btn_event != null) && (btn_event.button_index == 1) && (btn_event.pressed)) :
 		last_mouse_pos_clicked = btn_event.position;
 		mouse_clicked = true; # we need to do the raycast in _physics_process(), but we need to know when in _input()
+		print("PLAYER UNHANDLED INPUT"); # why does it triggers, even if we hit a UI element ???????????????????????
 		pass;
 	return;
 
@@ -48,6 +50,11 @@ func _physics_process(_delta: float) -> void:
 			raycast_on_construction_grid(raycast_result);
 			pass;
 		pass;
+	return;
+
+func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
+	selected_construction_type = construction_type;
+	print("selected construction_type ", selected_construction_type);
 	return;
 
 func do_mouse_raycast_at(mouse_pos: Vector2) -> Dictionary :
@@ -88,12 +95,8 @@ func raycast_on_construction_grid(raycast_result: Dictionary) -> void :
 	var raycast_position: Vector3 = raycast_result["position"];
 	var cell_coord: Vector2 = collided_grid.get_grid_coords_from_world_coords(raycast_position);
 	
-	if collided_grid.is_terrain_ok_to_build(cell_coord) :
-		if collided_grid.can_build_miner(cell_coord) :
-			construction.try_build_mining_cell(collided_grid, cell_coord);
-			pass;
-		else :
-			construction.try_build_base_cell(collided_grid, cell_coord);
-			pass;
+	if ((selected_construction_type != ModuleId.Of.NONE) && 
+		(collided_grid.is_terrain_ok_to_build(cell_coord)) ) :
+		construction.try_construct_cell(collided_grid, cell_coord, selected_construction_type);
 		pass;
 	return;

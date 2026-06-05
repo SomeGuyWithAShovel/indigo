@@ -29,3 +29,5 @@ surface_material_override/1 = ExtResource("3_n8v7u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrystalsMesh/StaticBody3D" unique_id=862629073]
 shape = SubResource("ConvexPolygonShape3D_lqysk")
+
+[connection signal="on_being_manually_mined" from="." to="." method="_on_being_manually_mined"]

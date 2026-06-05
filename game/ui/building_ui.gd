@@ -21,22 +21,22 @@ func setup_prices() -> void:
 	# TODO
 	pass;
 
-func on_button_pressed(id : ModuleId.Of) -> void:
+func on_button_pressed(id : ModuleId.Of) -> void :
 	# Vérifications dans les ressouces du joueur
+	Player.instance.set_selected_construction_type(id);
 	on_module_requested.emit(id);
-
 
 func _turret_button_pressed() -> void:
 	on_button_pressed(ModuleId.Of.TURRET);
 
-
 func _missile_launcher_button_pressed() -> void:
 	on_button_pressed(ModuleId.Of.MISSILE_LAUNCHER);
-
 
 func _tube_button_pressed() -> void:
 	on_button_pressed(ModuleId.Of.TUBE);
 
-
 func _hatch_button_pressed() -> void:
 	on_button_pressed(ModuleId.Of.HATCH);
+
+func _miner_button_pressed() -> void:
+	on_button_pressed(ModuleId.Of.AUTO_MINER);
