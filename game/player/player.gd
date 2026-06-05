@@ -42,14 +42,21 @@ func _unhandled_input(_event: InputEvent) -> void :
 		pass;
 	return;
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (mouse_clicked == true):
 		mouse_clicked = false;
+		if UIManager.instance.is_build_menu_open: 
+			try_build.call_deferred();
+	return;
+
+func try_build() -> void:
+	var is_open = UIManager.instance.is_build_menu_open;
+	if is_open:
 		var raycast_result := do_mouse_raycast_at(last_mouse_pos_clicked);
 		if (raycast_result) :
 			raycast_on_construction_grid(raycast_result);
-			pass;
-		pass;
+			return;
+		return;
 	return;
 
 func set_selected_construction_type(construction_type: ModuleId.Of) -> void :

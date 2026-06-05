@@ -27,7 +27,10 @@ shader_parameter/Pixel_Size_PX = 23.791
 [node name="Main" type="Node" unique_id=2032964175]
 script = ExtResource("1_oa506")
 
+[node name="UiManager" parent="." unique_id=1533921697 instance=ExtResource("5_5un7r")]
+
 [node name="SeeThroughCanvasItem" type="ColorRect" parent="." unique_id=1674370367 node_paths=PackedStringArray("normal_viewport", "see_through_viewport", "see_through_camera", "canvas_item")]
+z_index = -1
 material = SubResource("ShaderMaterial_0wfyh")
 mouse_filter = 2
 script = ExtResource("3_vop5m")
@@ -47,5 +50,3 @@ render_target_update_mode = 4
 
 [node name="SeeThroughCamera" type="Camera3D" parent="SeeThroughViewport" unique_id=1222048423]
 cull_mask = 1048573
-
-[node name="UiManager" parent="." unique_id=1533921697 instance=ExtResource("5_5un7r")]

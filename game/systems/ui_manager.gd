@@ -7,6 +7,8 @@ enum State {
 	GAME_OVER,
 }
 
+static var instance : UIManager = null;
+
 @export var ui_for_state : Dictionary[State, PackedScene];
 @export var building_ui : PackedScene;
 
@@ -19,6 +21,7 @@ var is_build_menu_open := false;
 	set = set_state;
 	
 func _ready() -> void:
+	instance = self;
 	DayNightSystem.on_day_start.connect(func (): set_state(State.DAY));
 	DayNightSystem.on_night_start.connect(func (): set_state(State.NIGHT));
 	
@@ -44,7 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			open_building_menu();
 		else:
 			close_building_menu();
-		is_build_menu_open = !is_build_menu_open;		
 	
 func bind_to_build_ui(callable : Callable) -> void:
 	assert(callable.get_argument_count() == 1, 

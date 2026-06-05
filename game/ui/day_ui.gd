@@ -38,7 +38,6 @@ func set_crystal_count(value : int) -> void:
 
 const confirmation_box = preload("res://game/ui/confirmation.tscn");
 func _on_night_requested() -> void:
-	(get_parent() as UIManager).close_building_menu();
 	var ap_amount := Player.instance.action_points.get_amount();
 	if ap_amount > 0:
 		var box : Confirmation = confirmation_box.instantiate();
@@ -51,3 +50,7 @@ func _on_night_requested() -> void:
 		box.queue_free();
 	else:
 		DayNightSystem.start_night();
+
+
+func _on_night_request_down() -> void:
+	(get_parent() as UIManager).close_building_menu();
