@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
 [ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://game/construction/construction_grid.tscn" id="1_ibfx6"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
-[ext_resource type="PackedScene" uid="uid://belf5c4gxjj3u" path="res://game/construction/cells/turret/turret.tscn" id="5_dess5"]
 [ext_resource type="PackedScene" uid="uid://dgijar3nol6i" path="res://game/systems/WaveGenerator.tscn" id="8_5hesp"]
 [ext_resource type="PackedScene" uid="uid://cu4kcfopxete5" path="res://game/enemies/wave_spawn_point/WaveSpawnPoint.tscn" id="8_ibfx6"]
 [ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://game/construction/player_base.tscn" id="8_vwhhl"]
@@ -37,9 +36,6 @@ navigation_mesh = SubResource("NavigationMesh_ibfx6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16106021, 0)
 construction_grid = NodePath("../../ConstructionGrid")
 
-[node name="Turret" parent="NavigationRegion3D" unique_id=395245931 instance=ExtResource("5_dess5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.615, 0.73893976, 2.568)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=271166382]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.079508, 0.6289731, -12.887766)
 collision_mask = 83
@@ -51,6 +47,8 @@ shape = SubResource("BoxShape3D_we8ss")
 mesh = SubResource("BoxMesh_ibfx6")
 
 [node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target") instance=ExtResource("8_5hesp")]
+initial_wave_strength = 2
+wave_strengh_increment = 1
 default_monster_target = NodePath("../PlayerBase")
 
 [node name="WaveSpawnPoint" parent="WaveGenerator" unique_id=799522413 instance=ExtResource("8_ibfx6")]
