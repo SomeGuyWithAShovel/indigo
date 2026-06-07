@@ -3,6 +3,9 @@ extends Node3D
 
 var terrain: Terrain = null;
 
+func _ready() -> void:
+	DayNightSystem.no_crystals_for_pay.connect(request_from_quota);
+
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :
@@ -33,4 +36,12 @@ func set_tile_as_crystals() -> void :
 	
 func interact() -> void :
 	DayNightSystem.spend_on_quota();
+	return;
+	
+func uninteract() -> void:
+	DayNightSystem.take_from_quota();
+	return;
+	
+func request_from_quota() -> void:
+	DayNightSystem.take_from_quota();
 	return;

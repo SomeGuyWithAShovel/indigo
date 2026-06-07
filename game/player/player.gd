@@ -43,8 +43,8 @@ func _unhandled_input(_event: InputEvent) -> void :
 	return;
 
 func _process(_delta: float) -> void:
-	if (mouse_clicked == true):
-		mouse_clicked = false;
+	if Input.is_action_just_pressed("left_click"):
+		last_mouse_pos_clicked = get_viewport().get_mouse_position();
 		if UIManager.instance.is_build_menu_open: 
 			try_build.call_deferred();
 	return;

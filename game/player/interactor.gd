@@ -14,9 +14,13 @@ func _ready() -> void:
 	timer.start(time_between_checks);
 
 func _input(event):
-	if event.is_action_pressed(&"interact") and interaction_target != null:
+	if interaction_target == null: return;
+	if event.is_action_pressed(&"interact"):
 		interaction_target.interact();
-
+	elif event.is_action_pressed(&"uninteract"):
+		if interaction_target.has_method("uninteract"):
+			interaction_target.uninteract();
+		
 func decide_interaction_target() -> void:
 	var pos : Vector3 = (get_parent() as Node3D).global_position;
 	var min_distance_squared : float = INF;

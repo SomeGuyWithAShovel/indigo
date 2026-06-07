@@ -9,6 +9,7 @@ script = ExtResource("1_03hmq")
 
 [node name="Label" type="Label" parent="." unique_id=2053125570]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.29411766, 0.36862746, 1)
 text = "Health"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1723111998]
@@ -23,8 +24,23 @@ texture_over = ExtResource("1_f8p2d")
 texture_progress = ExtResource("2_03hmq")
 tint_progress = Color(1, 0.29411766, 0.36862746, 1)
 
-[node name="Text" type="Label" parent="HBoxContainer" unique_id=1483619337]
+[node name="Points" type="Label" parent="HBoxContainer" unique_id=1483619337]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.29411766, 0.36862746, 1)
 theme_override_font_sizes/font_size = 24
-text = "25 / 100"
+text = "25"
+horizontal_alignment = 2
+
+[node name="Slash" type="Label" parent="HBoxContainer" unique_id=909755195]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.29411766, 0.36862746, 1)
+theme_override_font_sizes/font_size = 24
+text = "/"
+horizontal_alignment = 2
+
+[node name="Max" type="Label" parent="HBoxContainer" unique_id=643020064]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.29411766, 0.36862746, 1)
+theme_override_font_sizes/font_size = 24
+text = "100"
 horizontal_alignment = 2

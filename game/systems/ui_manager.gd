@@ -28,13 +28,15 @@ func _ready() -> void:
 	for s in ui_for_state.keys():
 		ui_nodes[s] = ui_for_state[s].instantiate();
 	building_ui_node = building_ui.instantiate();
+	set_state(state);
 	
 func get_state() -> State:
 	return state;
 	
 func close_building_menu() -> void:
-	remove_child(building_ui_node);
 	is_build_menu_open = false;
+	await building_ui_node.close_animation();
+	remove_child(building_ui_node);
 
 func open_building_menu() -> void:	
 	if not is_build_menu_open:

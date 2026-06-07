@@ -9,6 +9,7 @@ script = ExtResource("1_3ap8a")
 
 [node name="Quota" type="Label" parent="." unique_id=69869059]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.8627451, 1, 1)
 text = "Quota"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=37096283]
@@ -21,10 +22,25 @@ step = 0.01
 value = 0.7
 texture_over = ExtResource("1_4qfpf")
 texture_progress = ExtResource("2_3ap8a")
-tint_progress = Color(0.29411766, 0, 0.50980395, 1)
+tint_progress = Color(0.1882353, 0.8627451, 1, 1)
 
-[node name="Text" type="Label" parent="HBoxContainer" unique_id=459787108]
+[node name="Points" type="Label" parent="HBoxContainer" unique_id=165490032]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.29411766, 0, 0.50980395, 1)
 theme_override_font_sizes/font_size = 24
-text = "25 / 100"
+text = "25"
+horizontal_alignment = 2
+
+[node name="Slash" type="Label" parent="HBoxContainer" unique_id=954950808]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.8627451, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "/"
+horizontal_alignment = 2
+
+[node name="Max" type="Label" parent="HBoxContainer" unique_id=459787108]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1882353, 0.8627451, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "100"
 horizontal_alignment = 2

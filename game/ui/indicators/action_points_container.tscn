@@ -12,6 +12,7 @@ script = ExtResource("1_ineru")
 
 [node name="Label" type="Label" parent="." unique_id=1475863857]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.74509805, 1)
 text = "Action Points"
 horizontal_alignment = 2
 
@@ -19,9 +20,20 @@ horizontal_alignment = 2
 layout_mode = 2
 alignment = 2
 
-[node name="Text" type="Label" parent="HBoxContainer" unique_id=2006126069]
+[node name="Points" type="Label" parent="HBoxContainer" unique_id=2006126069]
 layout_mode = 2
-text = "25/100"
+theme_override_colors/font_color = Color(1, 1, 0.74509805, 1)
+text = "25"
+
+[node name="Slash" type="Label" parent="HBoxContainer" unique_id=1411914071]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.74509805, 1)
+text = "/"
+
+[node name="Max" type="Label" parent="HBoxContainer" unique_id=667157203]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.74509805, 1)
+text = "100"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=47419318]
 layout_mode = 2

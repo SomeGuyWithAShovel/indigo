@@ -47,20 +47,27 @@ func _ready() -> void:
 		monster_types.append(monster);
 		
 	monster_types.sort_custom(func (m1 : Monster, m2 : Monster): return m1.strength > m2.strength);
-	spawn_timer.timeout.connect(spawn_next_enemy, CONNECT_PERSIST);
-	check_distance_timer.timeout.connect(handle_indicators, CONNECT_PERSIST);
+	spawn_timer.timeout.connect(spawn_next_enemy);
+	check_distance_timer.timeout.connect(handle_indicators);
 	DayNightSystem.on_day_start.connect(generate_waves);
 	DayNightSystem.on_night_start.connect(start_waves);
-	DayNightSystem.on_day_start.connect(func () : check_distance_timer.stop());
-	DayNightSystem.on_night_start.connect(func (): check_distance_timer.start());
+	DayNightSystem.on_day_start.connect(stop_distance_timer);
+	DayNightSystem.on_night_start.connect(start_distance_timer);
 	camera = get_viewport().get_camera_3d();
 	assert(camera != null, "Wave generator n'a pas de caméra à sa disposition");
+	generate_waves();
+
+func start_distance_timer() -> void : check_distance_timer.start();
+func stop_distance_timer() -> void : check_distance_timer.stop();
 
 func spawn_interval_after(monster : Monster) -> float:
 	# Plus le monstre est fort, plus on veut de délai après son spawn
 	return log(monster.strength + 1);
 
 func generate_waves() -> void:
+	
+	if not left_to_spawn.is_empty(): return;
+	
 	var wave_strength_left := current_wave_strength;
 	print("Wave strength : ", wave_strength_left);
 	assert(len(wave_spawn_points) > 0, "Il faut au moins un point de spawn");

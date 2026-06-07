@@ -22,6 +22,7 @@ signal on_night_start();
 signal crystals_spent_on_quota(current : int, required : int);
 signal quota_changed(required : int);
 signal no_crystals_for_pay();
+signal no_requestable_crystals_in_quota();
 
 var spent_on_quota : int = 0: 
 	get :
@@ -53,13 +54,21 @@ func spend_on_quota() -> void:
 	else:
 		no_crystals_for_pay.emit();
 
+func take_from_quota() -> void:
+	if spent_on_quota > 0:
+		var can_receive = min(amount_per_fill, spent_on_quota);
+		spent_on_quota -= can_receive;
+		Player.instance.crystals.add(can_receive);
+	else:
+		no_requestable_crystals_in_quota.emit();
+
 func setup_day_night() -> void:
 	if start_with_day:
 		start_day(Player.instance);
 	else:
-		start_night();
+		start_night(Player.instance);
 
-func next_quota(player : Player) -> int:
+func next_quota() -> int:
 	if spent_on_quota == crystal_quota:
 		day_since_last_pay_up = 0;
 		spent_on_quota = 0;
@@ -72,11 +81,13 @@ func next_quota(player : Player) -> int:
 func start_day(player : Player) -> void:
 	day_since_last_pay_up += 1
 	if day_since_last_pay_up >= days_before_pay_up:
-		next_quota(player);
+		next_quota();
 	player.action_points.override_amount(action_points_per_day);
 	on_day_start.emit();
 	print("Day start");
 	
-func start_night() -> void:
+func start_night(player : Player) -> void:
+	const INT_MAX = 9223372036854775807;
+	player.action_points.override_amount(INT_MAX);
 	on_night_start.emit();
 	print("Night start");

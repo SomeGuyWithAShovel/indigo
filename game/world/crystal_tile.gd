@@ -2,10 +2,10 @@ class_name CrystalTile
 extends Node3D
 
 var terrain: Terrain = null;
-@export var crystal_amount_per_operation: int = 20;
+@export var crystal_amount_per_operation: int = 5;
 
-const manual_multiplier: int = 5;
-
+@export var manual_multiplier: int = 2;
+@export var action_points_per_interaction: int = 5;
 signal on_being_manually_mined();
 
 func find_terrain_rec(node: Node3D) -> void :
@@ -42,14 +42,19 @@ func interact() -> void :
 	
 	var player: Player = Player.instance; # should probably be a parameter of interact ?
 	
-	const act_pts_per_interaction: int = 5;
-	
-	if (player.action_points.remove_with_check(act_pts_per_interaction)) :
+	if (player.action_points.remove_with_check(action_points_per_interaction)) :
 		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
 		on_being_manually_mined.emit();
 		pass;
 	return;
 
+func uninteract() -> void:
+	var player : Player = Player.instance;
+	
+	if player.crystals.remove_with_check(crystal_amount_per_operation * manual_multiplier):
+		player.action_points.add(action_points_per_interaction);
+		pass;
+	return;
 
 func _on_being_manually_mined() -> void :
 	# animations, sounds, ...

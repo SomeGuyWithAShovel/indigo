@@ -10,7 +10,7 @@ lightmap_size_hint = Vector2i(102, 102)
 size = Vector2(50, 30)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bghhw"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("3_am7of")
 shader_parameter/grid_color = Color(1, 0.5019608, 0, 1)
 shader_parameter/background_color = Color(0, 0, 0, 0)

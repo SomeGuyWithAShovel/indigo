@@ -10,28 +10,31 @@
 
 [node name="BuildingUi" type="Control" unique_id=585224592]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_h7t8k")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=905752924]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -216.0
-offset_bottom = 1000.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_top = -216.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("2_txet5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=374203374]
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1739335236]
 layout_mode = 2
 theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Turret" parent="PanelContainer/VBoxContainer" unique_id=1075134111 instance=ExtResource("3_pnvmi")]
 layout_mode = 2
@@ -42,7 +45,7 @@ layout_mode = 2
 [node name="Button" parent="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("2_iu5tr")
 
-[node name="Label" parent="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="1" unique_id=589050163]
+[node name="CrystalPrice" parent="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer" parent_id_path=PackedInt32Array(50739, 1497560610) index="1" unique_id=589050163]
 text = "2"
 
 [node name="Tube" parent="PanelContainer/VBoxContainer" unique_id=218553309 instance=ExtResource("3_pnvmi")]
@@ -51,7 +54,7 @@ layout_mode = 2
 [node name="Button" parent="PanelContainer/VBoxContainer/Tube/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("5_txet5")
 
-[node name="Label" parent="PanelContainer/VBoxContainer/Tube/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="1" unique_id=589050163]
+[node name="CrystalPrice" parent="PanelContainer/VBoxContainer/Tube/MarginContainer" parent_id_path=PackedInt32Array(218553309, 1497560610) index="1" unique_id=589050163]
 text = "1"
 
 [node name="Hatch" parent="PanelContainer/VBoxContainer" unique_id=199520681 instance=ExtResource("3_pnvmi")]
@@ -60,18 +63,18 @@ layout_mode = 2
 [node name="Button" parent="PanelContainer/VBoxContainer/Hatch/MarginContainer" parent_id_path=PackedInt32Array(199520681, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("6_7xhvl")
 
-[node name="Label" parent="PanelContainer/VBoxContainer/Hatch/MarginContainer" parent_id_path=PackedInt32Array(199520681, 1497560610) index="1" unique_id=589050163]
+[node name="CrystalPrice" parent="PanelContainer/VBoxContainer/Hatch/MarginContainer" parent_id_path=PackedInt32Array(199520681, 1497560610) index="1" unique_id=589050163]
 text = "2"
 
 [node name="Miner" parent="PanelContainer/VBoxContainer" unique_id=1756615535 instance=ExtResource("3_pnvmi")]
 layout_mode = 2
-theme_override_constants/margin_bottom = 20
 
 [node name="Button" parent="PanelContainer/VBoxContainer/Miner/MarginContainer" parent_id_path=PackedInt32Array(1756615535, 1497560610) index="0" unique_id=2008104066]
 icon = ExtResource("7_3kdsp")
 
 [connection signal="button_down" from="PanelContainer/VBoxContainer/Turret/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Turret/MarginContainer/Button" to="." method="_turret_button_pressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MissileLauncher/MarginContainer/Button" to="." method="_missile_launcher_button_pressed"]
 [connection signal="button_down" from="PanelContainer/VBoxContainer/Tube/MarginContainer/Button" to="." method="on_button_down"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Tube/MarginContainer/Button" to="." method="_tube_button_pressed"]

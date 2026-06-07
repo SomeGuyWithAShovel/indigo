@@ -45,11 +45,11 @@ func _on_night_requested() -> void:
 		box.set_text("%d actions points remaining. Start night anyway ?" % ap_amount);
 		var should_start := await box.is_yes();
 		if should_start:
-			DayNightSystem.start_night();
+			DayNightSystem.start_night(Player.instance);
 		remove_child(box);
 		box.queue_free();
 	else:
-		DayNightSystem.start_night();
+		DayNightSystem.start_night(Player.instance);
 
 
 func _on_night_request_down() -> void:
