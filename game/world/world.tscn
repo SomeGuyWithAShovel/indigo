@@ -44,10 +44,11 @@ shape = SubResource("BoxShape3D_we8ss")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1555771988]
 mesh = SubResource("BoxMesh_ibfx6")
 
-[node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target") instance=ExtResource("8_5hesp")]
+[node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target", "nav") instance=ExtResource("8_5hesp")]
 initial_wave_strength = 2
 wave_strengh_increment = 1
 default_monster_target = NodePath("../PlayerBase")
+nav = NodePath("../NavigationRegion3D")
 
 [node name="WaveSpawnPoint" parent="WaveGenerator" unique_id=799522413 instance=ExtResource("8_ibfx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.753578, 0, -4.237499)

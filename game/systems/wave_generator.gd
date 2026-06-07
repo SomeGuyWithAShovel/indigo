@@ -14,6 +14,9 @@ var current_wave_strength : int = 0;
 @export_group("Indicator management")
 @export var indicator_scene : PackedScene;
 
+@export_group("Dependencies")
+@export var nav : NavMesh;
+
 @onready var spawn_timer : Timer = $SpawnTimer;
 @onready var check_distance_timer : Timer = $CheckDistanceTimer;
 
@@ -87,6 +90,10 @@ func generate_waves() -> void:
 	current_wave_strength += wave_strengh_increment;
 	
 func spawn_next_enemy() -> void:
+	# On ne veut pas qu'un ennemi ait un mauvais pathfinding
+	# Donc, on attend la fin du calcul de la navmesh
+	if not nav.calc_finished:
+		await nav.nav_region.bake_finished;
 	var next_enemy : MonsterSpawn = left_to_spawn.pop_back();
 	var in_tree := next_enemy.kind.duplicate();
 	next_enemy.spawn_point.add_child(in_tree);
