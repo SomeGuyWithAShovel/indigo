@@ -97,6 +97,16 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 		print("trying to build mining cell in a cell where we can't build miners");
 		return false;
 		
+	var has_neighbor_base : bool = [
+		(coords + Vector2i(  1,  0)),
+		(coords + Vector2i(  0, -1)),
+		(coords + Vector2i( -1,  0)),
+		(coords + Vector2i(  0,  1)),
+	].any(construction_grid.player_base.has_base_cell);
+	if not has_neighbor_base:
+		print("No adjacent base cell");
+		return false;
+		
 	const mining_cell_cost: int = 800;
 	var crystals: PlayerResource = player.crystals;
 	if (crystals.has_amount(mining_cell_cost) == false) :

@@ -15,6 +15,7 @@ static var instance : UIManager = null;
 var building_ui_node : BuildingUI;
 var ui_nodes : Dictionary[State, Control];
 var is_build_menu_open := false;
+var can_open_building_menu := false;
 
 @export var state : State = State.DAY : 
 	get = get_state,
@@ -34,6 +35,9 @@ func get_state() -> State:
 	return state;
 	
 func close_building_menu() -> void:
+	# Pas de spam
+	if not is_build_menu_open: 
+		return;
 	is_build_menu_open = false;
 	await building_ui_node.close_animation();
 	remove_child(building_ui_node);
@@ -44,7 +48,7 @@ func open_building_menu() -> void:
 		is_build_menu_open = true;
 		
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"open_build_menu"):
+	if can_open_building_menu and event.is_action_pressed(&"open_build_menu"):
 		if not is_build_menu_open:
 			open_building_menu();
 		else:
@@ -57,8 +61,12 @@ func bind_to_build_ui(callable : Callable) -> void:
 	building_ui_node.on_module_requested.connect(callable);
 	
 func set_state(value : State) -> void:
-	print("set_state");
 	state = value;
+	if state == State.DAY: 
+		can_open_building_menu = true;
+	elif state == State.NIGHT:
+		can_open_building_menu = false;
+		
 	for child in get_children():
 		remove_child(child);
 	

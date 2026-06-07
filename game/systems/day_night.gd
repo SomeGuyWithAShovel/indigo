@@ -8,7 +8,19 @@ signal on_day_start();
 signal on_night_start();
 
 @export var start_with_day : bool = true;
-
+var is_day := true :
+	get:
+		return is_day;
+	set(value):
+		# Si on emet 2 fois les évenements il peut y avoir des soucis dans WaveGenerator
+		if value == is_day: 
+			return; 		
+		is_day = value;
+		if is_day:
+			on_day_start.emit();
+		else:
+			on_night_start.emit();
+			
 @export_group("Quotas")
 # Pour l'instant, le quota suit une fonction affine
 @export var first_quota : int = 20;
@@ -79,15 +91,15 @@ func next_quota() -> int:
 	return crystal_quota;
 	
 func start_day(player : Player) -> void:
+	is_day = true;
 	day_since_last_pay_up += 1
 	if day_since_last_pay_up >= days_before_pay_up:
 		next_quota();
 	player.action_points.override_amount(action_points_per_day);
-	on_day_start.emit();
 	print("Day start");
 	
 func start_night(player : Player) -> void:
+	is_day = false;
 	const INT_MAX = 9223372036854775807;
 	player.action_points.override_amount(INT_MAX);
-	on_night_start.emit();
 	print("Night start");
