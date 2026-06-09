@@ -44,14 +44,22 @@ func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2
 		return false;
 		
 	#Different cout de tourelle
-	var turret_cell_cost: int = 750;
+	var turret_type:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET;
 	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
 	
 	if _turret_type == ModuleId.Of.MISSILE_LAUNCHER:
-		turret_cell_cost = 1000;
+		turret_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+	
+	var turret_cell_cost: int = PlayerBaseCells.crystal_costs[turret_type];
+	var turret_AP_cost:int = PlayerBaseCells.action_costs[turret_type]
+	
 	
 	if (crystals.has_amount(turret_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [turret_cell_cost, crystals.get_amount()]);
+		return false;
+	if (action_points.has_amount(turret_AP_cost) == false) :
+		print("not enough action points (need %d, have %d)" % [turret_AP_cost, action_points.get_amount()]);
 		return false;
 	
 	var set_result: bool = _construction_grid.player_base.try_set_turret_cell_at(_coords,_turret_type);
@@ -59,7 +67,9 @@ func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2
 		return false;
 	
 	crystals.remove(turret_cell_cost);
+	action_points.remove(turret_AP_cost);
 	print("spent %d crystals (%d remaining)" % [turret_cell_cost, crystals.get_amount()]);
+	print("spent %d action points (%d remaining)" % [turret_AP_cost, action_points.get_amount()]);
 	return true;
 
 func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
@@ -70,10 +80,17 @@ func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) 
 	if (construction_grid.can_build_base(coords) == false) :
 		print("trying to build base cell in a cell where we can't build base cells");
 		return false;
-	const base_cell_cost: int = 500;
+	
 	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.BASE_CELL];
+	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.BASE_CELL];
 	if (crystals.has_amount(base_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [base_cell_cost, crystals.get_amount()]);
+		return false;
+	
+	if (action_points.has_amount(base_action_points_cost) == false) :
+		print("not action points (need %d, have %d)" % [base_action_points_cost, action_points.get_amount()]);
 		return false;
 	
 	var set_result: bool = construction_grid.player_base.try_set_base_cell_at(coords);
@@ -81,7 +98,10 @@ func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) 
 		return false;
 	
 	crystals.remove(base_cell_cost);
+	action_points.remove(base_action_points_cost)
 	print("spent %d crystals (%d remaining)" % [base_cell_cost, crystals.get_amount()]);
+	print("spent %d action points (%d remaining)" % [base_action_points_cost, action_points.get_amount()]);
+	
 	return true;
 
 func try_build_module_in_slot(module: PlayerBaseModules.Enum, slot: PlayerBaseModuleSlot) -> bool :
@@ -107,10 +127,16 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 		print("No adjacent base cell");
 		return false;
 		
-	const mining_cell_cost: int = 800;
 	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.AUTO_MINER];
+	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.AUTO_MINER];
 	if (crystals.has_amount(mining_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [mining_cell_cost, crystals.get_amount()]);
+		return false;
+	
+	if (action_points.has_amount(mining_action_points_cost) == false) :
+		print("not action points (need %d, have %d)" % [mining_action_points_cost, action_points.get_amount()]);
 		return false;
 	
 	var set_result: bool = construction_grid.player_base.try_set_mining_cell_at(coords);
@@ -118,7 +144,10 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 		return false;
 	
 	crystals.remove(mining_cell_cost);
+	action_points.remove(mining_action_points_cost);
 	print("spent %d crystals (%d remaining)" % [mining_cell_cost, crystals.get_amount()]);
+	print("spent %d action points (%d remaining)" % [mining_action_points_cost, action_points.get_amount()]);
+	
 	return true;
 
 func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
@@ -131,9 +160,31 @@ func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bo
 		print("No module slot avaible ine this base cell")
 		print(cell_to_construct.moduleslots_array)
 		return false
+	
+	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.DOOR];
+	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.DOOR];
+	if (crystals.has_amount(door_cell_cost) == false) :
+		print("not enough crystals (need %d, have %d)" % [door_cell_cost, crystals.get_amount()]);
+		return false;
+	
+	if (action_points.has_amount(door_action_points_cost) == false) :
+		print("not action points (need %d, have %d)" % [door_action_points_cost, action_points.get_amount()]);
+		return false;
+	
+	
 	#On prends la premiere car pas le temps
 	#TODO voir quelle moduleslot le player q cliquer plutot que seulement la cellule de grid
 	#pour avoir plusieur module slote dans une cell
 	var module_slot:PlayerBaseModuleSlot = cell_to_construct.moduleslots_array[0]
-	return try_build_module_in_slot(PlayerBaseModules.Enum.Door,module_slot)
-		
+	var set_result: bool = try_build_module_in_slot(PlayerBaseModules.Enum.Door,module_slot);
+	if (set_result == false) :
+		return false;
+	
+	crystals.remove(door_cell_cost);
+	action_points.remove(door_action_points_cost);
+	print("spent %d crystals (%d remaining)" % [door_cell_cost, crystals.get_amount()]);
+	print("spent %d action points (%d remaining)" % [door_action_points_cost, action_points.get_amount()]);
+	
+	return true;
