@@ -57,12 +57,11 @@ func shoot() -> void:
 	var direction: Vector3 = (target.global_position - (global_position + $SpawnPoint.position)).normalized();
 	if projectile_scene != null:
 		var projectile: Projectile = projectile_scene.instantiate();
-		self.add_child(projectile);
+		get_parent().add_child(projectile);
 		projectile.owner = self;
 		
 		projectile.global_position = origin;
 		projectile.direction = direction;
-		get_parent().add_child(projectile)
 		return
 	
 	on_shoot.emit(origin, direction);
