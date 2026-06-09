@@ -19,7 +19,7 @@ radius = 2.0
 [node name="MonsterSpawn" type="Node3D" unique_id=208271244]
 script = ExtResource("1_okd12")
 speed = 3.0
-attack_damage = 20
+attack_damage = 10
 
 [node name="Viewport" type="SubViewport" parent="." unique_id=2132440114]
 
@@ -29,11 +29,10 @@ transform = Transform3D(1, 0, 0, 0, 0.67090565, 0.74154276, 0, -0.74154276, 0.67
 [node name="HealthComponent" type="Node" parent="." unique_id=569542414]
 script = ExtResource("1_yj27i")
 max_health = 100
-invincibility_duration = 0.1
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@302859")
+blackboard = NodePath("@Node@68103")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)

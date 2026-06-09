@@ -15,6 +15,8 @@ radius = 10.0
 [node name="Turret" unique_id=395245931 instance=ExtResource("1_hey2q")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_espld")
+damage = 0
+shot_cd = 2.0
 projectile_scene = ExtResource("3_i6mve")
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=274420374]

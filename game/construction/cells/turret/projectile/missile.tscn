@@ -10,6 +10,7 @@ radius = 4.0
 [node name="Projectile" unique_id=2011740857 instance=ExtResource("1_kscij")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("2_sn23x")
+damage = 15
 speed = 8
 
 [node name="Missile " parent="." index="0" unique_id=862030397 instance=ExtResource("3_txyvs")]
