@@ -30,7 +30,7 @@ func close_animation() -> void:
 func setup_prices() -> void:
 	# TODO Récupérer les vrais prix ici 
 	# (déplacer ce dictionnaire là où il est utile me semble le mieux)
-	var crystal_prices : Dictionary[ModuleId.Of, int] = {
+	'''var crystal_prices : Dictionary[ModuleId.Of, int] = {
 		ModuleId.Of.TURRET:           5,
 		ModuleId.Of.MISSILE_LAUNCHER: 8,
 		ModuleId.Of.TUBE:             1,
@@ -45,12 +45,18 @@ func setup_prices() -> void:
 		ModuleId.Of.HATCH:            10,
 		ModuleId.Of.AUTO_MINER:       20,
 	}
-	
-	turret_button.set_prices(crystal_prices[ModuleId.Of.TURRET], action_point_prices[ModuleId.Of.TURRET]);
-	missile_launcher_button.set_prices(crystal_prices[ModuleId.Of.MISSILE_LAUNCHER], action_point_prices[ModuleId.Of.MISSILE_LAUNCHER]);
-	miner_button.set_prices(crystal_prices[ModuleId.Of.AUTO_MINER], action_point_prices[ModuleId.Of.AUTO_MINER]);
-	hatch_button.set_prices(crystal_prices[ModuleId.Of.HATCH], action_point_prices[ModuleId.Of.HATCH]);
-	tube_button.set_prices(crystal_prices[ModuleId.Of.TUBE], action_point_prices[ModuleId.Of.TUBE]);
+	'''
+	#rallongement des ligne de code pour lisibilite du code
+	var turret_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET
+	turret_button.set_prices(PlayerBaseCells.crystal_costs[turret_enum], PlayerBaseCells.action_costs[turret_enum]);
+	var missile_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+	missile_launcher_button.set_prices(PlayerBaseCells.crystal_costs[missile_enum], PlayerBaseCells.action_costs[missile_enum]);
+	var miner_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.AUTO_MINER
+	miner_button.set_prices(PlayerBaseCells.crystal_costs[miner_enum], PlayerBaseCells.action_costs[miner_enum]);
+	var door_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.DOOR
+	hatch_button.set_prices(PlayerBaseCells.crystal_costs[door_enum], PlayerBaseCells.action_costs[door_enum]);
+	var base_cell_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.BASE_CELL
+	tube_button.set_prices(PlayerBaseCells.crystal_costs[base_cell_enum], PlayerBaseCells.action_costs[base_cell_enum]);
 
 func on_button_down() -> void:
 	Player.instance.set_selected_construction_type(ModuleId.Of.NONE);

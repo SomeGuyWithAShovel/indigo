@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("2_4ste8")
-_amount = 50000
+_amount = 50
 metadata/_custom_type_script = "uid://du6e1dlj15ka8"
 
 [sub_resource type="Resource" id="Resource_epvkq"]
@@ -45,7 +45,7 @@ action_points = SubResource("Resource_epvkq")
 [node name="HealthComponent" type="Node" parent="." unique_id=109923609]
 script = ExtResource("1_obar5")
 max_health = 100
-invincibility_duration = 0.1
+invincibility_duration = 0.15
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1686404839]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

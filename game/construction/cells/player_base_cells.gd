@@ -30,11 +30,11 @@ enum cell_type {
 }
 
 
-#Order : base, door, mining, turret classic, rocket turret
+#Order : none, base, door, mineur, turret classic, rocket turret
 static var crystal_costs: Array[int] = [
-	0,50,5,1000,500,1000
+	0,50,5,200,100,250
 ];
 
 static var action_costs: Array[int] = [
-	0,1,0,10,2,5
+	0,1,0,50,10,15
 ];

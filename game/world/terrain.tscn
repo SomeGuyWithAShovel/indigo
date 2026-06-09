@@ -64,39 +64,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="CrystalTile2" parent="Crystals" unique_id=49848832 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2)
+crystal_amount_per_operation = 10
+action_points_per_interaction = 10
 
 [node name="CrystalTile3" parent="Crystals" unique_id=1233327427 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -10)
+crystal_amount_per_operation = 10
+action_points_per_interaction = 10
 
 [node name="CrystalTile4" parent="Crystals" unique_id=847115672 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+crystal_amount_per_operation = 10
+action_points_per_interaction = 10
 
 [node name="CrystalTile5" parent="Crystals" unique_id=439997505 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 14)
+crystal_amount_per_operation = 10
+action_points_per_interaction = 10
 
 [node name="CrystalTile6" parent="Crystals" unique_id=1008688596 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -12)
+crystal_amount_per_operation = 25
+action_points_per_interaction = 20
 
 [node name="CrystalTile7" parent="Crystals" unique_id=2130380878 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -18)
+crystal_amount_per_operation = 25
+action_points_per_interaction = 20
 
 [node name="CrystalTile8" parent="Crystals" unique_id=926903673 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -4)
+crystal_amount_per_operation = 25
+action_points_per_interaction = 20
 
 [node name="CrystalTile9" parent="Crystals" unique_id=1570128868 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -26)
+crystal_amount_per_operation = 50
+action_points_per_interaction = 30
 
 [node name="CrystalTile10" parent="Crystals" unique_id=1499680263 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
+crystal_amount_per_operation = 50
+action_points_per_interaction = 30
 
 [node name="CrystalTile11" parent="Crystals" unique_id=1239186616 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -28)
+crystal_amount_per_operation = 50
+action_points_per_interaction = 30
 
 [node name="CrystalTile12" parent="Crystals" unique_id=1297329809 instance=ExtResource("2_konwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12)
+crystal_amount_per_operation = 10
+action_points_per_interaction = 10
 
 [node name="CrystalTile13" parent="Crystals" unique_id=33586969 instance=ExtResource("2_konwf")]
 transform = Transform3D(-0.49933654, 0.25453815, -0.82817477, -0.19360517, 0.8989204, 0.39301327, 0.8445, 0.35658482, -0.39958385, -22, 0, 8)
+crystal_amount_per_operation = 25
+manual_multiplier = 1
+action_points_per_interaction = 20
 
 [node name="QuotaBox" parent="." unique_id=482531464 instance=ExtResource("3_3rkxp")]
 transform = Transform3D(0.70710677, 0.122787796, -0.6963641, 0, 0.98480767, 0.17364815, 0.70710677, -0.122787796, 0.6963641, 1.8, 0.5, 0.1)

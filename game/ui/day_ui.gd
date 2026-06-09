@@ -53,7 +53,7 @@ func _on_night_requested() -> void:
 			DayNightSystem.start_night(Player.instance);
 			
 		var ui_manager := get_parent() as UIManager;
-		ui_manager.can_open_building_menu = true;
+w		ui_manager.can_open_building_menu = true;
 		remove_child(box);
 		is_confirmation_box_opened = false;
 		box.queue_free();
