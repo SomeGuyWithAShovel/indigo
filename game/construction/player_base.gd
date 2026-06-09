@@ -115,7 +115,7 @@ func on_base_broke(health : HealthComponent) -> void:
 		(coords + Vector2i(  0,  1)),
 	];
 	if coords in base_cells_dir:
-		base_cells_dir.erase(base);
+		base_cells_dir.erase(coords);
 		for i in range(len(neighbour_coords)):
 			var coord = neighbour_coords[i];
 			if has_base_cell(coord):
