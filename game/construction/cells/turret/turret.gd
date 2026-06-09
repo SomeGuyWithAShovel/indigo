@@ -1,6 +1,8 @@
 extends PlayerBaseCell
 class_name Turret
 
+signal on_shoot(origin: Vector3, direction: Vector3);
+
 @export var damage := 10
 @export var shot_cd := 0.5
 @export var projectile_scene:PackedScene
@@ -51,13 +53,20 @@ func shoot() -> void:
 		return
 	#si on a un prjectil (pas de type de tour avec plusieur projectile
 	
+	var origin: Vector3 = global_position + $SpawnPoint.position;
+	var direction: Vector3 = (target.global_position - (global_position + $SpawnPoint.position)).normalized();
 	if projectile_scene != null:
-		var projectile = projectile_scene.instantiate()
-		projectile.global_position = global_position + $SpawnPoint.position
-		projectile.direction = (target.global_position - (global_position + $SpawnPoint.position)).normalized()
+		var projectile: Projectile = projectile_scene.instantiate();
+		self.add_child(projectile);
+		projectile.owner = self;
+		
+		projectile.global_position = origin;
+		projectile.direction = direction;
 		get_parent().add_child(projectile)
 		return
-		
+	
+	on_shoot.emit(origin, direction);
+	
 	damage_Monster(target)
 	pass
 

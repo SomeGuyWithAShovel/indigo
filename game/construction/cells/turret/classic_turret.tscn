@@ -8,12 +8,28 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_om3al"]
 radius = 10.0
 
-[node name="Turret" unique_id=395245931 instance=ExtResource("1_g5ill")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mdwp"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6ydq6"]
+material = SubResource("StandardMaterial3D_6mdwp")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 50.0
+cap_top = false
+cap_bottom = false
+
+[node name="Turret" unique_id=395245931 node_paths=PackedStringArray("laser_timer", "laser") instance=ExtResource("1_g5ill")]
 script = ExtResource("2_om3al")
+laser_timer = NodePath("laser/Timer")
+laser = NodePath("laser")
 damage = 20
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=274420374]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008396336, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.008396336, 0)
 mesh = ExtResource("3_6mdwp")
 
 [node name="StaticBody3D" parent="." index="2" unique_id=1616738968]
@@ -25,3 +41,18 @@ shape = SubResource("SphereShape3D_om3al")
 [node name="Base" type="MeshInstance3D" parent="." index="6" unique_id=656720993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9921677, 0)
 mesh = ExtResource("4_6ydq6")
+
+[node name="laser" type="Node3D" parent="." index="7" unique_id=2109296471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49076962, 0)
+visible = false
+
+[node name="laser_mesh" type="MeshInstance3D" parent="laser" index="0" unique_id=603322466]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -25)
+mesh = SubResource("CylinderMesh_6ydq6")
+
+[node name="Timer" type="Timer" parent="laser" index="1" unique_id=1974533105]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="on_shoot" from="." to="." method="_on_shoot"]
+[connection signal="timeout" from="laser/Timer" to="." method="_on_laser_timer_timeout"]
