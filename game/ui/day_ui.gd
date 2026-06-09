@@ -45,15 +45,14 @@ func _on_night_requested() -> void:
 	var ap_amount := Player.instance.action_points.get_amount();
 	if ap_amount > 0:
 		var box : Confirmation = confirmation_box.instantiate();
+		var ui_manager := get_parent() as UIManager;
 		add_child(box);
 		is_confirmation_box_opened = true;
 		box.set_text("%d actions points remaining. Start night anyway ?" % ap_amount);
 		var should_start := await box.is_yes();
 		if should_start:
 			DayNightSystem.start_night(Player.instance);
-			
-		var ui_manager := get_parent() as UIManager;
-w		ui_manager.can_open_building_menu = true;
+		ui_manager.can_open_building_menu = true;
 		remove_child(box);
 		is_confirmation_box_opened = false;
 		box.queue_free();
