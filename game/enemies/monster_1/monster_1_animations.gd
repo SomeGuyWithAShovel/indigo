@@ -17,7 +17,7 @@ func start_attack() -> void:
 	_play(&"Bite_Front");
 	
 func start_idle() -> void:
-	animations.animation_finished.connect(func ():
+	animations.animation_finished.connect(func (_name : String):
 		_play(&"Idle");
 	);
 	
