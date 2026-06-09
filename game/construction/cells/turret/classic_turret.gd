@@ -27,10 +27,7 @@ func _process(_delta: float) -> void:
 func shoot() -> void:
 	super.shoot()
 
-func _on_shoot(origin: Vector3, direction: Vector3) -> void :
-	# laser.global_position = origin;
-	var dir: Vector3 = Vector3(direction.x, 0, direction.z);
-	laser.look_at(laser.global_position + dir);
+func _on_shoot(_origin: Vector3, _direction: Vector3) -> void :
 	laser.visible = true;
 	laser_timer.start();
 	return;
