@@ -7,7 +7,8 @@ extends ActionLeaf
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var monster : Monster = actor;
 	var target : Node3D = blackboard.get_value(target_name);
-	
+	if target == null:
+		return FAILURE
 	var space_state := monster.get_world_3d().direct_space_state;
 	var query := PhysicsRayQueryParameters3D.create(monster.global_position, target.global_position);
 	query.collision_mask = hurt_layers;

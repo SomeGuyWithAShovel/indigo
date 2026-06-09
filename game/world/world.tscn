@@ -46,8 +46,6 @@ mesh = SubResource("BoxMesh_ibfx6")
 
 [node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target", "nav") instance=ExtResource("8_5hesp")]
 initial_wave_strength = 2
-wave_strengh_increment = 3
-time_before_wave_start = 3.0
 default_monster_target = NodePath("../PlayerBase")
 nav = NodePath("../NavigationRegion3D")
 

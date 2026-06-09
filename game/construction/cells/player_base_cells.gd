@@ -32,7 +32,7 @@ enum cell_type {
 
 #Order : none, base, door, mineur, turret classic, rocket turret
 static var crystal_costs: Array[int] = [
-	0,50,5,200,100,250
+	0,10,5,200,100,250
 ];
 
 static var action_costs: Array[int] = [

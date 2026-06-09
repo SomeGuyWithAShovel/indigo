@@ -4,4 +4,7 @@
 
 [node name="DayNight" type="Node" unique_id=2667518]
 script = ExtResource("1_qxla0")
+first_quota = 50
+quota_increment = 30
+days_before_pay_up = 4
 amount_per_fill = 5
