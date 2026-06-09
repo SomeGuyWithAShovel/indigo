@@ -52,7 +52,8 @@ func _on_night_requested() -> void:
 		var should_start := await box.is_yes();
 		if should_start:
 			DayNightSystem.start_night(Player.instance);
-		ui_manager.can_open_building_menu = true;
+		else:
+			ui_manager.can_open_building_menu = true;
 		remove_child(box);
 		is_confirmation_box_opened = false;
 		box.queue_free();
