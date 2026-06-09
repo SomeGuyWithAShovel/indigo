@@ -37,7 +37,7 @@ func kill(_health : HealthComponent) -> void:
 	character.set_collision_layer_value(2, true);
 	health.reset();
 	var crystal:PlayerResource = player.crystals
-	var amount_to_remove = crystal.get_amount()/3 #On garde le int car crystal est un int
+	var amount_to_remove = floori(crystal.get_amount() / 3.0); #On garde le int car crystal est un int
 	#Securite au cas ou meme si je vois pas de raison mtn
 	if (crystal.has_amount(amount_to_remove)):
 		crystal.remove(amount_to_remove)
