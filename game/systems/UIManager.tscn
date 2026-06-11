@@ -20,6 +20,3 @@ ui_for_state = Dictionary[int, PackedScene]({
 2: ExtResource("4_hasba")
 })
 building_ui = ExtResource("5_gqoja")
-
-[node name="Day" parent="." unique_id=840050716 instance=ExtResource("2_gjd67")]
-layout_mode = 1

@@ -6,32 +6,35 @@ extends Control
 @onready var action_point: BarContainer = $RightPanel/ActionPointsContainer;
 
 func _ready() -> void:
-	setup_events.call_deferred();
-	init_values.call_deferred();
+	setup_events();
+	init_values();
+	
 func setup_events() -> void:
-	Player.instance.character.health.health_changed.connect(func (h : HealthComponent, hp : int):
+	if not Globals.is_setup: await Globals.globals_setup;
+	Globals.player.character.health.health_changed.connect(func (h : HealthComponent, hp : int):
 		health.set_progress(hp , h.max_health);
 	);
 	DayNightSystem.quota_changed.connect(func (max_quota : int):
 		quota.set_progress(0, max_quota);	
 	);
-	DayNightSystem.crystals_spent_on_quota.connect(func (curr : int, max_quota : int):
+	DayNightSystem.spent_on_quota_changed.connect(func (curr : int, max_quota : int):
 		quota.set_progress(curr, max_quota);	
 	);
-	Player.instance.crystals.amount_changed.connect(func (new_amount : int, _ignore):
+	Globals.player.crystals.amount_changed.connect(func (new_amount : int, _ignore):
 		set_crystal_count(new_amount);
 	);
-	Player.instance.action_points.amount_changed.connect(func (new_amount : int, _ignore):
+	Globals.player.action_points.amount_changed.connect(func (new_amount : int, _ignore):
 		var max_action_points = DayNightSystem.action_points_per_day;
 		action_point.set_progress(new_amount, max_action_points);	
 	);
 	
 func init_values() -> void:
-	var player_health := Player.instance.character.health;
+	if not Globals.is_setup: await Globals.globals_setup;
+	var player_health := Globals.player.character.health;
 	health.set_progress(player_health.get_health(), player_health.max_health);
-	quota.set_progress(DayNightSystem.spent_on_quota, DayNightSystem.crystal_quota);
-	set_crystal_count(Player.instance.crystals.get_amount());
-	action_point.set_progress(Player.instance.action_points.get_amount(), DayNightSystem.action_points_per_day);
+	quota.set_progress(DayNightSystem.spent_on_quota, DayNightSystem.quota);
+	set_crystal_count(Globals.player.crystals.get_amount());
+	action_point.set_progress(Globals.player.action_points.get_amount(), DayNightSystem.action_points_per_day);
 
 func set_crystal_count(value : int) -> void:
 	crystal_label.text = str(value);
@@ -42,7 +45,7 @@ func _on_night_requested() -> void:
 	# Pas de spam
 	if is_confirmation_box_opened: return;
 	
-	var ap_amount := Player.instance.action_points.get_amount();
+	var ap_amount := Globals.player.action_points.get_amount();
 	if ap_amount > 0:
 		var box : Confirmation = confirmation_box.instantiate();
 		var ui_manager := get_parent() as UIManager;
@@ -51,14 +54,14 @@ func _on_night_requested() -> void:
 		box.set_text("%d actions points remaining. Start night anyway ?" % ap_amount);
 		var should_start := await box.is_yes();
 		if should_start:
-			DayNightSystem.start_night(Player.instance);
+			DayNightSystem.start_night(Globals.player);
 		else:
 			ui_manager.can_open_building_menu = true;
 		remove_child(box);
 		is_confirmation_box_opened = false;
 		box.queue_free();
 	else:
-		DayNightSystem.start_night(Player.instance);
+		DayNightSystem.start_night(Globals.player);
 
 
 func _on_night_request_down() -> void:

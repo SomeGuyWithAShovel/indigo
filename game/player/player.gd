@@ -21,10 +21,7 @@ var last_mouse_pos_clicked: Vector2 = Vector2.ZERO;
 var mouse_clicked: bool = false;
 var selected_construction_type: ModuleId.Of = ModuleId.Of.NONE;
 
-# J'en ai besoin pour le day-night -Matéu
-static var instance : Player = null;
 func _enter_tree() -> void :
-	instance = self;
 	
 	assert(camera != null); 
 	SeeThroughSystem.instance.normal_camera = camera;

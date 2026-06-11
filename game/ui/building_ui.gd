@@ -59,11 +59,11 @@ func setup_prices() -> void:
 	tube_button.set_prices(PlayerBaseCells.crystal_costs[base_cell_enum], PlayerBaseCells.action_costs[base_cell_enum]);
 
 func on_button_down() -> void:
-	Player.instance.set_selected_construction_type(ModuleId.Of.NONE);
+	Globals.player.set_selected_construction_type(ModuleId.Of.NONE);
 
 func on_button_pressed(id : ModuleId.Of) -> void :
 	# Vérifications dans les ressouces du joueur
-	Player.instance.set_selected_construction_type(id);
+	Globals.player.set_selected_construction_type(id);
 	on_module_requested.emit(id);
 
 func _turret_button_pressed() -> void:

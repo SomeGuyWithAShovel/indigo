@@ -6,5 +6,5 @@
 script = ExtResource("1_qxla0")
 first_quota = 50
 quota_increment = 30
-days_before_pay_up = 4
+days_before_pay_up = 1
 amount_per_fill = 5

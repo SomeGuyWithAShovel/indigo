@@ -110,7 +110,7 @@ func monster_killed(health : HealthComponent) -> void:
 	ennemies_spawned.erase(monster);
 	indicators.erase(monster);
 	if ennemies_spawned.is_empty():
-		DayNightSystem.start_day(Player.instance);
+		DayNightSystem.start_day(Globals.player);
 	
 func start_waves() -> void:
 	spawn_timer.start(time_before_wave_start);

@@ -46,7 +46,7 @@ func interact() -> void :
 	# if (is_day == false) :
 	#	return;
 	
-	var player: Player = Player.instance; # should probably be a parameter of interact ?
+	var player: Player = Globals.player; # should probably be a parameter of interact ?
 	
 	if (player.action_points.remove_with_check(action_points_per_interaction)) :
 		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
@@ -55,7 +55,7 @@ func interact() -> void :
 	return;
 
 func uninteract() -> void:
-	var player : Player = Player.instance;
+	var player : Player = Globals.player;
 	
 	if player.crystals.remove_with_check(crystal_amount_per_operation * manual_multiplier):
 		player.action_points.add(action_points_per_interaction);

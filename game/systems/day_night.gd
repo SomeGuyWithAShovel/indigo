@@ -31,37 +31,46 @@ var is_day := true :
 @export_group("Action points")
 @export var action_points_per_day : int = 100;
 
-signal crystals_spent_on_quota(current : int, required : int);
+signal spent_on_quota_changed(current : int, required : int);
 signal quota_changed(required : int);
 signal no_crystals_for_pay();
 signal no_requestable_crystals_in_quota();
+signal days_left_for_quota_changed(days_left : int);
 
 var spent_on_quota : int = 0: 
 	get :
 		return spent_on_quota;
 	set(value): 
 		spent_on_quota = value;
-		crystals_spent_on_quota.emit(spent_on_quota, crystal_quota);
+		spent_on_quota_changed.emit(spent_on_quota, quota);
 
-var crystal_quota : int = 0:
+var quota : int = 0:
 	get:
-		return crystal_quota;
+		return quota;
 	set(value):
-		crystal_quota = value;
-		quota_changed.emit(crystal_quota);
-var day_since_last_pay_up : int = 0;
+		quota = value;
+		quota_changed.emit(quota);
+		
+var days_left_for_quota : int = 0:
+	get:
+		return days_left_for_quota;
+	set(value):
+		days_left_for_quota = value;
+		days_left_for_quota_changed.emit(days_left_for_quota);
 
 
 func _ready() -> void:
-	crystal_quota = first_quota;
+	quota = first_quota;
+	days_left_for_quota = days_before_pay_up;
 	setup_day_night.call_deferred();
+	get_tree().scene_changed.connect(_ready, CONNECT_ONE_SHOT);
 
 func spend_on_quota() -> void:
-	var crystal_amount := Player.instance.crystals.get_amount();
+	var crystal_amount := Globals.player.crystals.get_amount();
 	if crystal_amount > 0:
 		var can_pay = min(amount_per_fill, crystal_amount);
-		var pay_amount = min(crystal_quota - spent_on_quota, can_pay);
-		Player.instance.crystals.remove(pay_amount);
+		var pay_amount = min(quota - spent_on_quota, can_pay);
+		Globals.player.crystals.remove(pay_amount);
 		spent_on_quota += pay_amount;
 	else:
 		no_crystals_for_pay.emit();
@@ -70,31 +79,36 @@ func take_from_quota() -> void:
 	if spent_on_quota > 0:
 		var can_receive = min(amount_per_fill, spent_on_quota);
 		spent_on_quota -= can_receive;
-		Player.instance.crystals.add(can_receive);
+		Globals.player.crystals.add(can_receive);
 	else:
 		no_requestable_crystals_in_quota.emit();
 
 func setup_day_night() -> void:
+	if not Globals.is_setup: await Globals.globals_setup;
 	if start_with_day:
-		start_day(Player.instance);
+		# Un peu moche, c'est accordé
+		days_left_for_quota += 1;
+		start_day(Globals.player);
 	else:
-		start_night(Player.instance);
+		start_night(Globals.player);
 
-func next_quota() -> int:
-	if spent_on_quota == crystal_quota:
-		day_since_last_pay_up = 0;
+func next_quota() -> bool:
+	if spent_on_quota == quota:
+		days_left_for_quota = days_before_pay_up;
 		spent_on_quota = 0;
-		crystal_quota += quota_increment;
+		quota += quota_increment;
+		return true;
 	else:
 		# player.crystals.override_amount(0); # I commented that because otherwise we start at 0 crystals, no matter what the resource in the player scene is initialized to. We might want to uncomment it again.
 		GameOverSystem.end_game(GameOver.Reason.QUOTA_NOT_MET);
-	return crystal_quota;
+		return false;
 	
 func start_day(player : Player) -> void:
+	days_left_for_quota -= 1
+	if days_left_for_quota <= 0:
+		if not next_quota(): 
+			return;
 	is_day = true;
-	day_since_last_pay_up += 1
-	if day_since_last_pay_up >= days_before_pay_up:
-		next_quota();
 	player.action_points.override_amount(action_points_per_day);
 	print("Day start");
 	
