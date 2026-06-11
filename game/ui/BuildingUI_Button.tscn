@@ -37,6 +37,7 @@ icon_alignment = 1
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.29411766, 0, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 text = "4"
 horizontal_alignment = 2
 vertical_alignment = 2

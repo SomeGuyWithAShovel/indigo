@@ -27,6 +27,7 @@ tint_progress = Color(0.1882353, 0.8627451, 1, 1)
 [node name="Points" type="Label" parent="HBoxContainer" unique_id=165490032]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.29411766, 0, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 theme_override_font_sizes/font_size = 24
 text = "25"
 horizontal_alignment = 2

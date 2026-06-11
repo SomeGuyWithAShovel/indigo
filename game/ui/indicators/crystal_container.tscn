@@ -5,12 +5,14 @@
 [node name="Label" type="Label" parent="." unique_id=1371880374]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.29411766, 0, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 text = "Crystals:"
 
 [node name="Amount" type="Label" parent="." unique_id=981925753]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.29411766, 0, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 theme_override_font_sizes/font_size = 24
 text = "42"
 vertical_alignment = 1
