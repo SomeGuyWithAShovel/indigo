@@ -8,6 +8,7 @@ extends Node3D
 @export var construction: PlayerConstruction = null;
 @export var camera: Camera3D = null;
 @export var character: PlayerCharacter = null;
+@export var player_damaged_sound: AudioStreamPlayer = null;
 
 @export_group("Player Resources")
 @export var crystals : PlayerResource = null;
@@ -31,6 +32,8 @@ func _enter_tree() -> void :
 	
 	assert(crystals != null);
 	assert(action_points != null);
+	
+	assert(player_damaged_sound != null);
 	return;
 
 func _unhandled_input(_event: InputEvent) -> void :
@@ -107,4 +110,9 @@ func raycast_on_construction_grid(raycast_result: Dictionary) -> void :
 		
 		construction.try_construct_cell(collided_grid, cell_coord, selected_construction_type);
 		pass;
+	return;
+
+
+func _on_damaged(_new_hp: int, _old_hp: int) -> void :
+	player_damaged_sound.play();
 	return;

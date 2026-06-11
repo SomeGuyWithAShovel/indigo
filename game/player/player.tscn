@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://du6e1dlj15ka8" path="res://game/components/resource/player_resource.gd" id="2_4ste8"]
 [ext_resource type="Script" uid="uid://b5wv0hi7typfg" path="res://game/player/interactor.gd" id="3_8soms"]
 [ext_resource type="PackedScene" uid="uid://c3x5aj72d66ec" path="res://game/player/player_construction.tscn" id="5_epvkq"]
+[ext_resource type="AudioStream" uid="uid://ngqoeg28gsx5" path="res://assets/sounds/player_hurt.ogg" id="7_anr75"]
 
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("2_4ste8")
@@ -34,11 +35,12 @@ albedo_color = Color(1, 0.3019608, 0.29411766, 1)
 height = 1.0
 radius = 1.5
 
-[node name="PlayerNode" type="Node3D" unique_id=1899147477 node_paths=PackedStringArray("construction", "camera", "character")]
+[node name="PlayerNode" type="Node3D" unique_id=1899147477 node_paths=PackedStringArray("construction", "camera", "character", "player_damaged_sound")]
 script = ExtResource("1_a4w0n")
 construction = NodePath("PlayerConstruction")
 camera = NodePath("CharacterBody3D/CameraPivot/Camera3D")
 character = NodePath("CharacterBody3D")
+player_damaged_sound = NodePath("PlayerDamagedSound")
 crystals = SubResource("Resource_anr75")
 action_points = SubResource("Resource_epvkq")
 
@@ -81,6 +83,10 @@ shape = SubResource("CylinderShape3D_a4w0n")
 [node name="PlayerConstruction" parent="." unique_id=1053297640 node_paths=PackedStringArray("player") instance=ExtResource("5_epvkq")]
 player = NodePath("..")
 
+[node name="PlayerDamagedSound" type="AudioStreamPlayer" parent="." unique_id=1933495031]
+stream = ExtResource("7_anr75")
+
+[connection signal="on_damaged" from="HealthComponent" to="." method="_on_damaged"]
 [connection signal="area_entered" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_area_exited"]
 [connection signal="body_entered" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_body_entered"]
