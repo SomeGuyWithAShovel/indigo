@@ -2,9 +2,13 @@ class_name PlayerConstruction
 extends Node
 
 @export var player: Player = null;
+@export var construction_sound: AudioStreamPlayer = null;
+
+signal on_cell_constructed(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of);
 
 func _enter_tree() -> void :
 	assert(player != null);
+	assert(construction_sound != null);
 	return;
 
 func try_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of) -> bool :
@@ -25,6 +29,9 @@ func try_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, c
 		pass;
 	else:
 		return_value = callables[construction_type as int].call(construction_grid, coords);
+	
+	if (return_value == true) : 
+		on_cell_constructed.emit(construction_grid, coords, construction_type);
 	return return_value;
 
 static func construction_type_is_turret(construction_type: ModuleId.Of) -> bool :
@@ -188,3 +195,12 @@ func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bo
 	print("spent %d action points (%d remaining)" % [door_action_points_cost, action_points.get_amount()]);
 	
 	return true;
+
+
+func _on_cell_constructed(
+	_construction_grid: ConstructionGrid,
+	_coords: Vector2i,
+	_construction_type: ModuleId.Of
+) -> void :
+	construction_sound.play();
+	return;

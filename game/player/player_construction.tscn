@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://c3x5aj72d66ec"]
 
 [ext_resource type="Script" uid="uid://cgdbbtnpkme8t" path="res://game/player/player_construction.gd" id="1_jihog"]
+[ext_resource type="AudioStream" uid="uid://bxpi04hl7b62k" path="res://assets/sounds/building/impactMetal_004.ogg" id="2_chb33"]
 
-[node name="PlayerConstruction" type="Node" unique_id=1053297640]
+[node name="PlayerConstruction" type="Node" unique_id=1053297640 node_paths=PackedStringArray("construction_sound")]
 script = ExtResource("1_jihog")
+construction_sound = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=875375186]
+stream = ExtResource("2_chb33")
+volume_db = -9.0
+
+[connection signal="on_cell_constructed" from="." to="." method="_on_cell_constructed"]
