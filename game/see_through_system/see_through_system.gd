@@ -6,6 +6,7 @@ extends Node
 
 @export var normal_viewport: SubViewport = null; # MUST CONTAIN THE CAMERA
 @export var see_through_viewport: SubViewport = null;
+@export var ui_viewport : SubViewport = null;
 var main_viewport: Viewport = null;
 var main_window: Window = null;
 
@@ -53,6 +54,7 @@ func update_viewport_size() -> void :
 	print("main_viewport size changed to ", new_size);
 	normal_viewport.size = new_size;
 	see_through_viewport.size = new_size;
+	ui_viewport.size = new_size;
 	
 	canvas_item.custom_minimum_size = new_size;
 	shader_material.set_shader_parameter(shader_param_size, new_size);
@@ -66,6 +68,7 @@ func update_viewport_size() -> void :
 # (I checked with the ControlNode but without everything in the subviewport, and it worked)
 
 func _input(_event: InputEvent) -> void :
+	ui_viewport.push_input(_event);
 	normal_viewport.push_input(_event);
 	return;
 func _unhandled_input(_event: InputEvent) -> void :

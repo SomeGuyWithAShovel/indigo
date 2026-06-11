@@ -98,10 +98,10 @@ func spawn_next_enemy() -> void:
 	var in_tree := next_enemy.kind.duplicate();
 	next_enemy.spawn_point.add_child(in_tree);
 	in_tree.health_component.died.connect(monster_killed);
-	print("Spawned enemy");
 	
 	ennemies_spawned.append(in_tree);
-	
+	handle_indicators();
+		
 	if len(left_to_spawn) > 0:
 		spawn_timer.start(left_to_spawn[0].after_time);
 
@@ -118,13 +118,14 @@ func start_waves() -> void:
 func handle_indicators() -> void:
 	for monster in ennemies_spawned:
 		var screen_pos = camera.unproject_position(monster.global_position);
-		var on_screen := DisplayServer.screen_get_usable_rect().has_point(screen_pos);
+		var on_screen := get_viewport().get_visible_rect().has_point(screen_pos);
 		if monster in indicators and on_screen:
-			remove_child(indicators[monster]);
+			UIManager.instance.remove_child(indicators[monster]);
 			indicators[monster].queue_free();
 			indicators.erase(monster);
 		elif monster not in indicators and not on_screen:
 			var indicator : PositionIndicator = indicator_scene.instantiate();
+			indicator.world_camera = camera;
 			indicators[monster] = indicator;
-			add_child(indicator);
+			UIManager.instance.add_child(indicator);
 			indicator.follow = monster;	

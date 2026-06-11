@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/monster_1/Monster.tscn" id="2_ggau6"]
 [ext_resource type="PackedScene" uid="uid://dcj71hym2004b" path="res://game/enemies/PositionIndicator.tscn" id="3_ekywr"]
 
-[node name="WaveGenerator" type="Node" unique_id=1245934762]
+[node name="WaveGenerator" type="Node" unique_id=2094613018]
 script = ExtResource("1_gdnxe")
 initial_wave_strength = 1
 instantiatable_monsters = Array[PackedScene]([ExtResource("2_ggau6")])

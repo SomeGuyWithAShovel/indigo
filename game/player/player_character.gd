@@ -9,7 +9,7 @@ extends Node3D
 @onready var gravity : Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
 @onready var player: Player = $"..";
-@onready var camera : Camera3D = $"CameraPivot/Camera3D";
+
 @onready var character : CharacterBody3D = $".";
 @onready var health : HealthComponent = $"../HealthComponent";
 
@@ -17,8 +17,10 @@ var previous_input_direction := Vector3(0, 0, 0);
 var current_input_direction := Vector3(0, 0, 0);
 var time_since_direction_change := 0.0;
 var acceleration_weight := 0.0;
+var camera : Camera3D;
 
 func _ready() -> void:
+	camera = player.camera;
 	assert(player != null);
 	assert(camera != null);
 	assert(character != null);

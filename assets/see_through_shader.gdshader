@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D Cam1_texture; //The camera film wall
 uniform sampler2D Cam2_texture; //The camera film target
+uniform sampler2D UI_texture;   // UI elements (overlayed)
 
 uniform vec2 Target_Pos_PX = vec2(950.0,500.0); //Where center of the hole at
 uniform float Radius = 200; //Radius of the hole
@@ -20,6 +21,9 @@ void fragment()
 
 	vec4 Color1 = textureLod(Cam1_texture,SCREEN_UV,0.0); //sampling color from camera output
 	vec4 Color2 = textureLod(Cam2_texture,SCREEN_UV,0.0);
+	vec4 UIColor = textureLod(UI_texture,SCREEN_UV,0.0);
+	Color1.rgb = mix(Color1.rgb, UIColor.rgb, UIColor.a);
+	Color2.rgb = mix(Color2.rgb, UIColor.rgb, UIColor.a);
 
 	float Smooth_Mix_Result = smoothstep(Radius,Radius - Edge_Smooth, Distance); //Find out is this pixel in the circle's range
 	float Pixel_Mix_Result = step(Pixel_Distance,Radius/Pixel_Size_PX);

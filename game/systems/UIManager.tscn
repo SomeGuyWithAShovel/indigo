@@ -6,7 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bpgru5nlyhokj" path="res://game/ui/GameOver.tscn" id="4_hasba"]
 [ext_resource type="PackedScene" uid="uid://dv0wvqdpo07b4" path="res://game/ui/BuildingUI.tscn" id="5_gqoja"]
 
-[node name="UiManager" type="Node" unique_id=1533921697]
+[node name="UiManager" type="Control" unique_id=856566437]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_54ll4")
 ui_for_state = Dictionary[int, PackedScene]({
 0: ExtResource("2_gjd67"),
@@ -14,3 +20,6 @@ ui_for_state = Dictionary[int, PackedScene]({
 2: ExtResource("4_hasba")
 })
 building_ui = ExtResource("5_gqoja")
+
+[node name="Day" parent="." unique_id=840050716 instance=ExtResource("2_gjd67")]
+layout_mode = 1

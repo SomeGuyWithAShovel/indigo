@@ -4,7 +4,7 @@ class_name PositionIndicator
 @onready var viewport_texture : TextureRect = $Monster;
 @onready var timer : Timer = $Timer;
 @onready var encompassing_texture : TextureRect = $Indicator;
-var main_camera : Camera3D
+var world_camera : Camera3D
 var follow : Monster = null :
 	get:
 		return follow;
@@ -17,20 +17,24 @@ var other_indicators : Array[PositionIndicator];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	main_camera = get_viewport().get_camera_3d();
+	assert(world_camera != null, "Main camera not assigned by wave generator");
 	timer.timeout.connect(update_position);
 
 func setup_indicator() -> void:
 	if follow != null:
 		timer.start();
 		viewport_texture.texture = follow.viewport.get_texture();
-		follow.health_component.died.connect(func (): queue_free());
+		follow.health_component.died.connect(remove_indicator);
+		update_position();
+		
+func remove_indicator(_from : HealthComponent) -> void:
+	queue_free();
 
 func update_position() -> void:
 	if follow == null: return;
 	
 	var half_size : Vector2 = (encompassing_texture.size / 2.0)*scale;
-	var pos_on_camera : Vector2 = main_camera.unproject_position(follow.global_position);
+	var pos_on_camera : Vector2 = world_camera.unproject_position(follow.global_position);
 	var own_position := pos_on_camera.clamp(half_size, get_viewport_rect().end - half_size);
 	global_position = own_position;
 

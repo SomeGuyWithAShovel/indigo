@@ -26,7 +26,8 @@ static var instance : Player = null;
 func _enter_tree() -> void :
 	instance = self;
 	
-	assert(camera != null); SeeThroughSystem.instance.normal_camera = camera;
+	assert(camera != null); 
+	SeeThroughSystem.instance.normal_camera = camera;
 	assert(construction != null);
 	assert(character != null);
 	
