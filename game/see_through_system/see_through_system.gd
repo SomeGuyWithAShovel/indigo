@@ -7,6 +7,7 @@ extends Node
 @export var normal_viewport: SubViewport = null; # MUST CONTAIN THE CAMERA
 @export var see_through_viewport: SubViewport = null;
 var main_viewport: Viewport = null;
+var main_window: Window = null;
 
 @export var normal_camera: Camera3D = null;
 @export var see_through_camera: Camera3D = null;
@@ -24,6 +25,10 @@ func _enter_tree() -> void :
 	assert(main_viewport != null);
 	assert(normal_viewport != null);
 	assert(see_through_viewport != null);
+	
+	main_window = get_window();
+	assert(main_window != null);
+	main_window.size_changed.connect(update_viewport_size);
 	
 	# assert(normal_camera != null); # instead of finding it from here, it is set in the player script.
 	assert(see_through_camera != null);
@@ -45,6 +50,7 @@ func _ready() -> void :
 
 func update_viewport_size() -> void :
 	var new_size: Vector2 = main_viewport.get_visible_rect().size;
+	print("main_viewport size changed to ", new_size);
 	normal_viewport.size = new_size;
 	see_through_viewport.size = new_size;
 	
