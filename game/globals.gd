@@ -13,12 +13,11 @@ func _ready() -> void:
 
 func reset_state(_s) -> void:
 	is_setup = false;
-	player = null;
+	if player != null:
+		player.queue_free();
+		player = null;
 	
 func regenerate_globals() -> void:
-	print("Awaiting...");
-	#await get_tree().current_scene.ready;
-	print("Done !");
 	var players = get_tree().current_scene.find_children("*", "Player");
 	assert(len(players) == 1);
 	player = players[0];
