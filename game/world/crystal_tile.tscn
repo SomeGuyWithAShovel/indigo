@@ -5,7 +5,8 @@
 [ext_resource type="Material" uid="uid://bffnx17vcf57x" path="res://assets/Material/crystals_material.tres" id="3_n8v7u"]
 [ext_resource type="AudioStream" uid="uid://10c6mbb1u3h5" path="res://assets/sounds/collect.ogg" id="4_n8v7u"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lqysk"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n8v7u"]
+radius = 0.6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lqysk"]
 height = 1.0
@@ -19,7 +20,7 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=731816562]
-shape = SubResource("BoxShape3D_lqysk")
+shape = SubResource("CylinderShape3D_n8v7u")
 
 [node name="CrystalsMesh" type="MeshInstance3D" parent="." unique_id=580234786]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
