@@ -2,12 +2,23 @@ class_name CrystalTile
 extends Node3D
 
 var terrain: Terrain = null;
+@export var player_collect_sound: AudioStreamPlayer = null;
+
 @export var crystal_amount_per_operation: int = 5;
 
 @export var manual_multiplier: int = 2;
 @export var action_points_per_interaction: int = 5;
 signal on_being_manually_mined();
 
+func _enter_tree() -> void :
+	find_terrain_rec(self);
+	assert(terrain != null);
+	set_tile_as_crystals();
+	
+	assert(player_collect_sound != null);
+	
+	return;
+	
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :
@@ -21,11 +32,6 @@ func find_terrain_rec(node: Node3D) -> void :
 	find_terrain_rec(parent);
 	return;
 
-func _enter_tree() -> void :
-	find_terrain_rec(self);
-	assert(terrain != null);
-	set_tile_as_crystals();
-	return;
 
 func set_tile_as_crystals() -> void :
 	var coords_2d: Vector2 = Vector2(global_position.x, global_position.z) / 2.0;
@@ -58,4 +64,6 @@ func uninteract() -> void:
 
 func _on_being_manually_mined() -> void :
 	# animations, sounds, ...
+	
+	player_collect_sound.play();
 	return;
