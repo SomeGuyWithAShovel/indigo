@@ -38,8 +38,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -301.0
-offset_bottom = 150.0
+offset_left = -330.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 264.0
 grow_horizontal = 0
 
 [node name="ActionPointsContainer" parent="RightPanel" unique_id=1453304355 instance=ExtResource("6_wowka")]
@@ -47,7 +49,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="RightPanel" unique_id=2086179023]
 layout_mode = 2
-text = "Prepare for the night"
+text = "Start night"
 
 [connection signal="button_down" from="RightPanel/Button" to="." method="_on_night_request_down"]
 [connection signal="pressed" from="RightPanel/Button" to="." method="_on_night_requested"]
