@@ -11,7 +11,7 @@ size = Vector3(0.6, 0.8, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wynd"]
 size = Vector3(0.1, 0.8, 0.5)
 
-[node name="Cell" unique_id=39220363 instance=ExtResource("1_yyou5")]
+[node name="Cell" unique_id=39220363 groups=["navigation_mesh_source_group"] instance=ExtResource("1_yyou5")]
 
 [node name="CorridorCross" type="MeshInstance3D" parent="." index="0" unique_id=850865211]
 layers = 2

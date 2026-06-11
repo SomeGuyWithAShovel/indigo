@@ -18,7 +18,7 @@ size = Vector3(1, 0.8, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ltlhk"]
 size = Vector3(0.1, 0.8, 0.8)
 
-[node name="Cell" unique_id=39220363 node_paths=PackedStringArray("moduleslots_array") instance=ExtResource("1_yaccd")]
+[node name="Cell" unique_id=39220363 node_paths=PackedStringArray("moduleslots_array") groups=["navigation_mesh_source_group"] instance=ExtResource("1_yaccd")]
 moduleslots_array = [NodePath("ModuleSlot")]
 
 [node name="TopCover" type="MeshInstance3D" parent="." index="0" unique_id=531647458]

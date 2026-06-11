@@ -35,7 +35,7 @@ stream_2/stream = ExtResource("7_uwrbj")
 stream_3/stream = ExtResource("8_rjpv2")
 stream_4/stream = ExtResource("9_gjwas")
 
-[node name="Turret" unique_id=395245931 node_paths=PackedStringArray("laser_timer", "laser", "laser_sound") instance=ExtResource("1_g5ill")]
+[node name="Turret" unique_id=395245931 node_paths=PackedStringArray("laser_timer", "laser", "laser_sound") groups=["navigation_mesh_source_group"] instance=ExtResource("1_g5ill")]
 script = ExtResource("2_om3al")
 laser_timer = NodePath("laser/Timer")
 laser = NodePath("laser")

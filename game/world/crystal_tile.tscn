@@ -8,18 +8,15 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n8v7u"]
 radius = 0.6
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lqysk"]
-height = 1.0
-
 [node name="CrystalTile" type="Node3D" unique_id=1366619670 node_paths=PackedStringArray("player_collect_sound")]
 script = ExtResource("1_3hh5r")
 player_collect_sound = NodePath("PlayerCollectSound")
 
-[node name="Area3D" type="StaticBody3D" parent="." unique_id=714936018]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=626424320]
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=731816562]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=731816562]
 shape = SubResource("CylinderShape3D_n8v7u")
 
 [node name="CrystalsMesh" type="MeshInstance3D" parent="." unique_id=580234786]
@@ -27,12 +24,6 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 mesh = ExtResource("2_lqysk")
 surface_material_override/0 = ExtResource("3_n8v7u")
 surface_material_override/1 = ExtResource("3_n8v7u")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CrystalsMesh" unique_id=661798567]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CrystalsMesh/StaticBody3D" unique_id=873771528]
-shape = SubResource("CylinderShape3D_lqysk")
 
 [node name="PlayerCollectSound" type="AudioStreamPlayer" parent="." unique_id=335062495]
 stream = ExtResource("4_n8v7u")

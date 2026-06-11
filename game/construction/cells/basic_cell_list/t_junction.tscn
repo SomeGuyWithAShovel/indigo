@@ -14,7 +14,7 @@ size = Vector3(0.6, 0.8, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikvpc"]
 size = Vector3(0.1, 0.8, 0.5)
 
-[node name="Cell" unique_id=39220363 instance=ExtResource("1_2j6fc")]
+[node name="Cell" unique_id=39220363 groups=["navigation_mesh_source_group"] instance=ExtResource("1_2j6fc")]
 
 [node name="CorridorSplit" type="MeshInstance3D" parent="." index="0" unique_id=292892330]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

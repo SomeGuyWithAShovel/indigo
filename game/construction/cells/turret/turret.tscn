@@ -16,7 +16,7 @@ size = Vector3(1, 2, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_elsym"]
 radius = 10.0
 
-[node name="Turret" type="Node3D" unique_id=395245931 node_paths=PackedStringArray("spawn_point", "shoot_timer")]
+[node name="Turret" type="Node3D" unique_id=395245931 node_paths=PackedStringArray("spawn_point", "shoot_timer") groups=["navigation_mesh_source_group"]]
 script = ExtResource("1_w0prb")
 spawn_point = NodePath("SpawnPoint")
 shoot_timer = NodePath("Timer")

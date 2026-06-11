@@ -12,7 +12,7 @@ size = Vector3(1.8, 2.393702, 1.8819336)
 [sub_resource type="SphereShape3D" id="SphereShape3D_x38vp"]
 radius = 10.0
 
-[node name="Turret" unique_id=395245931 instance=ExtResource("1_hey2q")]
+[node name="Turret" unique_id=395245931 groups=["navigation_mesh_source_group"] instance=ExtResource("1_hey2q")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_espld")
 damage = 0

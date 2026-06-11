@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal_tile.tscn" id="2_konwf"]
 [ext_resource type="PackedScene" uid="uid://dcobj7squ7ld6" path="res://game/world/QuotaBox.tscn" id="3_3rkxp"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ig0dc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3rkxp"]
+size = Vector3(256, 1, 256)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_konwf"]
 plane = Plane(-1, 0, 0, 0)
@@ -19,7 +20,7 @@ plane = Plane(1, 0, 0, 0)
 plane = Plane(0, 0, -1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gv5m4"]
-size = Vector2(152, 152)
+size = Vector2(256, 256)
 subdivide_width = 38
 subdivide_depth = 38
 center_offset = Vector3(-1, 0, 1)
@@ -31,11 +32,12 @@ albedo_color = Color(0.9098039, 0.5176471, 0.3882353, 1)
 [node name="Terrain" type="Node3D" unique_id=1393607273]
 script = ExtResource("1_ig0dc")
 
-[node name="Bounds" type="StaticBody3D" parent="." unique_id=1940965157]
+[node name="Bounds" type="StaticBody3D" parent="." unique_id=1940965157 groups=["navigation_mesh_source_group"]]
 collision_mask = 7
 
 [node name="Ground" type="CollisionShape3D" parent="Bounds" unique_id=356413957]
-shape = SubResource("WorldBoundaryShape3D_ig0dc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_3rkxp")
 
 [node name="East" type="CollisionShape3D" parent="Bounds" unique_id=1310687471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 0, 0)

@@ -21,6 +21,7 @@ BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 DayNightSystem="*uid://c66lcj54vitdf"
 GameOverSystem="*uid://contcextu1sf"
+Globals="*uid://xyqhjavtpgbn"
 
 [dotnet]
 
@@ -29,6 +30,10 @@ project/assembly_name="Indigo"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
+
+[global_group]
+
+navigation_mesh_source_group=""
 
 [input]
 

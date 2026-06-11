@@ -23,7 +23,7 @@ size = Vector3(0.225, 0.7, 0.45)
 [node name="MiningCell" type="Node3D" unique_id=1227523252]
 script = ExtResource("1_kawp1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608 groups=["navigation_mesh_source_group"]]
 collision_layer = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1162578280]

@@ -44,7 +44,7 @@ height = 0.09
 [node name="QuotaBox" type="Node3D" unique_id=482531464]
 script = ExtResource("1_anwy0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1624619686]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1624619686 groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=316390167]
