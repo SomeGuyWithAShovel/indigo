@@ -42,9 +42,11 @@ func set_tile_as_crystals() -> void :
 	terrain.construction_grid.set_tile_as_crystal_tile(grid_coords, self);
 	return;
 	
+var mining_tween : Tween = null;
+	
 func interact() -> void :
-	# if (is_day == false) :
-	#	return;
+	if not DayNightSystem.is_day and mining_tween != null and mining_tween.is_running(): 
+		return;
 	
 	var player: Player = Globals.player; # should probably be a parameter of interact ?
 	
@@ -52,6 +54,10 @@ func interact() -> void :
 		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
 		on_being_manually_mined.emit();
 		pass;
+		
+	if not DayNightSystem.is_day:
+		mining_tween = get_tree().create_tween();
+		mining_tween.tween_property(self, "scale", scale, 2.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
 	return;
 
 func uninteract() -> void:
