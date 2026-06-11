@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="3_kogd3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c4iox"]
-size = Vector3(2, 0.8, 0.1)
+size = Vector3(2, 3, 0.1)
 
 [node name="Cell" unique_id=39220363 groups=["navigation_mesh_source_group"] instance=ExtResource("1_stdyo")]
 

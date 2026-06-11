@@ -34,19 +34,19 @@ max_health = 100
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@69397")
+blackboard = NodePath("@Node@411925")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 collision_layer = 16
-collision_mask = 87
+collision_mask = 83
 floor_stop_on_slope = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Monster" unique_id=336634105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("SphereShape3D_cfxws")
 
 [node name="MonsterAnimation" parent="Monster" unique_id=695942752 instance=ExtResource("4_xlnnv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Sight" type="Area3D" parent="Monster" unique_id=1420014928]
 collision_layer = 8

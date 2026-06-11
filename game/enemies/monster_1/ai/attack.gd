@@ -10,8 +10,10 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if target == null:
 		return FAILURE
 	var space_state := monster.get_world_3d().direct_space_state;
-	var query := PhysicsRayQueryParameters3D.create(monster.global_position, target.global_position);
-	query.collision_mask = hurt_layers;
+	var query := PhysicsRayQueryParameters3D.create(
+		monster.global_position, 
+		target.global_position,
+		hurt_layers);
 	var result : Dictionary = space_state.intersect_ray(query);
 	if not result.is_empty():
 		var target_or_obstacle : Node3D = result["collider"].get_parent();

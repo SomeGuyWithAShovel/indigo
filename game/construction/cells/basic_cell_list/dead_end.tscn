@@ -61,6 +61,7 @@ magouille_door = [NodePath("../CollisionWalls/CollisionShapeW")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999982, 0.39999992, 0)
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="2" unique_id=1044701286]
+collision_layer = 64
 
 [node name="CollisionShapeS" type="CollisionShape3D" parent="CollisionWalls" index="0" unique_id=947636285]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, 0.44999996)
