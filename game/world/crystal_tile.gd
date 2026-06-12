@@ -57,7 +57,7 @@ func interact() -> void :
 		
 	if not DayNightSystem.is_day:
 		mining_tween = get_tree().create_tween();
-		mining_tween.tween_property(self, "scale", scale, 2.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
+		mining_tween.tween_property(self, "scale", scale, 1.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
 	return;
 
 func uninteract() -> void:

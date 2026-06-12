@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_321fy"]
 [ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="2_ox2pn"]
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_jwcp0"]
-[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="4_q0kab"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="4_q0kab"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3p24"]
 size = Vector3(0.6, 0.8, 0.1)
@@ -54,7 +54,7 @@ shape = SubResource("BoxShape3D_q0kab")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_86ru7")
 
-[node name="HealthComponent" type="Node" parent="." index="2" unique_id=1999530256]
-script = ExtResource("4_q0kab")
-max_health = 10
-metadata/_custom_type_script = "uid://ihghtvwq5oex"
+[node name="HealthComponent" parent="." index="2" unique_id=699209803 instance=ExtResource("4_q0kab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2846115, 0)
+max_health = 50
+health_bar_color = Color(1, 0.78039217, 0.23137255, 1)

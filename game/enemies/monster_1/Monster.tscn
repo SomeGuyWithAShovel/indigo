@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://6dxux7xq7ohu"]
 
 [ext_resource type="Script" uid="uid://d3jajg4o4y0wd" path="res://game/enemies/monster_1/monster.gd" id="1_okd12"]
-[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_yj27i"]
 [ext_resource type="PackedScene" uid="uid://dwnbx8ofh71c1" path="res://game/enemies/monster_1/ai/MonsterAI.tscn" id="3_jpady"]
 [ext_resource type="PackedScene" uid="uid://ciwe57nl7pa6p" path="res://game/enemies/monster_1/monster_1_model.tscn" id="4_xlnnv"]
 [ext_resource type="AudioStream" uid="uid://rw1vjgus77yv" path="res://assets/sounds/monster/slime_001.ogg" id="5_cfxws"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="5_vqfh0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cfxws"]
 radius = 0.8
@@ -28,13 +28,9 @@ size = Vector2i(128, 128)
 [node name="Camera3D" type="Camera3D" parent="Viewport" unique_id=355355909]
 transform = Transform3D(1, 0, 0, 0, 0.67090565, 0.74154276, 0, -0.74154276, 0.67090565, 0, 1.3922431, 1.3120654)
 
-[node name="HealthComponent" type="Node" parent="." unique_id=569542414]
-script = ExtResource("1_yj27i")
-max_health = 100
-
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@411925")
+blackboard = NodePath("@Node@483711")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -72,6 +68,10 @@ max_db = 0.0
 pitch_scale = 1.5
 autoplay = true
 max_distance = 20.0
+
+[node name="HealthComponent" parent="." unique_id=699209803 instance=ExtResource("5_vqfh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3332987, 0)
+health_bar_color = Color(0, 0.33984002, 0.17842415, 1)
 
 [connection signal="body_entered" from="Monster/Sight" to="." method="_on_entered_sight"]
 [connection signal="body_exited" from="Monster/Sight" to="." method="_on_exited_sight"]

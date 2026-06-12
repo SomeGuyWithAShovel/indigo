@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0lmulj0w7iqq" path="res://game/construction/cells/base_cell.tscn" id="1_s75pl"]
 [ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="2_el8rh"]
 [ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="3_1h0p1"]
-[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="4_bpl0h"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="4_bpl0h"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6vd4w"]
 material = ExtResource("3_1h0p1")
@@ -47,7 +47,7 @@ collision_layer = 64
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("CylinderShape3D_nxmga")
 
-[node name="HealthComponent" type="Node" parent="." index="2" unique_id=1811325935]
-script = ExtResource("4_bpl0h")
-max_health = 10
-metadata/_custom_type_script = "uid://ihghtvwq5oex"
+[node name="HealthComponent" parent="." index="2" unique_id=699209803 instance=ExtResource("4_bpl0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5700945, 0)
+max_health = 50
+health_bar_color = Color(1, 0.78039217, 0.23137255, 1)

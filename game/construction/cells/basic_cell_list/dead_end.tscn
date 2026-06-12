@@ -5,7 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="3_4w3yg"]
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_qlusm"]
 [ext_resource type="PackedScene" uid="uid://cb4wuhu1gpd1m" path="res://game/construction/modules/slot/module_slot.tscn" id="4_e60wt"]
-[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="6_r1ras"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="6_r1ras"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1j3n"]
 material = ExtResource("2_ltlhk")
@@ -75,9 +75,9 @@ shape = SubResource("BoxShape3D_ltlhk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, -0.45000008)
 shape = SubResource("BoxShape3D_w1j3n")
 
-[node name="HealthComponent" type="Node" parent="." index="3" unique_id=1902945997]
-script = ExtResource("6_r1ras")
-max_health = 10
-metadata/_custom_type_script = "uid://ihghtvwq5oex"
+[node name="HealthComponent" parent="." index="3" unique_id=699209803 instance=ExtResource("6_r1ras")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4377396, 0)
+max_health = 50
+health_bar_color = Color(1, 0.78039217, 0.23137255, 1)
 
 [editable path="ModuleSlot"]

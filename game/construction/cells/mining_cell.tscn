@@ -6,7 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cbbe2jdpeoxo6" path="res://assets/3dModels/machine_barrel.obj" id="3_kawp1"]
 [ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="3_y8vi8"]
 [ext_resource type="ArrayMesh" uid="uid://bi70qfebeeu80" path="res://assets/3dModels/rocket_topA.obj" id="4_y8vi8"]
-[ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="7_17xp3"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="7_17xp3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y8vi8"]
 size = Vector3(1.2, 1.5, 1.2)
@@ -54,7 +54,5 @@ surface_material_override/3 = SubResource("StandardMaterial3D_kawp1")
 transform = Transform3D(0.6666667, 0, 0, 0, 0.8, 0, 0, 0, 0.6666667, -0.34800002, -0.26012316, 0)
 mesh = SubResource("BoxMesh_kawp1")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=374161876]
-script = ExtResource("7_17xp3")
-max_health = 300
-metadata/_custom_type_script = "uid://ihghtvwq5oex"
+[node name="HealthComponent" parent="." unique_id=699209803 instance=ExtResource("7_17xp3")]
+health_bar_color = Color(1, 0.78183335, 0.23000002, 1)
