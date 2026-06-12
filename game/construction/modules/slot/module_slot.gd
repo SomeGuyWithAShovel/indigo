@@ -26,6 +26,9 @@ func set_as_free() -> void :
 	return;
 
 func _raw_place_module(module: PlayerBaseModules.Enum) -> bool :
+	if not is_free():
+		return false;
+		
 	if (module == PlayerBaseModules.Enum.None) :
 		if (current_module.as_enum() == PlayerBaseModules.Enum.None) :
 			print("_raw_place_module() : trying to place None while current_module is already None");
@@ -50,6 +53,8 @@ func _raw_place_module(module: PlayerBaseModules.Enum) -> bool :
 		
 	add_child(new_module);
 	new_module.owner = self;
-	
 	new_module.init_module();
+	
+	current_module = new_module;
+	
 	return true;
