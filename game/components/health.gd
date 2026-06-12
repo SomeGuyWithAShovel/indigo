@@ -59,8 +59,8 @@ func reset() -> void:
 func _process(_delta: float) -> void:
 	var screen_pos = camera.unproject_position(global_position);
 	bar_parent.global_position = screen_pos;
-	var distance_to_cam = global_position.distance_to(camera.global_position);
-	bar.scale = Vector2.ONE * clamp(1.0 - distance_to_cam/10.0, 0.1, 1.0);
+	var distance_to_cam = global_position.distance_squared_to(camera.global_position);
+	bar.scale = Vector2.ONE * clamp(1.0 - distance_to_cam/100.0, 0.2, 1.0);
 	
 func update_bar_value() -> void:
 	bar.visible = _current_health < max_health;

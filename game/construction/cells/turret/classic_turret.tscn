@@ -55,6 +55,9 @@ shape = SubResource("SphereShape3D_om3al")
 [node name="SpawnPoint" parent="." index="4" unique_id=1370035238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
+[node name="HealthComponent" parent="." index="5" unique_id=699209803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4792609, 0)
+
 [node name="Base" type="MeshInstance3D" parent="." index="6" unique_id=656720993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9921677, 0)
 mesh = ExtResource("4_6ydq6")

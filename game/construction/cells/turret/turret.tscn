@@ -43,7 +43,7 @@ shape = SubResource("SphereShape3D_elsym")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="HealthComponent" parent="." unique_id=699209803 instance=ExtResource("2_ygro0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.816246, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5256014, 0)
 health_bar_color = Color(1, 0.78039217, 0.23137255, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
