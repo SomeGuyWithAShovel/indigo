@@ -94,6 +94,12 @@ func _physics_process(_delta: float) -> void:
 	time_since_direction_change = clampf(time_since_direction_change + _delta, 0.0, direction_switch_lag);
 	var direction := get_move_direction();
 	var speed := get_move_speed(input_direction, _delta);
+	if (!direction.is_zero_approx()):
+		$space_man_model.play_forward();
+		$space_man_model.look_at(global_position - direction)
+		print($space_man_model.position)
+	else:
+		$space_man_model.play_idle();
 	
 	character.velocity = speed * direction;
 	character.velocity += _delta * gravity * 100.0;

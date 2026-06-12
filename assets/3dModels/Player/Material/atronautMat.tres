@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dntqnwytyqiab"]
+
+[ext_resource type="Texture2D" uid="uid://cd8oxv46giqyj" path="res://assets/3dModels/Player/Material/SpaceMan_Rank_02_Blue.png" id="1_jpp4v"]
+
+[resource]
+albedo_texture = ExtResource("1_jpp4v")
