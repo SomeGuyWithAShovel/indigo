@@ -34,4 +34,6 @@ func reset_self() -> void:
 		tween.stop();
 	
 func remove_self() -> void:
-	get_parent().remove_child(self);
+	var parent := get_parent();
+	if parent != null:
+		parent.remove_child(self);

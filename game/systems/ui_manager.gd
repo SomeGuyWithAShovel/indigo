@@ -61,13 +61,11 @@ func bind_to_build_ui(callable : Callable) -> void:
 	building_ui_node.on_module_requested.connect(callable);
 	
 func set_state(value : State) -> void:
+	remove_child(ui_nodes[state]);
 	state = value;
 	if state == State.DAY: 
 		can_open_building_menu = true;
 	elif state == State.NIGHT:
 		can_open_building_menu = false;
-		
-	for child in get_children():
-		remove_child(child);
 	
 	add_child(ui_nodes[state]);
