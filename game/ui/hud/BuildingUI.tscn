@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dv0wvqdpo07b4"]
 
-[ext_resource type="Script" uid="uid://d3cubniuwwjp8" path="res://game/ui/building_ui.gd" id="1_h7t8k"]
+[ext_resource type="Script" uid="uid://d3cubniuwwjp8" path="res://game/ui/hud/building_ui.gd" id="1_h7t8k"]
 [ext_resource type="Texture2D" uid="uid://dcc88nujnbphp" path="res://assets/ui/buildings/icons/missle_launcher.png" id="2_iu5tr"]
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="2_txet5"]
-[ext_resource type="PackedScene" uid="uid://bheawcvrepst7" path="res://game/ui/BuildingUI_Button.tscn" id="3_pnvmi"]
+[ext_resource type="PackedScene" uid="uid://bheawcvrepst7" path="res://game/ui/hud/BuildingUI_Button.tscn" id="3_pnvmi"]
 [ext_resource type="Texture2D" uid="uid://b5dqq8mwrvlq7" path="res://assets/ui/buildings/icons/corridor_window_NE.png" id="5_txet5"]
 [ext_resource type="Texture2D" uid="uid://pcw1wdinlqfb" path="res://assets/ui/buildings/icons/corridor_end_SW.png" id="6_7xhvl"]
 [ext_resource type="Texture2D" uid="uid://4nq5kirxuv4n" path="res://assets/ui/buildings/icons/miner.png" id="7_3kdsp"]

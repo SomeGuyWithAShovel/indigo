@@ -1,9 +1,22 @@
 extends Node3D
 
+@export var camera : Camera3D;
 @export var time_between_checks = 0.2;
+@export var button_indication_container_scene : PackedScene;
+var indication_container : ButtonIndicationContainer;
 
 var interactibles : Array[Node3D];
-var interaction_target : Node3D = null;
+
+signal interaction_target_changed(old : Node3D, new : Node3D);
+
+var interaction_target : Node3D = null :
+	get:
+		return interaction_target;
+	set(value):
+		if value != interaction_target:
+			interaction_target_changed.emit(interaction_target, value);
+			interaction_target = value;
+			
 var timer : Timer;
 
 func _ready() -> void:
@@ -12,6 +25,12 @@ func _ready() -> void:
 	add_child(timer);
 	timer.one_shot = false;
 	timer.start(time_between_checks);
+	interaction_target_changed.connect(on_interaction_target_change);
+	
+	indication_container = button_indication_container_scene.instantiate() as ButtonIndicationContainer;
+	assert(indication_container != null);
+	assert(camera != null);
+	indication_container.camera = camera;
 
 func _input(event):
 	if interaction_target == null: return;
@@ -24,20 +43,37 @@ func _input(event):
 func decide_interaction_target() -> void:
 	var pos : Vector3 = (get_parent() as Node3D).global_position;
 	var min_distance_squared : float = INF;
-	interaction_target = null;
+	var new_interaction_target : Node3D = null;
 	for candidate in interactibles:
 		var d := pos.distance_squared_to(candidate.global_position);
 		if d < min_distance_squared:
 			min_distance_squared = d;
-			interaction_target = candidate;
+			new_interaction_target = candidate;
+	interaction_target = new_interaction_target;
 
+func on_interaction_target_change(old : Node3D, new : Node3D) -> void:
+	if old != null:
+		UIManager.instance.remove_child(indication_container);
+		indication_container.remove_all_indications();
+	if new != null:
+		var new_interactible := new.interactible as Interactible;
+		UIManager.instance.add_child(indication_container);
+		indication_container.unprojector.global_position = new.global_position;
+		await get_tree().process_frame;
+		setup_indication(new_interactible);
+	
+func setup_indication(new_interactible : Interactible) -> void:
+	indication_container.add_indication(KEY_E, new_interactible.action);
+	if new_interactible.is_uninteractible():
+		indication_container.add_indication(KEY_A, Interactible.Action.UNDO);
+	
 func entered(node : Node3D) -> void:
 	var node_parent : Node3D = node.get_parent();
-	assert(node_parent.has_method("interact"), 
+	var interactible : Interactible = node_parent.get("interactible") as Interactible;
+	assert(interactible, 
 		"Area3D found by interactor on interact layer but whose parent script does not implement an interact method");;
 		
-	if node_parent is Node3D: # Vérification de type
-		interactibles.push_back(node_parent);
+	interactibles.append(node_parent);
 		
 func exited(node : Node3D) -> void:
 	interactibles.erase(node.get_parent());

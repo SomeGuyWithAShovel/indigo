@@ -10,8 +10,6 @@ extends Node3D
 @onready var bar : TextureProgressBar = $BarParent/TextureProgressBar
 @onready var bar_parent : Control = $BarParent;
 
-var camera : Camera3D;
-
 # On renvoie HealthComponent si jamais on veut récupérer son parent
 signal health_changed(from : HealthComponent, new_hp: int);
 signal died(from : HealthComponent); # On pourra rajouter des paramètres si besoin
@@ -36,19 +34,20 @@ var _current_health: int :
 		return;
 
 func _ready() -> void:
+	reset();
 	if has_health_bar:
 		bar.max_value = max_health;
 		bar.tint_progress = health_bar_color;
+		health_changed.connect(animate_bar);
 	else:
+		var unprojector = $Unprojector;
 		remove_child(bar_parent);
+		remove_child(unprojector);
 		bar_parent.queue_free();
+		unprojector.queue_free();
 		bar_parent = null;
 		bar = null;
 		set_process(false);
-	camera = get_viewport().get_camera_3d();
-	assert(camera != null);
-	
-	reset();
 
 func get_health() -> int:
 	return _current_health;
@@ -56,15 +55,19 @@ func get_health() -> int:
 func reset() -> void:
 	_current_health = max_health;
 	
-func _process(_delta: float) -> void:
-	var screen_pos = camera.unproject_position(global_position);
-	bar_parent.global_position = screen_pos;
-	var distance_to_cam = global_position.distance_squared_to(camera.global_position);
-	bar.scale = Vector2.ONE * clamp(1.0 - distance_to_cam/100.0, 0.2, 1.0);
-	
 func update_bar_value() -> void:
 	bar.visible = _current_health < max_health;
 	bar.value = _current_health;
 	
 func hurt(damage) -> void:
 	_current_health -= damage;
+	
+var tween : Tween = null;
+const TWEEN_DURATION := 0.15;
+const TWEEN_START_SCALE := Vector2(1.5, 1.5);
+const TWEEN_START_COLOR := Color.RED;
+func animate_bar(_from : HealthComponent, _new_hp: int) -> void:
+	tween = create_tween();
+	tween.set_ease(Tween.EASE_OUT);
+	tween.tween_property(bar_parent, "scale", Vector2.ONE, TWEEN_DURATION).from(TWEEN_START_SCALE);
+	tween.tween_property(bar, "tint_progress", health_bar_color, TWEEN_DURATION).from(TWEEN_START_COLOR);

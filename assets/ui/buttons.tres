@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://coeqwthpvvngw"]
+
+[ext_resource type="Texture2D" uid="uid://rjo0xm8jhrom" path="res://assets/ui/key_indications/keyboard-&-mouse_sheet_default.png" id="1_t60al"]
+
+[resource]
+atlas = ExtResource("1_t60al")
+region = Rect2(0, 0, 64, 64)

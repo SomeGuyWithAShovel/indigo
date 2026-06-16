@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ds0reclyxq1ol"]
 
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_1y2xa"]
-[ext_resource type="Script" uid="uid://caxs708irscxg" path="res://game/ui/night_ui.gd" id="2_q2w56"]
+[ext_resource type="Script" uid="uid://caxs708irscxg" path="res://game/ui/hud/night_ui.gd" id="2_q2w56"]
 [ext_resource type="PackedScene" uid="uid://blqswb3ur5lce" path="res://game/ui/indicators/health_container.tscn" id="3_q2w56"]
 [ext_resource type="PackedScene" uid="uid://cmrxakogtwgbb" path="res://game/ui/indicators/quota_container.tscn" id="4_1kmeq"]
 [ext_resource type="PackedScene" uid="uid://b3ka5r4dxmr1c" path="res://game/ui/indicators/crystal_container.tscn" id="5_xl603"]

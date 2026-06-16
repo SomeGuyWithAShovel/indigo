@@ -2,9 +2,7 @@ class_name QuotaBox
 extends Node3D
 
 var terrain: Terrain = null;
-
-func _ready() -> void:
-	DayNightSystem.no_crystals_for_pay.connect(request_from_quota);
+var interactible : Interactible;
 
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
@@ -23,6 +21,9 @@ func _enter_tree() -> void :
 	find_terrain_rec(self);
 	assert(terrain != null);
 	set_tile_as_crystals();
+	
+	interactible = Interactible.new(Callable(self, "interact"), Interactible.Action.QUOTA);
+	
 	return;
 
 func set_tile_as_crystals() -> void :

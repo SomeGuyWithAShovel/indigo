@@ -13,6 +13,8 @@ signal on_being_manually_mined();
 static var interaction_count := 0; # Pour éviter que le joueur génère des PA à partir de ses cristaux
 var is_day := true;
 
+var interactible : Interactible;
+
 func _enter_tree() -> void :
 	find_terrain_rec(self);
 	assert(terrain != null);
@@ -25,6 +27,7 @@ func _enter_tree() -> void :
 func _ready() -> void:
 	DayNightSystem.on_day_start.connect(day_started);
 	DayNightSystem.on_night_start.connect(night_started);
+	interactible = Interactible.new(Callable(self, &"interact"), Interactible.Action.MINE, Callable(self, &"uninteract"));
 	
 func day_started() -> void:
 	is_day = true;

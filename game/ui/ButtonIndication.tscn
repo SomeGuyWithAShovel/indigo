@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bwg3acjeb10k5"]
+
+[ext_resource type="Script" uid="uid://b6mch30glytfr" path="res://game/ui/button_indication.gd" id="1_nvvkb"]
+[ext_resource type="Texture2D" uid="uid://rjo0xm8jhrom" path="res://assets/ui/key_indications/keyboard-&-mouse_sheet_default.png" id="1_u7io4"]
+[ext_resource type="Texture2D" uid="uid://2nfatf2jttvq" path="res://assets/ui/key_indications/icons/wrench.png" id="3_obrin"]
+[ext_resource type="Texture2D" uid="uid://chpa8smothi4i" path="res://assets/ui/key_indications/icons/pickaxe.png" id="3_skb2i"]
+[ext_resource type="Texture2D" uid="uid://c4vysv6ig4rxk" path="res://assets/ui/key_indications/icons/delivery.png" id="4_obrin"]
+[ext_resource type="Texture2D" uid="uid://dsox7b3vvk0da" path="res://assets/ui/key_indications/icons/undo.png" id="5_483sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvvkb"]
+resource_local_to_scene = true
+atlas = ExtResource("1_u7io4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_u7io4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_nvvkb"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skb2i"]
+_data = {
+&"RESET": SubResource("Animation_u7io4"),
+&"float": SubResource("Animation_nvvkb")
+}
+
+[node name="InteractionIndication" type="VBoxContainer" unique_id=1237608241]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -66.0
+offset_right = 32.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 96)
+script = ExtResource("1_nvvkb")
+action_icons = Dictionary[int, CompressedTexture2D]({
+1: ExtResource("3_skb2i"),
+2: ExtResource("3_obrin"),
+3: ExtResource("4_obrin"),
+4: ExtResource("5_483sf")
+})
+
+[node name="Button" type="TextureRect" parent="." unique_id=341161177]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nvvkb")
+
+[node name="Action" type="TextureRect" parent="." unique_id=487546303]
+layout_mode = 2
+texture = ExtResource("3_skb2i")
+expand_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1484659760]
+libraries/ = SubResource("AnimationLibrary_skb2i")
+autoplay = &"float"

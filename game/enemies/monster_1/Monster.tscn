@@ -30,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 0.67090565, 0.74154276, 0, -0.74154276, 0.67
 
 [node name="MonsterAi" parent="." unique_id=230634082 node_paths=PackedStringArray("blackboard") instance=ExtResource("3_jpady")]
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@507716")
+blackboard = NodePath("@Node@67377")
 
 [node name="Monster" type="CharacterBody3D" parent="." unique_id=906645411]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)

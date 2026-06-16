@@ -10,6 +10,8 @@ enum Anim {
 	HURT,
 }
 
+# Priorité : Attack > Hurt > Walk > Idle
+
 func is_hurt_playing() -> bool:
 	return animations.current_animation == &"HitRecieve";
 
@@ -22,11 +24,16 @@ func start_idle() -> void:
 	);
 	
 func start_walk() -> void:
-	if animations.current_animation != &"Walk":
+	if not [&"HitRecieve", &"Bite_Front"].any(
+		func (a): return animations.current_animation == a
+	):
 		_play(&"Walk");
 	
 func start_hurt() -> void:
-	_play(&"HitRecieve");
+	if not [&"HitRecieve", &"Bite_Front"].any(
+		func (a): return animations.current_animation == a
+	):
+		_play(&"HitRecieve");
 	
 func disconnect_all() -> void:
 	for c in animations.animation_finished.get_connections():

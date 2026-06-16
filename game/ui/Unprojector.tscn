@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://nlvu45xdklnw"]
+
+[ext_resource type="Script" uid="uid://dv7xs4vvxnp4j" path="res://game/ui/unprojector.gd" id="1_kk6u8"]
+
+[node name="Unprojector" type="Node3D" unique_id=1907429657]
+script = ExtResource("1_kk6u8")
+
+[node name="Timer" type="Timer" parent="." unique_id=756209955]
+wait_time = 0.02
+autostart = true

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5wv0hi7typfg" path="res://game/player/interactor.gd" id="3_8soms"]
 [ext_resource type="PackedScene" uid="uid://bc2vw23cblqh4" path="res://assets/3dModels/Player/space_man_model.tscn" id="4_epvkq"]
 [ext_resource type="PackedScene" uid="uid://c3x5aj72d66ec" path="res://game/player/player_construction.tscn" id="5_epvkq"]
+[ext_resource type="PackedScene" uid="uid://dpp3a3jbw36ao" path="res://game/ui/ButtonIndicationContainer.tscn" id="6_5ghna"]
 [ext_resource type="AudioStream" uid="uid://ngqoeg28gsx5" path="res://assets/sounds/player_hurt.ogg" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="7_epvkq"]
 
@@ -59,8 +60,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5
 environment = SubResource("Environment_b2mth")
 current = true
 
-[node name="Interactor" type="Node3D" parent="CharacterBody3D" unique_id=2010030431]
+[node name="Interactor" type="Node3D" parent="CharacterBody3D" unique_id=2010030431 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_8soms")
+camera = NodePath("../CameraPivot/Camera3D")
+button_indication_container_scene = ExtResource("6_5ghna")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D/Interactor" unique_id=1340248979]
 collision_layer = 8

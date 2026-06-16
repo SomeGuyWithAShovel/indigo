@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ihghtvwq5oex" path="res://game/components/health.gd" id="1_dd06v"]
 [ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/bars/border.png" id="2_pm1fi"]
 [ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/bars/health_bar.png" id="3_33n38"]
+[ext_resource type="PackedScene" uid="uid://nlvu45xdklnw" path="res://game/ui/Unprojector.tscn" id="4_33n38"]
 
 [node name="HealthComponent" type="Node3D" unique_id=699209803]
 script = ExtResource("1_dd06v")
@@ -24,3 +25,6 @@ step = 0.0
 value = 50.0
 texture_over = ExtResource("2_pm1fi")
 texture_progress = ExtResource("3_33n38")
+
+[node name="Unprojector" parent="." unique_id=145426656 node_paths=PackedStringArray("unprojected") instance=ExtResource("4_33n38")]
+unprojected = NodePath("../BarParent")

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://comrs3i4lsjuo"]
 
 [ext_resource type="Script" uid="uid://bxtv67nnfm8ki" path="res://game/systems/ui_manager.gd" id="1_54ll4"]
-[ext_resource type="PackedScene" uid="uid://djhvmwipns517" path="res://game/ui/Day.tscn" id="2_gjd67"]
-[ext_resource type="PackedScene" uid="uid://ds0reclyxq1ol" path="res://game/ui/Night.tscn" id="3_84o1i"]
-[ext_resource type="PackedScene" uid="uid://bpgru5nlyhokj" path="res://game/ui/GameOver.tscn" id="4_hasba"]
-[ext_resource type="PackedScene" uid="uid://dv0wvqdpo07b4" path="res://game/ui/BuildingUI.tscn" id="5_gqoja"]
+[ext_resource type="PackedScene" uid="uid://djhvmwipns517" path="res://game/ui/hud/Day.tscn" id="2_gjd67"]
+[ext_resource type="PackedScene" uid="uid://ds0reclyxq1ol" path="res://game/ui/hud/Night.tscn" id="3_84o1i"]
+[ext_resource type="PackedScene" uid="uid://bpgru5nlyhokj" path="res://game/ui/hud/GameOver.tscn" id="4_hasba"]
+[ext_resource type="PackedScene" uid="uid://dv0wvqdpo07b4" path="res://game/ui/hud/BuildingUI.tscn" id="5_gqoja"]
 
 [node name="UiManager" type="Control" unique_id=856566437]
 layout_mode = 3
