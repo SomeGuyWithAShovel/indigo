@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwlol3sfbyroq"]
 
-[ext_resource type="Script" uid="uid://dqrbt1u3i7w3r" path="res://game/world/crystal_tile.gd" id="1_3hh5r"]
+[ext_resource type="Script" uid="uid://dqrbt1u3i7w3r" path="res://game/world/crystal/crystal_tile.gd" id="1_3hh5r"]
+[ext_resource type="PackedScene" uid="uid://cx67rdcb2l5io" path="res://game/world/crystal/CrystalObtainedIcon.tscn" id="2_63wgp"]
 [ext_resource type="ArrayMesh" uid="uid://ceqoi47cbed0" path="res://assets/3dModels/rock_largeB.obj" id="2_lqysk"]
 [ext_resource type="Material" uid="uid://bffnx17vcf57x" path="res://assets/Material/crystals_material.tres" id="3_n8v7u"]
 [ext_resource type="AudioStream" uid="uid://10c6mbb1u3h5" path="res://assets/sounds/collect.ogg" id="4_n8v7u"]
@@ -11,6 +12,7 @@ radius = 0.6
 [node name="CrystalTile" type="Node3D" unique_id=1366619670 node_paths=PackedStringArray("player_collect_sound")]
 script = ExtResource("1_3hh5r")
 player_collect_sound = NodePath("PlayerCollectSound")
+crystal_obtained_icon_scene = ExtResource("2_63wgp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=626424320]
 collision_layer = 4

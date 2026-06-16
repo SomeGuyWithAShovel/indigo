@@ -28,24 +28,6 @@ func close_animation() -> void:
 	await transition.finished;
 	
 func setup_prices() -> void:
-	# TODO Récupérer les vrais prix ici 
-	# (déplacer ce dictionnaire là où il est utile me semble le mieux)
-	'''var crystal_prices : Dictionary[ModuleId.Of, int] = {
-		ModuleId.Of.TURRET:           5,
-		ModuleId.Of.MISSILE_LAUNCHER: 8,
-		ModuleId.Of.TUBE:             1,
-		ModuleId.Of.HATCH:            3,
-		ModuleId.Of.AUTO_MINER:       10,
-	}
-	
-	var action_point_prices : Dictionary[ModuleId.Of, int] = {
-		ModuleId.Of.TURRET:           30,
-		ModuleId.Of.MISSILE_LAUNCHER: 50,
-		ModuleId.Of.TUBE:             5,
-		ModuleId.Of.HATCH:            10,
-		ModuleId.Of.AUTO_MINER:       20,
-	}
-	'''
 	#rallongement des ligne de code pour lisibilite du code
 	var turret_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET
 	turret_button.set_prices(PlayerBaseCells.crystal_costs[turret_enum], PlayerBaseCells.action_costs[turret_enum]);

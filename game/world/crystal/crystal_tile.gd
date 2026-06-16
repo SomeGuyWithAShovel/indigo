@@ -1,8 +1,11 @@
 class_name CrystalTile
 extends Node3D
 
+var camera : Camera3D;
 var terrain: Terrain = null;
 @export var player_collect_sound: AudioStreamPlayer = null;
+@export var crystal_obtained_icon_scene : PackedScene;
+var crystal_obtained_icon : CrystalObtainedIcon;
 
 @export var crystal_amount_per_operation: int = 5;
 
@@ -28,6 +31,10 @@ func _ready() -> void:
 	DayNightSystem.on_day_start.connect(day_started);
 	DayNightSystem.on_night_start.connect(night_started);
 	interactible = Interactible.new(Callable(self, &"interact"), Interactible.Action.MINE, Callable(self, &"uninteract"));
+	
+	crystal_obtained_icon = crystal_obtained_icon_scene.instantiate();
+	camera = get_viewport().get_camera_3d();
+	assert(camera != null);
 	
 func day_started() -> void:
 	is_day = true;
@@ -66,9 +73,11 @@ func interact() -> void :
 		return;
 	
 	var player: Player = Globals.player; # should probably be a parameter of interact ?
+	var crystals_obtained : int;
 	
 	if (player.action_points.remove_with_check(action_points_per_interaction)) :
-		player.crystals.add(crystal_amount_per_operation * manual_multiplier);
+		crystals_obtained = crystal_amount_per_operation * manual_multiplier;
+		player.crystals.add(crystals_obtained);
 		on_being_manually_mined.emit();
 		pass;
 		
@@ -76,7 +85,26 @@ func interact() -> void :
 		mining_tween = get_tree().create_tween();
 		mining_tween.tween_property(self, "scale", scale, 1.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
 	interaction_count += 1;
+	add_indication(crystals_obtained);
 	return;
+	
+func add_indication(crystals_obtained : int) -> void:
+	var other_indication = UIManager.instance.get_children().find(crystal_obtained_icon);
+	if other_indication >= 0 and crystal_obtained_icon.unprojector != null:
+		# Doit se faire avant, le reset réinitialise également la position de l'unrojector
+		crystal_obtained_icon.reset_self(); 		
+		if crystal_obtained_icon.unprojector.global_position.is_equal_approx(global_position):
+			crystal_obtained_icon.add_to_value(crystals_obtained);
+		else:
+			crystal_obtained_icon.set_value(crystals_obtained);
+			crystal_obtained_icon.unprojector.global_position = global_position;
+	else:
+		UIManager.instance.add_child(crystal_obtained_icon);
+		await get_tree().process_frame;
+		crystal_obtained_icon.set_value(crystals_obtained);
+		crystal_obtained_icon.unprojector.global_position = global_position;
+		crystal_obtained_icon.unprojector.camera = camera;
+	
 
 func uninteract() -> void:
 	if not is_day or interaction_count <= 0: 

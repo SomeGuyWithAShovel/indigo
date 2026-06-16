@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fl2knjkdirn0"]
 
 [ext_resource type="Script" uid="uid://dswbd32w7d7mg" path="res://game/world/terrain.gd" id="1_ig0dc"]
-[ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal_tile.tscn" id="2_konwf"]
+[ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal/crystal_tile.tscn" id="2_konwf"]
 [ext_resource type="PackedScene" uid="uid://dcobj7squ7ld6" path="res://game/world/QuotaBox.tscn" id="3_3rkxp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rkxp"]

@@ -59,7 +59,9 @@ func on_interaction_target_change(old : Node3D, new : Node3D) -> void:
 		var new_interactible := new.interactible as Interactible;
 		UIManager.instance.add_child(indication_container);
 		indication_container.unprojector.global_position = new.global_position;
-		await get_tree().process_frame;
+		# Pour que le unprojector puisse ticker une fois,
+		# on veut pas afficher l'indicateur avant qu'il soit placé au bon endroit
+		await get_tree().process_frame; 
 		setup_indication(new_interactible);
 	
 func setup_indication(new_interactible : Interactible) -> void:
