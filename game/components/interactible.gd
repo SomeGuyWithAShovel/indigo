@@ -18,10 +18,10 @@ func _init(_interact : Callable, _action : Action, _uninteract : Callable = Call
 	interact = _interact;
 	if not _uninteract.is_null():
 		uninteract = _uninteract  
-		_uninteractible = false;
+		_uninteractible = true;
 	else:
 		uninteract = Callable(self, "unimplemented");
-		_uninteractible = true;
+		_uninteractible = false;
 	action = _action;
 	
 func is_uninteractible() -> bool:

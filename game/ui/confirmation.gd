@@ -4,6 +4,8 @@ class_name Confirmation
 signal on_response(yes : bool);
 var response : bool;
 @onready var label : Label = $VBoxContainer/Text;
+@onready var yes_text : Label = $VBoxContainer/HBoxContainer/Yes;
+@onready var no_text : Label  = $VBoxContainer/HBoxContainer/No;
 
 func _ready() -> void:
 	on_response.connect(func(got : bool): response = got);
