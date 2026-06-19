@@ -230,6 +230,26 @@ func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2
 	print("spent %d action points (%d remaining)" % [turret_AP_cost, action_points.get_amount()]);
 	return true;
 
+func check_if_base_is_neighbour(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
+	var possible_neighbours_coords: Array[Vector2i] = [
+		coords + Vector2i( 1, 0),
+		coords + Vector2i( 0, 1),
+		coords + Vector2i(-1, 0),
+		coords + Vector2i( 0,-1),
+	];
+	var quota_box_coords: Vector2i = construction_grid.player_base.get_quota_box_coords();
+	for neighbour_coords in possible_neighbours_coords :
+		if (construction_grid.player_base.has_base_cell(neighbour_coords) ||
+			neighbour_coords == quota_box_coords ) :
+			return true;
+		# else : 
+			# check next coordinates
+			# pass;
+		pass;
+	# was false for all neighbours
+	
+	return false;
+
 func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
 	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
 		print("trying to build base cell in a cell where the terrain is blocking construction");
@@ -237,6 +257,10 @@ func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) 
 	
 	if (construction_grid.can_build_base(coords) == false) :
 		print("trying to build base cell in a cell where we can't build base cells");
+		return false;
+	
+	if (check_if_base_is_neighbour(construction_grid, coords) == false) :
+		print("trying to build base cell in a cell without adjacent base");
 		return false;
 	
 	var crystals: PlayerResource = player.crystals;

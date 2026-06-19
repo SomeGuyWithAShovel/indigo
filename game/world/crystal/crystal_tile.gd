@@ -42,7 +42,7 @@ func day_started() -> void:
 	
 func night_started() -> void:
 	is_day = false;
-	
+
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :

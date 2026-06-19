@@ -1,64 +1,11 @@
 [gd_scene format=3 uid="uid://cvmagmkw58u2u"]
 
 [ext_resource type="Script" uid="uid://bxl1rbyts833d" path="res://game/main.gd" id="1_oa506"]
-[ext_resource type="PackedScene" uid="uid://ctixn2ovn721f" path="res://game/world/world.tscn" id="2_emt18"]
-[ext_resource type="Shader" uid="uid://bkfh5sv5ylp5b" path="res://assets/see_through_shader.gdshader" id="2_vop5m"]
-[ext_resource type="Script" uid="uid://d6v46o5jplx5" path="res://game/see_through_system/see_through_system.gd" id="3_vop5m"]
-[ext_resource type="PackedScene" uid="uid://comrs3i4lsjuo" path="res://game/systems/UIManager.tscn" id="5_5un7r"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_o5qli"]
-viewport_path = NodePath("SeeThroughCanvasItem/NormalViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0wfyh"]
-viewport_path = NodePath("SeeThroughCanvasItem/SeeThroughViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_5un7r"]
-viewport_path = NodePath("SeeThroughCanvasItem/UIViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
-resource_local_to_scene = true
-shader = ExtResource("2_vop5m")
-shader_parameter/Cam1_texture = SubResource("ViewportTexture_o5qli")
-shader_parameter/Cam2_texture = SubResource("ViewportTexture_0wfyh")
-shader_parameter/UI_texture = SubResource("ViewportTexture_5un7r")
-shader_parameter/Target_Pos_PX = Vector2(0, 0)
-shader_parameter/Radius = 400.0
-shader_parameter/Edge_Smooth = 50.000002375
-shader_parameter/Texture_Size = Vector2(1920, 1080)
-shader_parameter/Pixelize_Edge = 0.0
-shader_parameter/Pixel_Size_PX = 23.791
+[ext_resource type="PackedScene" uid="uid://drcjum08h0umx" path="res://game/main_menu/main_menu.tscn" id="2_xtpaf"]
+[ext_resource type="PackedScene" uid="uid://cdt3742dpap3q" path="res://game/game_scene.tscn" id="3_emt18"]
 
 [node name="Main" type="Node" unique_id=2032964175]
 script = ExtResource("1_oa506")
 
-[node name="SeeThroughCanvasItem" type="ColorRect" parent="." unique_id=1674370367 node_paths=PackedStringArray("normal_viewport", "see_through_viewport", "ui_viewport", "see_through_camera", "canvas_item")]
-material = SubResource("ShaderMaterial_0wfyh")
-mouse_filter = 2
-script = ExtResource("3_vop5m")
-normal_viewport = NodePath("NormalViewport")
-see_through_viewport = NodePath("SeeThroughViewport")
-ui_viewport = NodePath("UIViewport")
-see_through_camera = NodePath("SeeThroughViewport/SeeThroughCamera")
-canvas_item = NodePath(".")
-
-[node name="NormalViewport" type="SubViewport" parent="SeeThroughCanvasItem" unique_id=729283254]
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
-render_target_update_mode = 4
-
-[node name="World" parent="SeeThroughCanvasItem/NormalViewport" unique_id=1613566239 instance=ExtResource("2_emt18")]
-
-[node name="SeeThroughViewport" type="SubViewport" parent="SeeThroughCanvasItem" unique_id=1119225364]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="SeeThroughCamera" type="Camera3D" parent="SeeThroughCanvasItem/SeeThroughViewport" unique_id=1222048423]
-cull_mask = 1048573
-
-[node name="UIViewport" type="SubViewport" parent="SeeThroughCanvasItem" unique_id=1460098071]
-transparent_bg = true
-
-[node name="Camera2D" type="Camera2D" parent="SeeThroughCanvasItem/UIViewport" unique_id=767622387]
-anchor_mode = 0
-
-[node name="UiManager" parent="SeeThroughCanvasItem/UIViewport" unique_id=1533921697 instance=ExtResource("5_5un7r")]
+[node name="MainMenu" parent="." unique_id=1576864754 instance=ExtResource("2_xtpaf")]
+game_scene = ExtResource("3_emt18")

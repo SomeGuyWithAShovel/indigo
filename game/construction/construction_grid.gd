@@ -60,7 +60,7 @@ func set_tile_as_crystal_tile(grid_coords: Vector2i, crystal_tile: CrystalTile) 
 		return;
 	crystal_tiles[grid_coords] = crystal_tile;
 	return;
-	
+
 func set_tile_as_obstructed(grid_coords : Vector2i) -> void:
 	if obstructed_tile.has(grid_coords):
 		print("ConstructionGrid::set_tile_as_obstructed(%d;%d) : already set as obstructed tile" % 
