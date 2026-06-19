@@ -6,10 +6,42 @@ extends Node
 
 signal on_cell_constructed(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of);
 
+enum Construction_Result{
+	Possible,
+	NoCrystal,
+	NoActionP,
+	InvalidPlacement,
+	NeedNearTube,
+	NoSlotAvaible,
+	Other
+}
+
 func _enter_tree() -> void :
 	assert(player != null);
 	assert(construction_sound != null);
 	return;
+
+func check_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of) -> Construction_Result :
+	var callables: Dictionary[ModuleId.Of, Callable] = {
+		ModuleId.Of.TURRET : check_construct_turret,
+		ModuleId.Of.MISSILE_LAUNCHER : check_construct_turret,
+		ModuleId.Of.TUBE : check_build_base_cell,
+		ModuleId.Of.AUTO_MINER : check_build_mining_cell ,
+		ModuleId.Of.HATCH: check_build_door,
+	};
+	
+	var return_value: Construction_Result = Construction_Result.Other;
+	if (callables.has(construction_type) == false) :
+		print("check_construct_cell() : type ", construction_type, " is not implemented");
+		return Construction_Result.Other;
+	if (construction_type_is_turret(construction_type)) :
+		return_value = callables[construction_type as int].call(construction_grid, coords, construction_type);
+		pass;
+	else:
+		return_value = callables[construction_type as int].call(construction_grid, coords);
+	return return_value;
+
+
 
 func try_construct_cell(construction_grid: ConstructionGrid, coords: Vector2i, construction_type: ModuleId.Of) -> bool :
 	var callables: Dictionary[ModuleId.Of, Callable] = {
@@ -40,6 +72,125 @@ static func construction_type_is_turret(construction_type: ModuleId.Of) -> bool 
 		ModuleId.Of.MISSILE_LAUNCHER
 	];
 	return turret_types.has(construction_type);
+
+func check_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2i, _turret_type: ModuleId.Of) -> Construction_Result :
+	if (_construction_grid.is_terrain_ok_to_build(_coords) == false) :
+		return Construction_Result.InvalidPlacement;
+	
+	if (_construction_grid.can_build_turret(_coords) == false) :
+		return Construction_Result.InvalidPlacement;
+		
+	#Different cout de tourelle
+	var turret_type:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET;
+	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	
+	if _turret_type == ModuleId.Of.MISSILE_LAUNCHER:
+		turret_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+	
+	var turret_cell_cost: int = PlayerBaseCells.crystal_costs[turret_type];
+	var turret_AP_cost:int = PlayerBaseCells.action_costs[turret_type]
+	
+	
+	if (crystals.has_amount(turret_cell_cost) == false) :
+		return Construction_Result.NoCrystal;
+	if (action_points.has_amount(turret_AP_cost) == false) :
+		return Construction_Result.NoActionP;
+	
+	if (_construction_grid.player_base.has_any_cell(_coords)) :
+		return Construction_Result.InvalidPlacement;;
+	return Construction_Result.Possible
+
+func check_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
+	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
+		return Construction_Result.InvalidPlacement;
+	
+	if (construction_grid.can_build_base(coords) == false) :
+		return Construction_Result.InvalidPlacement;
+	
+	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.BASE_CELL];
+	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.BASE_CELL];
+	if (crystals.has_amount(base_cell_cost) == false) :
+		return Construction_Result.NoCrystal;
+	
+	if (action_points.has_amount(base_action_points_cost) == false) :
+		return Construction_Result.NoActionP;
+	
+	if (construction_grid.player_base.has_any_cell(coords)) :
+		return Construction_Result.InvalidPlacement;;
+	return Construction_Result.Possible
+
+func check_build_module_in_slot(module: PlayerBaseModules.Enum, slot: PlayerBaseModuleSlot) -> bool :
+	var module_placed: bool = slot.check_module(module);
+	return module_placed;
+
+func check_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> Construction_Result :
+	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
+		return Construction_Result.InvalidPlacement;
+	
+	if (construction_grid.can_build_miner(coords) == false) :
+		return Construction_Result.InvalidPlacement;
+		
+	var has_neighbor_base : bool = [
+		(coords + Vector2i(  1,  0)),
+		(coords + Vector2i(  0, -1)),
+		(coords + Vector2i( -1,  0)),
+		(coords + Vector2i(  0,  1)),
+	].any(construction_grid.player_base.has_base_cell);
+	if not has_neighbor_base:
+		return Construction_Result.NeedNearTube;
+		
+	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.AUTO_MINER];
+	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.AUTO_MINER];
+	if (crystals.has_amount(mining_cell_cost) == false) :
+		return Construction_Result.NoCrystal;
+	
+	if (action_points.has_amount(mining_action_points_cost) == false) :
+		return Construction_Result.NoActionP;
+	
+	if (construction_grid.player_base.has_any_cell(coords)) :
+		return Construction_Result.InvalidPlacement;;
+	return Construction_Result.Possible
+
+func check_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bool :
+	#Verification que la cellule a un module
+	var cell_to_construct:PlayerBaseCell = construction_grid.player_base.base_cells.get(coords)
+	if cell_to_construct == null:
+		return Construction_Result.InvalidPlacement
+	if !cell_to_construct.hasModuleAvaibleSlot():
+		return Construction_Result.NoSlotAvaible
+	
+	var crystals: PlayerResource = player.crystals;
+	var action_points:PlayerResource = player.action_points;
+	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.DOOR];
+	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.DOOR];
+	if (crystals.has_amount(door_cell_cost) == false) :
+		return Construction_Result.NoCrystal;
+	
+	if (action_points.has_amount(door_action_points_cost) == false) :
+		return Construction_Result.NoActionP;
+	
+	
+	#On prends la premiere car pas le temps
+	#TODO voir quelle moduleslot le player q cliquer plutot que seulement la cellule de grid
+	#pour avoir plusieur module slote dans une cell
+	var module_slot:PlayerBaseModuleSlot = cell_to_construct.moduleslots_array[0]
+	var set_result: bool = check_build_module_in_slot(PlayerBaseModules.Enum.Door,module_slot);
+	if (set_result == false) :
+		return Construction_Result.Other;
+	
+	return Construction_Result.Possible;
+
+
+
+
+
+
+
 
 func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2i, _turret_type: ModuleId.Of) -> bool :
 	if (_construction_grid.is_terrain_ok_to_build(_coords) == false) :

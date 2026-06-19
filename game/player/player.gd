@@ -21,6 +21,10 @@ var last_mouse_pos_clicked: Vector2 = Vector2.ZERO;
 var mouse_clicked: bool = false;
 var selected_construction_type: ModuleId.Of = ModuleId.Of.NONE;
 
+var ghost_building:Node3D
+var blue_material:Material = load("res://assets/Material/construction_blue.tres")
+var red_material:Material = load("res://assets/Material/construction_red.tres")
+
 func _enter_tree() -> void :
 	
 	assert(camera != null); 
@@ -48,7 +52,87 @@ func _process(_delta: float) -> void:
 		last_mouse_pos_clicked = get_viewport().get_mouse_position();
 		if UIManager.instance.is_build_menu_open: 
 			try_build.call_deferred();
+	if (ghost_building != null):
+		update_ghost()
 	return;
+
+func update_ghost():
+	#Securite au cas ou
+	if (selected_construction_type == ModuleId.Of.NONE):
+		return 
+	if (ghost_building == null):
+		return
+	var mouse_pos:Vector2 = get_viewport().get_mouse_position();
+	var raycast_result = do_mouse_raycast_at(mouse_pos)
+	if (raycast_result == null) :
+		return;
+	var collided : Node3D = raycast_result["collider"] as Node3D;
+	if (collided == null) :
+		return;
+	var collided_parent = collided.get_parent();
+	if (collided_parent == null) :
+		return;
+	var collided_grid: ConstructionGrid = collided_parent as ConstructionGrid;
+	if (collided_grid == null) :
+		return;
+	var raycast_position: Vector3 = raycast_result["position"];
+	var cell_coord: Vector2 = collided_grid.get_grid_coords_from_world_coords(raycast_position);
+	
+	#On ne modifie que la position.
+	var construction_result:PlayerConstruction.Construction_Result =  construction.check_construct_cell(collided_grid, cell_coord, selected_construction_type);
+	
+	#On peut creer sans desactiver car le "pouvoir" des batiment, c'est la nuit
+	
+	update_ghost_position(cell_coord,collided_grid)
+	
+	
+	if (!(construction_result == PlayerConstruction.Construction_Result.Possible)):
+		color_building(red_material)
+		#TODO Affichage de la raison
+	else:
+		color_building(blue_material)
+
+	
+	return;
+
+func color_building(material:Material):
+	if (selected_construction_type != ModuleId.Of.HATCH):
+		var ghost_cell = ghost_building as PlayerBaseCell
+		#On rajoute a tous ses meshInstance du bleu
+		for i:MeshInstance3D in ghost_cell.meshinstance_array:
+			i.material_overlay = material
+	#Different pour le module (herite pas de player base cell)
+	elif (selected_construction_type == ModuleId.Of.HATCH):
+		var ghost_cell = ghost_building as PlayerBaseModule
+		#On rajoute a tous ses meshInstance du bleu
+		for i:MeshInstance3D in ghost_cell.meshinstance_array:
+			i.material_overlay = material
+
+func update_ghost_position(new_cell_coord: Vector2,collided_grid:ConstructionGrid):
+	var cell_world_coord:Vector3 = collided_grid.get_world_coords_from_grid_coords(new_cell_coord)
+	ghost_building.global_position = cell_world_coord
+	#Rotation de la porte en fonction du tube
+	if (selected_construction_type == ModuleId.Of.HATCH):
+		print(collided_grid.getDir_from_cell(new_cell_coord))
+		#ghost_building.global_rotation_degrees += Vector3(0,1,0)
+		#print(ghost_building.global_rotation)
+		match collided_grid.getDir_from_cell(new_cell_coord):
+			Dir.Enum.E:
+				#Ouest (Les dir sont inverse de 180 ;( )
+				ghost_building.global_rotation_degrees = Vector3(0,180,0)
+			Dir.Enum.W:
+				#Est
+				ghost_building.global_rotation_degrees = Vector3(0,0,0)
+			Dir.Enum.N:
+				#Sud
+				ghost_building.global_rotation_degrees = Vector3(0,270,0)
+			Dir.Enum.S:
+				#Nord
+				ghost_building.global_rotation_degrees = Vector3(0,90,0)
+	elif ghost_building.global_rotation_degrees != Vector3(0,0,0):
+		ghost_building.global_rotation_degrees = Vector3(0,0,0)
+	pass
+
 
 func try_build() -> void:
 	var is_open = UIManager.instance.is_build_menu_open;
@@ -63,6 +147,28 @@ func try_build() -> void:
 func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 	selected_construction_type = construction_type;
 	print("selected construction_type ", selected_construction_type);
+	if (ghost_building != null):
+		ghost_building.queue_free()
+	match selected_construction_type:
+		ModuleId.Of.NONE:
+			ghost_building = null
+		ModuleId.Of.TUBE:
+			ghost_building = PlayerBaseCells.base_scene_array[0].instantiate()
+			add_child(ghost_building)
+		ModuleId.Of.TURRET:
+			ghost_building = PlayerBaseCells.turret_scene_array[0].instantiate()
+			add_child(ghost_building)
+		ModuleId.Of.MISSILE_LAUNCHER:
+			ghost_building = PlayerBaseCells.turret_scene_array[1].instantiate()
+			add_child(ghost_building)
+		ModuleId.Of.HATCH:
+			ghost_building = PlayerBaseModules.scene_array[1].instantiate()
+			add_child(ghost_building)
+		ModuleId.Of.AUTO_MINER:
+			ghost_building = PlayerBaseCells.mining_scene.instantiate()
+			ghost_building.is_ghost = true
+			add_child(ghost_building)
+			
 	return;
 
 func do_mouse_raycast_at(mouse_pos: Vector2) -> Dictionary :

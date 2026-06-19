@@ -20,8 +20,9 @@ roughness = 0.5
 material = ExtResource("3_y8vi8")
 size = Vector3(0.225, 0.7, 0.45)
 
-[node name="MiningCell" type="Node3D" unique_id=1227523252]
+[node name="MiningCell" type="Node3D" unique_id=1227523252 node_paths=PackedStringArray("meshinstance_array")]
 script = ExtResource("1_kawp1")
+meshinstance_array = [NodePath("Supports"), NodePath("Supports2"), NodePath("Head"), NodePath("Head/Drill"), NodePath("Head/Reservoir")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=812699608 groups=["navigation_mesh_source_group"]]
 collision_layer = 64

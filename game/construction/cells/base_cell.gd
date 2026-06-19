@@ -8,6 +8,7 @@ extends Node3D
 @onready var health : HealthComponent = $HealthComponent;
 
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
+@export var meshinstance_array:Array[MeshInstance3D] = [];
 
 func hasModuleAvaibleSlot() -> bool:
 	return moduleslots_array.size() > 0;

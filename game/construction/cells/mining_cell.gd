@@ -3,7 +3,11 @@ extends PlayerBaseCell
 
 var crystal_tile: CrystalTile;
 
+var is_ghost = false;
+
 func _enter_tree() -> void :
+	if is_ghost:
+		return
 	assert(crystal_tile != null);
 	return;
 

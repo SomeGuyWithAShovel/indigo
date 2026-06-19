@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b8l3x12fwdbrv"]
+
+[ext_resource type="PackedScene" uid="uid://fpiwtw8pgq6k" path="res://assets/3dModels/Missile Space Launcher 01.fbx" id="1_8hmp4"]
+
+[node name="Missile Space Launcher 01" unique_id=409671315 instance=ExtResource("1_8hmp4")]

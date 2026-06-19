@@ -58,3 +58,8 @@ func _raw_place_module(module: PlayerBaseModules.Enum) -> bool :
 	current_module = new_module;
 	
 	return true;
+
+func check_module(module: PlayerBaseModules.Enum) -> bool:
+	if ((allowed_modules.has(module) == false) or (module == PlayerBaseModules.Enum.None)) :
+		return false;
+	return true

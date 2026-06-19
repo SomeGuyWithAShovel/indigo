@@ -97,7 +97,6 @@ func _physics_process(_delta: float) -> void:
 	if (!direction.is_zero_approx()):
 		$space_man_model.play_forward();
 		$space_man_model.look_at(global_position - direction)
-		print($space_man_model.position)
 	else:
 		$space_man_model.play_idle();
 	

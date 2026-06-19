@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://ctl428b61e107" path="res://game/construction/modules/door_module/door_module.gd" id="1_a4hi5"]
 [ext_resource type="ArrayMesh" uid="uid://bqpcur7bdfn81" path="res://assets/3dModels/corridor_end.obj" id="2_uccca"]
 
-[node name="DoorModule" type="Node3D" unique_id=567859853]
+[node name="DoorModule" type="Node3D" unique_id=567859853 node_paths=PackedStringArray("meshinstance_array")]
 script = ExtResource("1_a4hi5")
+meshinstance_array = [NodePath("MeshInstance3D")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1190818728]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

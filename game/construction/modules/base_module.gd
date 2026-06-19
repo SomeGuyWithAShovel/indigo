@@ -1,6 +1,8 @@
 class_name PlayerBaseModule
 extends Node3D
 
+@export var meshinstance_array:Array[MeshInstance3D] = [];
+
 signal removed();
 
 func init_module() -> void :

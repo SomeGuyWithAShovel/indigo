@@ -76,3 +76,10 @@ func remove_tile_from_crystal_tiles(grid_coords: Vector2i) :
 		crystal_tiles.erase(grid_coords);
 		pass;
 	return;
+
+func getDir_from_cell(coord:Vector2i)->Dir.Enum:
+	var value = player_base.base_cells_dir.get(coord)
+	if value == null:
+		return Dir.Enum.None
+	return value
+	
