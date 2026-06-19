@@ -215,7 +215,9 @@ func try_set_turret_cell_at(coords: Vector2i, turret_type:ModuleId.Of) -> bool :
 func do_all_mining_operations() -> void :
 	var new_crystals: int = 0;
 	for mining_cell_coord in mining_cells :
-		new_crystals += mining_cells[mining_cell_coord].mining_operation();
+		var mining_cell = mining_cells[mining_cell_coord]
+		if mining_cell.buildingstatus == PlayerBaseCell.BuildingState.Alive:
+			new_crystals += mining_cell.mining_operation();
 		pass;
 	player.crystals.add(new_crystals);
 	return;

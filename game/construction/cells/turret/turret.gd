@@ -16,6 +16,7 @@ func _enter_tree() -> void :
 	assert(shoot_timer != null);
 	shoot_timer.wait_time = shot_cd;
 	print("shot_cd = ", shoot_timer.wait_time);
+	building_type = cell_type.CLASSIC_TURRET
 	return;
 
 
@@ -42,9 +43,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void :
 	var monster: Monster = body.owner as Monster;
 	if (monster == null) :
 		return;
-		
 	cur_enemie.append(monster);
-	if shoot_timer.is_stopped() :
+	if shoot_timer.is_stopped() and (buildingstatus == BuildingState.Alive) :
 		shoot_timer.start();
 		pass;
 	return;
@@ -129,3 +129,12 @@ func damage_Monster(monster: Monster)-> void:
 func _on_timer_timeout() -> void:
 	shoot();
 	return;
+
+func deactivate():
+	super()
+	shoot_timer.stop()
+	target = null
+func reactivate():
+	super()
+	target = getShortestMonster();
+	shoot_timer.start()

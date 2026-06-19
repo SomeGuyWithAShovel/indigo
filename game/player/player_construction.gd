@@ -81,12 +81,12 @@ func check_construct_turret(_construction_grid: ConstructionGrid, _coords: Vecto
 		return Construction_Result.InvalidPlacement;
 		
 	#Different cout de tourelle
-	var turret_type:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET;
+	var turret_type:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.CLASSIC_TURRET;
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
 	
 	if _turret_type == ModuleId.Of.MISSILE_LAUNCHER:
-		turret_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+		turret_type = PlayerBaseCell.cell_type.MISSILE_LAUNCHER
 	
 	var turret_cell_cost: int = PlayerBaseCells.crystal_costs[turret_type];
 	var turret_AP_cost:int = PlayerBaseCells.action_costs[turret_type]
@@ -107,11 +107,12 @@ func check_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i
 	
 	if (construction_grid.can_build_base(coords) == false) :
 		return Construction_Result.InvalidPlacement;
-	
+	if (check_if_base_is_neighbour(construction_grid, coords) == false) :
+		return Construction_Result.NeedNearTube;
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.BASE_CELL];
-	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.BASE_CELL];
+	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.BASE_CELL];
+	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.BASE_CELL];
 	if (crystals.has_amount(base_cell_cost) == false) :
 		return Construction_Result.NoCrystal;
 	
@@ -144,8 +145,8 @@ func check_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector
 		
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.AUTO_MINER];
-	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.AUTO_MINER];
+	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.AUTO_MINER];
+	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.AUTO_MINER];
 	if (crystals.has_amount(mining_cell_cost) == false) :
 		return Construction_Result.NoCrystal;
 	
@@ -166,8 +167,8 @@ func check_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> 
 	
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.DOOR];
-	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.DOOR];
+	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.DOOR];
+	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.DOOR];
 	if (crystals.has_amount(door_cell_cost) == false) :
 		return Construction_Result.NoCrystal;
 	
@@ -202,12 +203,12 @@ func try_construct_turret(_construction_grid: ConstructionGrid, _coords: Vector2
 		return false;
 		
 	#Different cout de tourelle
-	var turret_type:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET;
+	var turret_type:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.CLASSIC_TURRET;
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
 	
 	if _turret_type == ModuleId.Of.MISSILE_LAUNCHER:
-		turret_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+		turret_type = PlayerBaseCell.cell_type.MISSILE_LAUNCHER
 	
 	var turret_cell_cost: int = PlayerBaseCells.crystal_costs[turret_type];
 	var turret_AP_cost:int = PlayerBaseCells.action_costs[turret_type]
@@ -265,8 +266,8 @@ func try_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) 
 	
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.BASE_CELL];
-	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.BASE_CELL];
+	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.BASE_CELL];
+	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.BASE_CELL];
 	if (crystals.has_amount(base_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [base_cell_cost, crystals.get_amount()]);
 		return false;
@@ -311,8 +312,8 @@ func try_build_mining_cell(construction_grid: ConstructionGrid, coords: Vector2i
 		
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.AUTO_MINER];
-	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.AUTO_MINER];
+	var mining_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.AUTO_MINER];
+	var mining_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.AUTO_MINER];
 	if (crystals.has_amount(mining_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [mining_cell_cost, crystals.get_amount()]);
 		return false;
@@ -345,8 +346,8 @@ func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bo
 	
 	var crystals: PlayerResource = player.crystals;
 	var action_points:PlayerResource = player.action_points;
-	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCells.cell_type.DOOR];
-	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCells.cell_type.DOOR];
+	var door_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.DOOR];
+	var door_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.DOOR];
 	if (crystals.has_amount(door_cell_cost) == false) :
 		print("not enough crystals (need %d, have %d)" % [door_cell_cost, crystals.get_amount()]);
 		return false;

@@ -1,6 +1,10 @@
 extends Turret
 class_name Heavy_Turret
 
+func _enter_tree() -> void:
+	super._enter_tree()
+	building_type = cell_type.MISSILE_LAUNCHER
+
 func shoot() -> void:
 	super.shoot()
 	if (target != null):

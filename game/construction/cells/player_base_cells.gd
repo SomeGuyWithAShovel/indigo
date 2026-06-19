@@ -19,16 +19,6 @@ static var turret_scene_array: Array[PackedScene] = [
 	preload("res://game/construction/cells/turret/heavy_turret.tscn")
 ];
 
-#Repetition de mosule_id mais en plus propre
-enum cell_type {
-	NONE = 0,
-	BASE_CELL = 1,
-	DOOR = 2,
-	AUTO_MINER = 3,
-	CLASSIC_TURRET = 4,
-	MISSILE_LAUNCHER = 5,
-}
-
 
 #Order : none, base, door, mineur, turret classic, rocket turret
 static var crystal_costs: Array[int] = [

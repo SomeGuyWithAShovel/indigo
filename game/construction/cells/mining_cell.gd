@@ -9,6 +9,7 @@ func _enter_tree() -> void :
 	if is_ghost:
 		return
 	assert(crystal_tile != null);
+	building_type = cell_type.AUTO_MINER
 	return;
 
 func mining_operation() -> int :

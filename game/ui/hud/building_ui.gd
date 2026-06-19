@@ -29,15 +29,15 @@ func close_animation() -> void:
 	
 func setup_prices() -> void:
 	#rallongement des ligne de code pour lisibilite du code
-	var turret_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.CLASSIC_TURRET
+	var turret_enum:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.CLASSIC_TURRET
 	turret_button.set_prices(PlayerBaseCells.crystal_costs[turret_enum], PlayerBaseCells.action_costs[turret_enum]);
-	var missile_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.MISSILE_LAUNCHER
+	var missile_enum:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.MISSILE_LAUNCHER
 	missile_launcher_button.set_prices(PlayerBaseCells.crystal_costs[missile_enum], PlayerBaseCells.action_costs[missile_enum]);
-	var miner_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.AUTO_MINER
+	var miner_enum:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.AUTO_MINER
 	miner_button.set_prices(PlayerBaseCells.crystal_costs[miner_enum], PlayerBaseCells.action_costs[miner_enum]);
-	var door_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.DOOR
+	var door_enum:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.DOOR
 	hatch_button.set_prices(PlayerBaseCells.crystal_costs[door_enum], PlayerBaseCells.action_costs[door_enum]);
-	var base_cell_enum:PlayerBaseCells.cell_type = PlayerBaseCells.cell_type.BASE_CELL
+	var base_cell_enum:PlayerBaseCell.cell_type = PlayerBaseCell.cell_type.BASE_CELL
 	tube_button.set_prices(PlayerBaseCells.crystal_costs[base_cell_enum], PlayerBaseCells.action_costs[base_cell_enum]);
 
 func on_button_down() -> void:

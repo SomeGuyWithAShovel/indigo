@@ -13,6 +13,8 @@ func _enter_tree() -> void :
 	# proportionnaly linked to the duration between 2 shots of the turret
 	laser_timer.wait_time = shoot_timer.wait_time * 0.3;
 	
+	building_type = cell_type.CLASSIC_TURRET
+	
 	assert(laser != null);
 	assert(laser_sound != null);
 	return;
