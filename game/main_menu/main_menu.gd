@@ -2,10 +2,14 @@ class_name MainMenu
 extends Node
 
 @export var game_scene: PackedScene = null;
+@onready var main_menu_music : AudioStreamPlayer = $MainMenuMusic;
 
 func _enter_tree() -> void :
 	assert(game_scene != null);
 	return;
+
+func _ready() -> void:
+	main_menu_music.play();
 
 func pre_start_game() -> void :
 	Globals.init_globals();

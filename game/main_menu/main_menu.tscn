@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dovxg2kfhvsay" path="res://game/main_menu/main_menu.gd" id="1_f1bok"]
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_sp5am"]
 [ext_resource type="Texture2D" uid="uid://cn34h6xcxmpbl" path="res://assets/ui/menu/Sample.png" id="2_rlutr"]
+[ext_resource type="AudioStream" uid="uid://benob27huqwb1" path="res://assets/sounds/music/Indigo Main Theme.mp3" id="4_rlneu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rlneu"]
 font_size = 96
@@ -11,6 +12,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" unique_id=1576864754]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -74,6 +76,10 @@ text = "Start"
 [node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=1389899353]
 layout_mode = 2
 text = "Quit"
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=1267207975]
+stream = ExtResource("4_rlneu")
+volume_db = -20.0
 
 [connection signal="pressed" from="VBoxContainer/BtnStart" to="." method="_on_btn_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]

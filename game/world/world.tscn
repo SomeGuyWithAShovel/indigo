@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://fl2knjkdirn0" path="res://game/world/terrain.tscn" id="1_aqibe"]
 [ext_resource type="PackedScene" uid="uid://b3rgtd2gmtt15" path="res://game/construction/construction_grid.tscn" id="1_ibfx6"]
 [ext_resource type="Script" uid="uid://d4oqi10ww6oy" path="res://game/world/world.gd" id="1_vwhhl"]
+[ext_resource type="AudioStream" uid="uid://mqtux13rxjnn" path="res://assets/sounds/music/Indigo Day Theme.mp3" id="2_5hesp"]
 [ext_resource type="PackedScene" uid="uid://grt0wxjjupom" path="res://game/player/player.tscn" id="2_ufdhy"]
+[ext_resource type="AudioStream" uid="uid://cv0qdagcltrbw" path="res://assets/sounds/music/Indigo Night Theme.mp3" id="3_ncs2d"]
 [ext_resource type="Script" uid="uid://drj1eh6mlb7c4" path="res://game/world/nav_mesh.gd" id="4_we8ss"]
 [ext_resource type="PackedScene" uid="uid://dgijar3nol6i" path="res://game/systems/WaveGenerator.tscn" id="8_5hesp"]
 [ext_resource type="PackedScene" uid="uid://cu4kcfopxete5" path="res://game/enemies/wave_spawn_point/WaveSpawnPoint.tscn" id="8_ibfx6"]
@@ -18,6 +20,9 @@ geometry_source_geometry_mode = 1
 
 [node name="World" type="Node3D" unique_id=1613566239]
 script = ExtResource("1_vwhhl")
+day_music = ExtResource("2_5hesp")
+night_music = ExtResource("3_ncs2d")
+max_relative_volume = -10.0
 
 [node name="PlayerNode" parent="." unique_id=1899147477 instance=ExtResource("2_ufdhy")]
 
@@ -51,3 +56,5 @@ transform = Transform3D(0.8660254, 0.43301272, -0.25, 0, 0.49999997, 0.86602545,
 [node name="ConstructionGrid" parent="." unique_id=1852987913 node_paths=PackedStringArray("player_base", "terrain") instance=ExtResource("1_ibfx6")]
 player_base = NodePath("../PlayerBase")
 terrain = NodePath("../NavigationRegion3D/Terrain")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=2038071047]

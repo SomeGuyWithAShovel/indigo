@@ -15,6 +15,7 @@ var action : Interactible.Action :
 	get:
 		return action;
 	set(value):
+		assert(value != Interactible.Action.NONE);
 		action = value;
 		action_icon.texture = action_icons[value];
 
@@ -29,7 +30,7 @@ const SQUARE_PIXEL_SIZE := 64;
 static var pos : Dictionary[Key, Vector2i] = {
 	KEY_E: Vector2i(5, 10),
 	KEY_A: Vector2i(4, 14),
-	KEY_R: Vector2i(15, 6),
+	KEY_R: Vector2i(15, 5),
 }
 
 func _ready() -> void:
