@@ -9,8 +9,10 @@ var direction:Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if direction != null:
-		pass
+		print(direction)
 		look_at(global_position + direction)
+		pass
+	
 	pass # Replace with function body.
 
 
