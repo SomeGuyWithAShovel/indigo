@@ -38,6 +38,10 @@ func _enter_tree() -> void :
 	assert(player_damaged_sound != null);
 	return;
 
+func _ready() -> void :
+	DayNightSystem.on_night_start.connect(on_night_start);
+	return;
+
 func _unhandled_input(_event: InputEvent) -> void :
 	var btn_event = _event as InputEventMouseButton;
 	if ((btn_event != null) && (btn_event.button_index == 1) && (btn_event.pressed)) :
@@ -54,6 +58,11 @@ func _process(_delta: float) -> void:
 			try_build.call_deferred();
 	if (ghost_building != null):
 		update_ghost()
+	return;
+
+
+func on_night_start() -> void :
+	set_selected_construction_type(ModuleId.Of.NONE);
 	return;
 
 func update_ghost():
@@ -148,7 +157,9 @@ func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 	selected_construction_type = construction_type;
 	print("selected construction_type ", selected_construction_type);
 	if (ghost_building != null):
-		ghost_building.queue_free()
+		ghost_building.queue_free();
+		ghost_building = null;
+		pass;
 	match selected_construction_type:
 		ModuleId.Of.NONE:
 			ghost_building = null
