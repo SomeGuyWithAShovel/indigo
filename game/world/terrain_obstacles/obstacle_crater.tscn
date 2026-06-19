@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dtaatf8ublr6u"]
+
+[ext_resource type="PackedScene" uid="uid://4ywcgj7dpvvg" path="res://game/world/terrain_obstacles/terrain_obstacle.tscn" id="1_mn65r"]
+[ext_resource type="ArrayMesh" uid="uid://cfce6876uncj4" path="res://assets/3dModels/craterLarge.obj" id="2_2wixn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2wixn"]
+size = Vector2(0.4, 0.4)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwjfh"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dwjfh"]
+radius = 0.9
+
+[node name="TerrainObstacle" unique_id=1785971822 instance=ExtResource("1_mn65r")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=466766964]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("2_2wixn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="1" unique_id=1985016917]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.075, 0)
+mesh = SubResource("QuadMesh_2wixn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dwjfh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1803947169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1176062695]
+shape = SubResource("CylinderShape3D_dwjfh")
