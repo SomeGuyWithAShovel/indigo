@@ -22,6 +22,7 @@ var mouse_clicked: bool = false;
 var selected_construction_type: ModuleId.Of = ModuleId.Of.NONE;
 
 var ghost_building:Node3D
+var ghost_label:Label3D
 var blue_material:Material = load("res://assets/Material/construction_blue.tres")
 var red_material:Material = load("res://assets/Material/construction_red.tres")
 
@@ -40,6 +41,11 @@ func _enter_tree() -> void :
 
 func _ready() -> void :
 	DayNightSystem.on_night_start.connect(on_night_start);
+	ghost_label = Label3D.new()
+	ghost_label.text = "temp"
+	ghost_label.font_size = 50
+	ghost_label.position = Vector3(0, 2, 0)
+	ghost_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	return;
 
 func _unhandled_input(_event: InputEvent) -> void :
@@ -89,11 +95,23 @@ func update_ghost():
 	
 	#On ne modifie que la position.
 	var construction_result:PlayerConstruction.Construction_Result =  construction.check_construct_cell(collided_grid, cell_coord, selected_construction_type);
-	
+	print(construction_result)
 	#On peut creer sans desactiver car le "pouvoir" des batiment, c'est la nuit
 	
 	update_ghost_position(cell_coord,collided_grid)
 	
+	#Changement du label de la raison de pourquoi on peut pas pas ordre de priorite
+	match construction_result:
+		PlayerConstruction.Construction_Result.NeedNearTube:
+			ghost_label.text = "Ce batiments doit être construit à côté de ta base"
+		PlayerConstruction.Construction_Result.InvalidPlacement:
+			ghost_label.text = "Emplacements Invalide"
+		PlayerConstruction.Construction_Result.NoSlotAvaible:
+			ghost_label.text = "Pas de module de porte disponible dans ce batiments"
+		PlayerConstruction.Construction_Result.NoCrystal:
+			ghost_label.text = "Pas assez de cristal"
+		PlayerConstruction.Construction_Result.Other,PlayerConstruction.Construction_Result.Possible:
+			ghost_label.text = ""
 	
 	if (!(construction_result == PlayerConstruction.Construction_Result.Possible)):
 		color_building(red_material)
@@ -157,31 +175,40 @@ func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 	selected_construction_type = construction_type;
 	print("selected construction_type ", selected_construction_type);
 	if (ghost_building != null):
+		ghost_building.remove_child(ghost_label)
 		ghost_building.queue_free();
+		ghost_label.text = ""
 		ghost_building = null;
+		
 		pass;
 	match selected_construction_type:
 		ModuleId.Of.NONE:
 			ghost_building = null
+			ghost_label.text = ""
 		ModuleId.Of.TUBE:
 			ghost_building = PlayerBaseCells.base_scene_array[0].instantiate()
+			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 		ModuleId.Of.TURRET:
 			ghost_building = PlayerBaseCells.turret_scene_array[0].instantiate()
+			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 		ModuleId.Of.MISSILE_LAUNCHER:
 			ghost_building = PlayerBaseCells.turret_scene_array[1].instantiate()
+			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 		ModuleId.Of.HATCH:
 			ghost_building = PlayerBaseModules.scene_array[1].instantiate()
+			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 		ModuleId.Of.AUTO_MINER:
 			ghost_building = PlayerBaseCells.mining_scene.instantiate()
 			ghost_building.is_ghost = true
+			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 			
-	var cell = ghost_building as PlayerBaseCell;
-	if cell: cell.collision.collision_layer = 0b1000;
+#	var cell = ghost_building as PlayerBaseCell;
+#	if cell: cell.collision.collision_layer = 0b1000;
 	
 	return;
 
