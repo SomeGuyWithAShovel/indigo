@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c1en8txeuxuqi" path="res://game/ui/confirmation.gd" id="1_pfgjq"]
 
 [node name="Confirmation" type="PanelContainer" unique_id=1768165308]
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

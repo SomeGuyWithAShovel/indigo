@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://drj1eh6mlb7c4" path="res://game/world/nav_mesh.gd" id="4_we8ss"]
 [ext_resource type="PackedScene" uid="uid://dgijar3nol6i" path="res://game/systems/WaveGenerator.tscn" id="8_5hesp"]
 [ext_resource type="PackedScene" uid="uid://cu4kcfopxete5" path="res://game/enemies/wave_spawn_point/WaveSpawnPoint.tscn" id="8_ibfx6"]
-[ext_resource type="PackedScene" uid="uid://c6sb0ehl5gnwt" path="res://game/construction/cells/basic_cell_list/standalone.tscn" id="8_ncs2d"]
 [ext_resource type="PackedScene" uid="uid://ce1ho4l4xpaci" path="res://game/construction/player_base.tscn" id="8_vwhhl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ibfx6"]
@@ -40,8 +39,6 @@ script = ExtResource("4_we8ss")
 [node name="Terrain" parent="NavigationRegion3D" unique_id=1393607273 node_paths=PackedStringArray("construction_grid") instance=ExtResource("1_aqibe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16106021, 0)
 construction_grid = NodePath("../../ConstructionGrid")
-
-[node name="Cell" parent="NavigationRegion3D" unique_id=39220363 instance=ExtResource("8_ncs2d")]
 
 [node name="WaveGenerator" parent="." unique_id=1245934762 node_paths=PackedStringArray("default_monster_target", "nav") instance=ExtResource("8_5hesp")]
 initial_wave_strength = 2

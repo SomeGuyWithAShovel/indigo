@@ -18,6 +18,7 @@ func _enter_tree() -> void :
 func _ready() -> void:
 	DayNightSystem.on_day_start.connect(day_mining);
 	DayNightSystem.on_night_start.connect(night_mining);
+	raw_set_base_cell_at(Vector2i(0, 0), Dir.Enum.None, 0);
 
 func day_mining() -> void:
 	night_timer.stop();
@@ -64,12 +65,14 @@ func raw_set_base_cell_at(coords: Vector2i, dir: Dir.Enum, _extra: int) -> void 
 		base_cells[coords] = null;
 		pass;
 	
+	
 	var new_node = Dir.create_cell_node_from_packed_scene_array(PlayerBaseCells.base_scene_array, self, dir);
 	var new_cell = new_node as PlayerBaseCell;
 	assert(new_cell != null);
 	
 	new_cell.name = "Cell(%d,%d)" % [coords.x, coords.y];
 	new_cell.position = construction_grid.get_world_coords_from_grid_coords(coords);
+	if coords == Vector2i(0, 0): new_cell.collision.collision_layer = 0b1;
 	
 	base_cells[coords] = new_cell;
 	base_cells_dir[coords] = dir;

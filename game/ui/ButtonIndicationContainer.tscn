@@ -6,6 +6,8 @@
 [node name="InteractionIndication" type="Control" unique_id=173152637]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
+mouse_behavior_recursive = 2
 script = ExtResource("1_ke2b5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=575109624]

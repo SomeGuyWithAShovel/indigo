@@ -63,6 +63,8 @@ offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(32, 96)
+mouse_filter = 2
+mouse_behavior_recursive = 2
 script = ExtResource("1_nvvkb")
 action_icons = Dictionary[int, CompressedTexture2D]({
 1: ExtResource("3_skb2i"),
@@ -73,10 +75,12 @@ action_icons = Dictionary[int, CompressedTexture2D]({
 
 [node name="Button" type="TextureRect" parent="." unique_id=341161177]
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_nvvkb")
 
 [node name="Action" type="TextureRect" parent="." unique_id=487546303]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_skb2i")
 expand_mode = 4
 
