@@ -13,6 +13,7 @@ func _ready() -> void:
 	DayNightSystem.on_night_start.connect(set_night);
 	set_day();
 	game_music.volume_db = max_relative_volume;
+	game_music.finished.connect(func(): play_music(game_music.stream));
 	
 var music_tween : Tween = null;
 	

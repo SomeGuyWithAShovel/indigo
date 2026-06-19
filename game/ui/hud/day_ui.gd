@@ -4,6 +4,7 @@ extends Control
 @onready var quota : BarContainer = $LeftPanel/QuotaContainer;
 @onready var crystal_label : Label = $LeftPanel/CrystalContainer/Amount;
 @onready var action_point: BarContainer = $RightPanel/ActionPointsContainer;
+@onready var building_indication : Label = $Label
 
 func _ready() -> void:
 	setup_events();
@@ -30,11 +31,16 @@ func setup_events() -> void:
 	
 func init_values() -> void:
 	if not Globals.is_setup: await Globals.globals_setup;
-	var player_health := Globals.player.character.health;
+	var player_health : HealthComponent = Globals.player.character.health;
 	health.set_progress(player_health.get_health(), player_health.max_health);
 	quota.set_progress(DayNightSystem.spent_on_quota, DayNightSystem.quota);
 	set_crystal_count(Globals.player.crystals.get_amount());
 	action_point.set_progress(Globals.player.action_points.get_amount(), DayNightSystem.action_points_per_day);
+
+func _unhandled_input(event: InputEvent) -> void:
+	if building_indication == null: return;
+	if event is InputEventKey and event.keycode == KEY_SPACE:
+		building_indication.queue_free();
 
 func set_crystal_count(value : int) -> void:
 	crystal_label.text = str(value);
@@ -45,7 +51,7 @@ func _on_night_requested() -> void:
 	# Pas de spam
 	if is_confirmation_box_opened: return;
 	
-	var ap_amount := Globals.player.action_points.get_amount();
+	var ap_amount : int = Globals.player.action_points.get_amount();
 	if ap_amount > 0:
 		var box : Confirmation = confirmation_box.instantiate();
 		var ui_manager := get_parent() as UIManager;
