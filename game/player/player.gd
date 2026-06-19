@@ -95,7 +95,6 @@ func update_ghost():
 	
 	#On ne modifie que la position.
 	var construction_result:PlayerConstruction.Construction_Result =  construction.check_construct_cell(collided_grid, cell_coord, selected_construction_type);
-	print(construction_result)
 	#On peut creer sans desactiver car le "pouvoir" des batiment, c'est la nuit
 	
 	update_ghost_position(cell_coord,collided_grid)
@@ -103,13 +102,15 @@ func update_ghost():
 	#Changement du label de la raison de pourquoi on peut pas pas ordre de priorite
 	match construction_result:
 		PlayerConstruction.Construction_Result.NeedNearTube:
-			ghost_label.text = "Ce batiments doit être construit à côté de ta base"
+			ghost_label.text = "Construction not next to other base part"
 		PlayerConstruction.Construction_Result.InvalidPlacement:
-			ghost_label.text = "Emplacements Invalide"
+			ghost_label.text = "Invalid placement"
 		PlayerConstruction.Construction_Result.NoSlotAvaible:
-			ghost_label.text = "Pas de module de porte disponible dans ce batiments"
+			ghost_label.text = "No door module available for this building"
 		PlayerConstruction.Construction_Result.NoCrystal:
-			ghost_label.text = "Pas assez de cristal"
+			ghost_label.text = "Not enough crystals"
+		PlayerConstruction.Construction_Result.NoActionP:
+			ghost_label.text = "Not enough action points"
 		PlayerConstruction.Construction_Result.Other,PlayerConstruction.Construction_Result.Possible:
 			ghost_label.text = ""
 	
@@ -140,9 +141,6 @@ func update_ghost_position(new_cell_coord: Vector2,collided_grid:ConstructionGri
 	ghost_building.global_position = cell_world_coord
 	#Rotation de la porte en fonction du tube
 	if (selected_construction_type == ModuleId.Of.HATCH):
-		print(collided_grid.getDir_from_cell(new_cell_coord))
-		#ghost_building.global_rotation_degrees += Vector3(0,1,0)
-		#print(ghost_building.global_rotation)
 		match collided_grid.getDir_from_cell(new_cell_coord):
 			Dir.Enum.E:
 				#Ouest (Les dir sont inverse de 180 ;( )
@@ -207,8 +205,8 @@ func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 			
-#	var cell = ghost_building as PlayerBaseCell;
-#	if cell: cell.collision.collision_layer = 0b1000;
+	var cell = ghost_building as PlayerBaseCell;
+	if cell: cell.collision.collision_layer = 0b1000;
 	
 	return;
 

@@ -103,7 +103,6 @@ func check_construct_turret(_construction_grid: ConstructionGrid, _coords: Vecto
 
 func check_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i) -> Construction_Result :
 	if (check_if_base_is_neighbour(construction_grid, coords) == false) :
-		print("CES MOI")
 		return Construction_Result.NeedNearTube;
 	if (construction_grid.is_terrain_ok_to_build(coords) == false) :
 		return Construction_Result.InvalidPlacement;
@@ -116,7 +115,6 @@ func check_build_base_cell(construction_grid: ConstructionGrid, coords: Vector2i
 	var base_cell_cost: int = PlayerBaseCells.crystal_costs[PlayerBaseCell.cell_type.BASE_CELL];
 	var base_action_points_cost: int = PlayerBaseCells.action_costs[PlayerBaseCell.cell_type.BASE_CELL];
 	if (crystals.has_amount(base_cell_cost) == false) :
-		print("CES FAUX MOI")
 		return Construction_Result.NoCrystal;
 	
 	if (action_points.has_amount(base_action_points_cost) == false) :
@@ -343,8 +341,7 @@ func try_build_door(construction_grid: ConstructionGrid, coords: Vector2i) -> bo
 		print("No base cell here")
 		return false
 	if !cell_to_construct.hasModuleAvaibleSlot():
-		print("No module slot avaible ine this base cell")
-		print(cell_to_construct.moduleslots_array)
+		print("No module slot avaible in this base cell")
 		return false
 	
 	var crystals: PlayerResource = player.crystals;

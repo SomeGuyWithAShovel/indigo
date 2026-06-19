@@ -43,12 +43,9 @@ func on_cell_death(_from : HealthComponent) -> void:
 	
 	#Desactivation du layer 7 (base) pour allez vers le 8 (base_destroy)
 	var static_body = find_children("*", "StaticBody3D", false);
-	if static_body.is_empty():
-		print("JAI PAS TROUVE PROBLEME")
-		return
-	else:
-		static_body[0].set_collision_layer_value(8, true) 
-		static_body[0].set_collision_layer_value(7, false)
+	assert(not static_body.is_empty());
+	static_body[0].set_collision_layer_value(8, true) 
+	static_body[0].set_collision_layer_value(7, false)
 	deactivate()
 
 func restore_building():
