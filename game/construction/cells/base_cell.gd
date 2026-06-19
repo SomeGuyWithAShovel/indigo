@@ -17,6 +17,7 @@ enum cell_type {
 
 
 @onready var health : HealthComponent = $HealthComponent;
+@onready var collision : CollisionObject3D = $CollisionWalls;
 
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
 @export var meshinstance_array:Array[MeshInstance3D] = [];

@@ -180,6 +180,9 @@ func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 			ghost_building.is_ghost = true
 			add_child(ghost_building)
 			
+	var cell = ghost_building as PlayerBaseCell;
+	if cell: cell.collision.collision_layer = 0b1000;
+	
 	return;
 
 func do_mouse_raycast_at(mouse_pos: Vector2) -> Dictionary :

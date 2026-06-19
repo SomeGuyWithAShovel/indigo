@@ -37,7 +37,7 @@ func _input(event):
 	if event.is_action_pressed(&"interact"):
 		interaction_target.interact();
 	elif event.is_action_pressed(&"uninteract"):
-		if interaction_target.has_method("uninteract"):
+		if (interaction_target.get("interactible") as Interactible).is_uninteractible():
 			interaction_target.uninteract();
 		
 func decide_interaction_target() -> void:

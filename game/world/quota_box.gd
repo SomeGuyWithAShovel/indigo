@@ -22,7 +22,7 @@ func _enter_tree() -> void :
 	assert(terrain != null);
 	set_tile_as_quota_box();
 	
-	interactible = Interactible.new(Callable(self, "interact"), Interactible.Action.QUOTA);
+	interactible = Interactible.new(Callable(self, "interact"), Interactible.Action.QUOTA, Callable(self, "uninteract"));
 	
 	return;
 

@@ -19,6 +19,8 @@ func _enter_tree() -> void :
 	building_type = cell_type.CLASSIC_TURRET
 	return;
 
+func _ready() -> void:
+	collision = $StaticBody3D
 
 var turretlist: Array[String] = [
 	"res://game/module/heavy_turret.tscn",

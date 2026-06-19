@@ -43,3 +43,9 @@ func _on_btn_start_pressed() -> void :
 func _on_btn_quit_pressed() -> void :
 	get_tree().quit();
 	return;
+
+const credits = preload("res://game/main_menu/Credits.tscn");
+func _on_btn_credits_pressed() -> void:
+	var credits_box : Credits = credits.instantiate();
+	add_child(credits_box);
+	await credits_box.is_ok();
