@@ -117,26 +117,26 @@ func raw_set_base_cell_at_with_neighbours(coords: Vector2i, _extra: int) -> void
 func on_base_broke(health : HealthComponent) -> void:
 	var base : PlayerBaseCell = health.get_parent();
 	
-	var base_pos := base.global_position;
-	var coords = construction_grid.get_grid_coords_from_world_coords(base_pos);
-	var neighbour_coords : Array[Vector2i] = [
-		(coords + Vector2i(  1,  0)),
-		(coords + Vector2i(  0, -1)),
-		(coords + Vector2i( -1,  0)),
-		(coords + Vector2i(  0,  1)),
-	];
-	if coords in base_cells_dir:
-		base_cells_dir.erase(coords);
-		for i in range(len(neighbour_coords)):
-			var coord = neighbour_coords[i];
-			if has_base_cell(coord):
-				var neighbour_new_dir = Dir.remove_dirs(base_cells_dir[coord], Dir.opposite_from_int[i]);
-				raw_set_base_cell_at(neighbour_coords[i], neighbour_new_dir, 0);
-	self.remove_child(base);
-	base_cells.erase(coords);
-	mining_cells.erase(coords);
-	turret_cells.erase(coords);
-	base.queue_free();
+	#var base_pos := base.global_position;
+	#var coords = construction_grid.get_grid_coords_from_world_coords(base_pos);
+	#var neighbour_coords : Array[Vector2i] = [
+	#	(coords + Vector2i(  1,  0)),
+	#	(coords + Vector2i(  0, -1)),
+	#	(coords + Vector2i( -1,  0)),
+	#	(coords + Vector2i(  0,  1)),
+	#];
+	#if coords in base_cells_dir:
+	#	base_cells_dir.erase(coords);
+	#	for i in range(len(neighbour_coords)):
+	#		var coord = neighbour_coords[i];
+	#		if has_base_cell(coord):
+	#			var neighbour_new_dir = Dir.remove_dirs(base_cells_dir[coord], Dir.opposite_from_int[i]);
+	#			raw_set_base_cell_at(neighbour_coords[i], neighbour_new_dir, 0);
+	#self.remove_child(base);
+	#base_cells.erase(coords);
+	#mining_cells.erase(coords);
+	#turret_cells.erase(coords);
+	#base.queue_free();
 	
 
 func raw_set_mining_cell_at(coords: Vector2i) -> void :

@@ -7,7 +7,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_c4iox"]
 size = Vector3(2, 1, 0.1)
 
-[node name="Cell" unique_id=39220363 groups=["navigation_mesh_source_group"] instance=ExtResource("1_stdyo")]
+[node name="Cell" unique_id=39220363 node_paths=PackedStringArray("meshinstance_array") groups=["navigation_mesh_source_group"] instance=ExtResource("1_stdyo")]
+meshinstance_array = [NodePath("Corridor")]
 
 [node name="Corridor" type="MeshInstance3D" parent="." index="0" unique_id=299499403]
 transform = Transform3D(-4.371139e-08, 0, 2, 0, 1, 0, -1, 0, -8.742278e-08, 0, 0, 0)
