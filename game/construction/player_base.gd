@@ -27,6 +27,17 @@ func night_mining() -> void:
 	for _i in range(mining_operations_per_day):
 		do_all_mining_operations();
 
+var quota_box_cell: Dictionary[Vector2i, QuotaBox]; # only a single tuple, probably
+
+func get_quota_box_coords() -> Vector2i :
+	return quota_box_cell.keys()[0];
+
+func set_quota_box(coords: Vector2i, quota_box: QuotaBox) -> void :
+	assert(quota_box != null);
+	quota_box_cell[coords] = quota_box;
+	print("PlayerBase: QuotaBox \"%s\" placed at (%d,%d)" % [quota_box.name, coords.x, coords.y]);
+	return;
+
 var base_cells: Dictionary[Vector2i, PlayerBaseCell];
 var turret_cells: Dictionary[Vector2i, Turret];
 var mining_cells: Dictionary[Vector2i, MiningCell];

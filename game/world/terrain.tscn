@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dswbd32w7d7mg" path="res://game/world/terrain.gd" id="1_ig0dc"]
 [ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal/crystal_tile.tscn" id="2_konwf"]
 [ext_resource type="PackedScene" uid="uid://dcobj7squ7ld6" path="res://game/world/QuotaBox.tscn" id="3_3rkxp"]
+[ext_resource type="PackedScene" uid="uid://cgkj1exomb4" path="res://game/world/terrain_obstacles/obstacle_rock.tscn" id="3_bpb7u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rkxp"]
 size = Vector3(256, 1, 256)
@@ -100,5 +101,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12)
 [node name="CrystalTile13" parent="Crystals" unique_id=33586969 instance=ExtResource("2_konwf")]
 transform = Transform3D(-0.49933654, 0.25453815, -0.82817477, -0.19360517, 0.8989204, 0.39301327, 0.8445, 0.35658482, -0.39958385, -22, 0, 8)
 
+[node name="Obstacles" type="Node3D" parent="." unique_id=1128358221]
+
+[node name="TerrainObstacle" parent="Obstacles" unique_id=1785971822 instance=ExtResource("3_bpb7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
 [node name="QuotaBox" parent="." unique_id=482531464 instance=ExtResource("3_3rkxp")]
-transform = Transform3D(0.70710677, 0.122787796, -0.6963641, 0, 0.98480767, 0.17364815, 0.70710677, -0.122787796, 0.6963641, 1.8, 0.5, 0.1)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 2, 0.5, 0)
