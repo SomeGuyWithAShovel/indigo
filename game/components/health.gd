@@ -64,10 +64,8 @@ func hurt(damage) -> void:
 	
 var tween : Tween = null;
 const TWEEN_DURATION := 0.15;
-const TWEEN_START_SCALE := Vector2(1.1, 1.1);
 const TWEEN_START_COLOR := Color.RED;
 func animate_bar(_from : HealthComponent, _new_hp: int) -> void:
 	tween = create_tween();
 	tween.set_ease(Tween.EASE_OUT);
-	tween.tween_property(bar_parent, "scale", Vector2.ONE, TWEEN_DURATION).from(TWEEN_START_SCALE);
 	tween.tween_property(bar, "tint_progress", health_bar_color, TWEEN_DURATION).from(TWEEN_START_COLOR);

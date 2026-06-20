@@ -4,6 +4,8 @@ extends Node3D
 var terrain: Terrain = null;
 var interactible : Interactible;
 
+@onready var health : HealthComponent = $Node3D/HealthComponent;
+
 func find_terrain_rec(node: Node3D) -> void :
 	var parent: Node3D = node.get_parent();
 	if (parent == null) :
@@ -25,6 +27,11 @@ func _enter_tree() -> void :
 	interactible = Interactible.new(Callable(self, "interact"), Interactible.Action.QUOTA, Callable(self, "uninteract"));
 	
 	return;
+	
+func _ready() -> void:
+	health.died.connect(func (_h): 
+		GameOverSystem.end_game(GameOver.Reason.QUOTA_BOX_DESTROYED)
+	);
 
 func set_tile_as_quota_box() -> void :
 	var coords_2d: Vector2 = Vector2(global_position.x, global_position.z) / 2.0;

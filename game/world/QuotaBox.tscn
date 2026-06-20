@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dcobj7squ7ld6"]
 
 [ext_resource type="Script" uid="uid://bh3qa51i01xgb" path="res://game/world/quota_box.gd" id="1_anwy0"]
-[ext_resource type="ArrayMesh" uid="uid://cl5fdb1iwepx2" path="res://assets/OBJ format/gate_complex.obj" id="2_ctpla"]
+[ext_resource type="ArrayMesh" uid="uid://cl5fdb1iwepx2" path="res://assets/3dModels/gate_complex.obj" id="2_ctpla"]
 [ext_resource type="Shader" uid="uid://bcprtw82x3i8y" path="res://assets/shaders/portal.gdshader" id="3_fahvg"]
+[ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="4_ysnjn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysnjn"]
 render_priority = 0
@@ -47,6 +48,10 @@ script = ExtResource("1_anwy0")
 [node name="Node3D" type="Node3D" parent="." unique_id=1856952670]
 transform = Transform3D(0.70710677, 0.1227878, -0.6963642, 0, 0.9848077, 0.17364818, 0.70710677, -0.1227878, 0.6963642, 0, 0, 0)
 
+[node name="HealthComponent" parent="Node3D" unique_id=699209803 instance=ExtResource("4_ysnjn")]
+transform = Transform3D(0.7071068, 0, 0.7071068, 0.122787826, 0.98480785, -0.122787826, -0.6963643, 0.1736482, 0.6963643, 0, 2.154364, 0.37987253)
+health_bar_color = Color(0.1882353, 0.8627451, 1, 1)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=166931184]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 layers = 2
@@ -60,6 +65,7 @@ mesh = SubResource("CylinderMesh_ndjgt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=1624619686 groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=316390167]
 shape = SubResource("BoxShape3D_fahvg")

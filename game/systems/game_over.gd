@@ -5,6 +5,7 @@ signal game_over(message : String);
 
 enum Reason {
 	QUOTA_NOT_MET,
+	QUOTA_BOX_DESTROYED,
 };
 
 func _ready() -> void:
@@ -26,7 +27,9 @@ func reload(msg : String) -> void:
 func as_message(reason : Reason) -> String:
 	match reason:
 		Reason.QUOTA_NOT_MET:
-			return "Not enough cristals. Contract terminated";
+			return "Not enough cristals. Contract terminated.";
+		Reason.QUOTA_BOX_DESTROYED:
+			return "Quota portal down. Contract terminated."
 	return "[Raison manquante : faut débugger game_over.gd]";
 
 func end_game(reason : Reason) -> void:

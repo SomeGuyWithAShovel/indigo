@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cqm0t2smw63qx"]
+
+[ext_resource type="Script" uid="uid://bi1l6foiuhxkd" path="res://game/enemies/death_particles.gd" id="1_hermy"]
+
+[sub_resource type="Gradient" id="Gradient_hermy"]
+offsets = PackedFloat32Array(0.2775, 0.9225)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8oyj1"]
+gradient = SubResource("Gradient_hermy")
+
+[sub_resource type="Curve" id="Curve_hermy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8oyj1"]
+curve = SubResource("Curve_hermy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x77ag"]
+lifetime_randomness = 0.4
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -20, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 9.999997
+damping_max = 10.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_8oyj1")
+color = Color(0, 0.30980393, 0.06666667, 1)
+color_ramp = SubResource("GradientTexture1D_8oyj1")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hermy"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_8oyj1"]
+material = SubResource("StandardMaterial3D_hermy")
+radius = 0.2
+height = 0.4
+
+[node name="DeathParticles" type="Node3D" unique_id=1687019490]
+script = ExtResource("1_hermy")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1143072774]
+amount = 100
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_x77ag")
+draw_pass_1 = SubResource("SphereMesh_8oyj1")
+
+[node name="Lifetime" type="Timer" parent="." unique_id=1819409611]
+wait_time = 0.25
+one_shot = true
+autostart = true

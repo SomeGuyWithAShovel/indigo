@@ -17,7 +17,7 @@ enum cell_type {
 
 
 @onready var health : HealthComponent = $HealthComponent;
-@onready var collision : CollisionObject3D = $CollisionWalls;
+var collision : CollisionObject3D;
 
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
 @export var meshinstance_array:Array[MeshInstance3D] = [];
@@ -34,6 +34,7 @@ enum BuildingState{
 static var destroyed_material:Material = load("res://assets/Material/construction_destroyed.tres")
 
 func _ready() -> void:
+	collision = $CollisionWalls;
 	health.died.connect(on_cell_death);
 
 func on_cell_death(_from : HealthComponent) -> void:

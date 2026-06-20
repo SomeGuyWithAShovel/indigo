@@ -26,16 +26,21 @@ var initial_camera_transform : Transform3D;
 
 var in_sight : Array[Node3D];
 var in_attack_range : Array[Node3D];
+var death_scene : Node3D;
+const DEATH_SCENE = preload("res://game/enemies/DeathParticles.tscn");
 
 func _ready() -> void:
 	health_component.died.connect(on_monster_death);
 	health_component.health_changed.connect(on_monster_hit);
 	navigation.max_speed = speed;
 	initial_camera_transform = camera.transform;
+	death_scene = DEATH_SCENE.instantiate();
 	
 func on_monster_death(_from : HealthComponent) -> void:
 	set_physics_process(false);
 	character.visible = false;
+	get_parent().add_child(death_scene);
+	death_scene.global_position = global_position;
 	queue_free();
 	
 func on_monster_hit(_from : HealthComponent, _new_hp: int) -> void:
