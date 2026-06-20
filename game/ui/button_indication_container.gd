@@ -10,6 +10,7 @@ const BUTTON_INDICATION_SCENE = preload("res://game/ui/ButtonIndication.tscn");
 func _ready() -> void:
 	unprojector.camera = camera;
 
+# key physique sur le clavier QWERTY
 func add_indication(key : Key, action : Interactible.Action) -> void:
 	var button_indication : ButtonIndication = BUTTON_INDICATION_SCENE.instantiate();
 	container.add_child(button_indication);

@@ -6,6 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://cmrxakogtwgbb" path="res://game/ui/indicators/quota_container.tscn" id="4_twd1r"]
 [ext_resource type="PackedScene" uid="uid://b3ka5r4dxmr1c" path="res://game/ui/indicators/crystal_container.tscn" id="5_sir64"]
 [ext_resource type="PackedScene" uid="uid://b7bdn0wwa6l8s" path="res://game/ui/indicators/action_points_container.tscn" id="6_wowka"]
+[ext_resource type="Texture2D" uid="uid://rjo0xm8jhrom" path="res://assets/ui/key_indications/keyboard-&-mouse_sheet_default.png" id="7_ebu5f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebu5f"]
+atlas = ExtResource("7_ebu5f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ess"]
+atlas = ExtResource("7_ebu5f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chop3"]
+atlas = ExtResource("7_ebu5f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ature"]
+atlas = ExtResource("7_ebu5f")
+region = Rect2(0, 0, 64, 64)
 
 [node name="Day" type="Control" unique_id=840050716]
 layout_mode = 3
@@ -49,18 +66,48 @@ layout_mode = 2
 layout_mode = 2
 text = "Start night"
 
-[node name="Label" type="Label" parent="." unique_id=1005954420]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1365737876]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -239.0
-offset_top = -44.0
-offset_right = 239.0
+offset_left = -172.5
+offset_top = -40.0
+offset_right = 172.5
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=602305330]
+layout_mode = 2
+
+[node name="W" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=609218429]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ebu5f")
+
+[node name="A" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1096901904]
+layout_mode = 2
+texture = SubResource("AtlasTexture_56ess")
+
+[node name="S" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1363182467]
+layout_mode = 2
+texture = SubResource("AtlasTexture_chop3")
+
+[node name="D" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=545932063]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ature")
+
+[node name="ToMove" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1526454307]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = " to move"
+
+[node name="BuildingMenuKey" type="Label" parent="VBoxContainer" unique_id=1005954420]
+layout_mode = 2
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0

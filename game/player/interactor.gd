@@ -67,7 +67,7 @@ func on_interaction_target_change(old : Node3D, new : Node3D) -> void:
 func setup_indication(new_interactible : Interactible) -> void:
 	indication_container.add_indication(KEY_E, new_interactible.action);
 	if new_interactible.is_uninteractible():
-		indication_container.add_indication(KEY_A, Interactible.Action.UNDO);
+		indication_container.add_indication(KEY_Q, Interactible.Action.UNDO);
 	
 func entered(node : Node3D) -> void:
 	var node_parent : Node3D = node.get_parent();

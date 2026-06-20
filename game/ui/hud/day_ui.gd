@@ -4,11 +4,18 @@ extends Control
 @onready var quota : BarContainer = $LeftPanel/QuotaContainer;
 @onready var crystal_label : Label = $LeftPanel/CrystalContainer/Amount;
 @onready var action_point: BarContainer = $RightPanel/ActionPointsContainer;
-@onready var building_indication : Label = $Label
+@onready var building_indication : Label = $VBoxContainer/BuildingMenuKey;
+@onready var movement_indication : HBoxContainer = $VBoxContainer/HBoxContainer;
+
+@onready var w_icon = $VBoxContainer/HBoxContainer/W;
+@onready var a_icon = $VBoxContainer/HBoxContainer/A;
+@onready var s_icon = $VBoxContainer/HBoxContainer/S;
+@onready var d_icon = $VBoxContainer/HBoxContainer/D;
 
 func _ready() -> void:
 	setup_events();
 	init_values();
+	init_wasd();
 	
 func setup_events() -> void:
 	if not Globals.is_setup: await Globals.globals_setup;
@@ -39,8 +46,15 @@ func init_values() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if building_indication == null: return;
-	if event is InputEventKey and event.keycode == KEY_SPACE:
+	if building_indication != null and event is InputEventKey and event.keycode == KEY_SPACE:
 		building_indication.queue_free();
+	elif movement_indication != null and (
+		Input.is_action_pressed("move_left") or 
+		Input.is_action_pressed("move_right") or 
+		Input.is_action_pressed("move_forwards") or
+		Input.is_action_pressed("move_backwards")):
+			movement_indication.queue_free();
+			movement_indication = null;
 
 func set_crystal_count(value : int) -> void:
 	crystal_label.text = str(value);
@@ -74,3 +88,13 @@ func _on_night_request_down() -> void:
 	var ui_manager := get_parent() as UIManager;
 	ui_manager.close_building_menu();
 	ui_manager.can_open_building_menu = false;
+
+
+func init_wasd() -> void:
+	for icon in [w_icon, a_icon, s_icon, d_icon]:
+		var key_code := ord(icon.name) as Key;
+		var atlas := (icon.texture as AtlasTexture);
+		assert(atlas);
+		assert(key_code in ButtonIndication.pos);
+		atlas.region.position = ButtonIndication.top_left_in_atlas(key_code) as Vector2;
+	
