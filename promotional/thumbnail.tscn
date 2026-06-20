@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://bbetg7sqs7jrt"]
+
+[ext_resource type="PackedScene" uid="uid://bc2vw23cblqh4" path="res://assets/3dModels/Player/space_man_model.tscn" id="1_ckab8"]
+[ext_resource type="PackedScene" uid="uid://cb28u5kwf447k" path="res://game/construction/cells/turret/classic_turret.tscn" id="2_6lwdh"]
+[ext_resource type="PackedScene" uid="uid://6dxux7xq7ohu" path="res://game/enemies/monster_1/Monster.tscn" id="3_uqy6x"]
+[ext_resource type="PackedScene" uid="uid://cwlol3sfbyroq" path="res://game/world/crystal/crystal_tile.tscn" id="6_adwba"]
+[ext_resource type="Shader" uid="uid://bp3qlwvpc3x1" path="res://promotional/thumbnail.gdshader" id="7_00f4c"]
+[ext_resource type="PackedScene" uid="uid://dcobj7squ7ld6" path="res://game/world/QuotaBox.tscn" id="7_kcy87"]
+[ext_resource type="FontFile" uid="uid://cfiem57sf0la3" path="res://assets/ui/kinesthesia/Kinesthesia-SemiBold.otf" id="8_qa6ao"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0lgq"]
+shader = ExtResource("7_00f4c")
+shader_parameter/sky_color = Color(0.03, 0.05, 0.11, 1)
+shader_parameter/star_base_color = Color(0.8, 1, 0.3, 1)
+shader_parameter/star_hue_offset = 0.6
+shader_parameter/star_intensity = 0.10000000475
+shader_parameter/star_twinkle_speed = 0.8
+shader_parameter/star_twinkle_intensity = 0.2
+shader_parameter/layer_scale = 20.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
+
+[sub_resource type="Sky" id="Sky_ckab8"]
+sky_material = SubResource("ShaderMaterial_j0lgq")
+
+[sub_resource type="Environment" id="Environment_6lwdh"]
+background_mode = 2
+background_color = Color(0.9098039, 0.5176471, 0.3882353, 1)
+sky = SubResource("Sky_ckab8")
+ambient_light_source = 2
+ambient_light_color = Color(0.6862745, 0.83137256, 1, 1)
+ambient_light_energy = 2.0
+
+[node name="Node3D" type="Node3D" unique_id=1359185314]
+
+[node name="space_man_model" parent="." unique_id=1928513583 instance=ExtResource("1_ckab8")]
+transform = Transform3D(-0.5044689, 0.7911784, 0.34575716, 0.6410345, 0.6114602, -0.4638869, -0.5784341, -0.012374289, -0.8156353, 0.43031442, 10.888705, 3.2796373)
+
+[node name="Turret" parent="." unique_id=395245931 instance=ExtResource("2_6lwdh")]
+transform = Transform3D(-0.0022166194, 0, -0.99999756, 0, 1, 0, 0.99999756, 0, -0.0022166194, -5.3586397, 1.1286988, -0.7935195)
+
+[node name="MeshInstance3D" parent="Turret" index="0" unique_id=274420374]
+transform = Transform3D(-0.24626037, 0.09101404, -0.96492106, 0.7545106, 0.6428922, -0.13192156, 0.6083337, -0.7605303, -0.2269897, 6.7778525, 11.36953, -4.6147385)
+
+[node name="CollisionShape3D" parent="Turret/StaticBody3D" parent_id_path=PackedInt32Array(395245931, 1616738968) index="0" unique_id=2003108133]
+transform = Transform3D(0.24617761, 0.28090805, 0.9276246, -0.75479925, 0.6559536, 0.0016730971, -0.60800886, -0.7005822, 0.37351033, 6.780212, 11.375038, -4.6206217)
+
+[node name="Base" parent="Turret" index="6" unique_id=656720993]
+transform = Transform3D(0.24617761, 0.28090805, 0.9276246, -0.75479925, 0.6559536, 0.0016730971, -0.60800886, -0.7005822, 0.37351033, 6.501504, 10.724222, -3.9255261)
+
+[node name="laser" parent="Turret" index="7" unique_id=2109296471]
+transform = Transform3D(1, -0.00026157298, -1.548836e-05, 0.00026157298, 0.99301296, 0.11800507, -1.5487662e-05, -0.11800507, 0.9930128, 0.2219311, 0.5393717, -0.00049209595)
+visible = true
+
+[node name="laser_mesh" parent="Turret/laser" index="0" unique_id=603322466]
+transform = Transform3D(0.24604888, 0.9543047, -0.16959845, -0.6776495, 0.044263277, -0.73405236, -0.69300234, 0.29554096, 0.65757453, -17.09067, 10.442329, -11.185244)
+cast_shadow = 0
+
+[node name="AudioStreamPlayer3D" parent="Turret" index="8" unique_id=1441208553]
+transform = Transform3D(0.24617763, 0.280908, 0.92762464, -0.75479937, 0.65595365, 0.0016731041, -0.60800874, -0.7005822, 0.37351027, 6.780212, 11.375038, -4.6206217)
+
+[node name="MonsterSpawn" parent="." unique_id=208271244 instance=ExtResource("3_uqy6x")]
+transform = Transform3D(0.4909716, 0.7229466, -0.48610196, -0.59915197, -0.12485339, -0.7908404, -0.6324266, 0.67952913, 0.37185532, 3.7312326, 13.849827, 0.59523404)
+
+[node name="MonsterSpawn2" parent="." unique_id=1402290805 instance=ExtResource("3_uqy6x")]
+transform = Transform3D(0.10463263, 0, -0.99451095, 0, 1, 0, 0.99451095, 0, 0.10463263, 3.579, 0, 2.098)
+
+[node name="Camera3D" parent="MonsterSpawn2/Viewport" parent_id_path=PackedInt32Array(1402290805, 2132440114) index="0" unique_id=355355909]
+transform = Transform3D(0.37421823, 0.018530741, 0.92715555, 1.467162e-10, 0.99980044, -0.01998267, -0.92734087, 0.007477879, 0.3741436, 2.7175226, 11.087312, 1.6189314)
+
+[node name="MonsterAi" parent="MonsterSpawn2" index="1" unique_id=230634082 node_paths=PackedStringArray("blackboard")]
+blackboard = NodePath("@Node@27250")
+
+[node name="Monster" parent="MonsterSpawn2" index="2" unique_id=906645411]
+transform = Transform3D(0.7, 0, 7.450581e-09, 0, 0.7, 0, -7.450581e-09, 0, 0.7, 0.3712029, 0, 0.039054394)
+
+[node name="CollisionShape3D" parent="MonsterSpawn2/Monster" index="0" unique_id=336634105]
+transform = Transform3D(0.21367979, 0.3541484, 0.9104505, -0.7506579, 0.6559536, -0.078976855, -0.62518287, -0.66656125, 0.40600836, -4.013018, 16.860378, 1.8394008)
+
+[node name="Skeleton3D" parent="MonsterSpawn2/Monster/MonsterAnimation/CharacterArmature_041" parent_id_path=PackedInt32Array(1402290805, 695942752, 1749268688) index="0" unique_id=917825139]
+bones/0/position = Vector3(1.9013665e-17, 0.111837134, 0.20835733)
+bones/0/rotation = Quaternion(-0.1689293, 0, 0, 0.98562825)
+bones/1/position = Vector3(0, 0.48433, 0.004480014)
+bones/1/rotation = Quaternion(-0.23330063, 0.0011437831, -0.007950361, 0.97237146)
+bones/2/rotation = Quaternion(1.163869e-10, -7.275958e-12, 2.842865e-14, 1)
+bones/3/rotation = Quaternion(6.0524266e-11, 3.518621e-10, -0.0026400534, 0.9999966)
+
+[node name="Green_Blob" parent="MonsterSpawn2/Monster/MonsterAnimation/CharacterArmature_041/Skeleton3D" index="0" unique_id=276946451]
+transform = Transform3D(-0.53589964, 0.25445408, 0.80502397, -0.76374316, 0.26031968, -0.59070176, -0.3598706, -0.9313891, 0.054832257, -3.792911, 25.522968, 4.7641287)
+
+[node name="Green_Blob_001" parent="MonsterSpawn2/Monster/MonsterAnimation/CharacterArmature_041/Skeleton3D" index="1" unique_id=1976098714]
+transform = Transform3D(-0.53589964, 0.25445408, 0.80502397, -0.76374316, 0.26031968, -0.59070176, -0.3598706, -0.9313891, 0.054832257, -3.792911, 25.522968, 4.7641287)
+
+[node name="CollisionShape3D" parent="MonsterSpawn2/Monster/Sight" parent_id_path=PackedInt32Array(1402290805, 1420014928) index="0" unique_id=1627796633]
+transform = Transform3D(0.21367979, 0.3541484, 0.9104505, -0.7506579, 0.6559536, -0.078976855, -0.62518287, -0.66656125, 0.40600836, -4.296337, 16.335615, 2.3726504)
+
+[node name="CollisionShape3D" parent="MonsterSpawn2/Monster/Range" parent_id_path=PackedInt32Array(1402290805, 1397932486) index="0" unique_id=1385042218]
+transform = Transform3D(0.21367979, 0.3541484, 0.9104505, -0.7506579, 0.6559536, -0.078976855, -0.62518287, -0.66656125, 0.40600836, -4.296337, 16.335615, 2.3726504)
+
+[node name="AudioStreamPlayer3D" parent="MonsterSpawn2" index="3" unique_id=1121932480]
+transform = Transform3D(0.21367967, 0.35414827, 0.9104502, -0.750658, 0.65595365, -0.07897686, -0.62518287, -0.6665611, 0.4060083, -2.7511086, 11.7166605, 1.9161224)
+
+[node name="CrystalTile" parent="." unique_id=1366619670 instance=ExtResource("6_adwba")]
+transform = Transform3D(0.074843615, 0.13999157, 0.12165849, -5.1301576e-09, 0.13119072, -0.15096022, -0.18546812, 0.05649206, 0.049093947, 3.6530237, 9.7776985, 2.8309636)
+
+[node name="QuotaBox" parent="." unique_id=482531464 instance=ExtResource("7_kcy87")]
+transform = Transform3D(0.35093248, 2.5970068, 1.4602758, 1.002485, 1.2817153, -2.5203629, -2.805685, 0.78279424, -0.71788836, -3.570705, 16.715569, -4.3378897)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1689982134]
+transform = Transform3D(0.2493813, 0.75351787, 0.6082925, -0.11185264, 0.64634687, -0.7548013, -0.96192414, 0.120194316, 0.24546987, 2.1270752, 12.956213, 3.483717)
+modulate = Color(0.29411766, 0, 0.50980395, 1)
+outline_modulate = Color(0.59759146, 0.8107688, 0.99338764, 1)
+text = "INDIG"
+font = ExtResource("8_qa6ao")
+font_size = 428
+outline_size = 48
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=450147422]
+environment = SubResource("Environment_6lwdh")
+
+[node name="MonsterSpawn3" parent="." unique_id=1318776550 instance=ExtResource("3_uqy6x")]
+transform = Transform3D(-0.19631071, 0.8836549, -0.42499006, 0.78615886, -0.117191955, -0.60681105, -0.5860167, -0.4532332, -0.67168736, 2.327021, 16.825605, 6.139863)
+
+[node name="MonsterAi" parent="MonsterSpawn3" index="1" unique_id=230634082 node_paths=PackedStringArray("blackboard", "actor")]
+actor_node_path = NodePath("../../MonsterSpawn3")
+blackboard = NodePath("@Node@85467")
+actor = NodePath(".")
+
+[node name="MonsterAnimation" parent="MonsterSpawn3/Monster" parent_id_path=PackedInt32Array(1318776550, 906645411) index="1" unique_id=695942752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.9802322e-08, -2.9802322e-08, 1, -1.6084938, 0.9600017, 2.3192673)
+
+[editable path="Turret"]
+[editable path="MonsterSpawn2"]
+[editable path="MonsterSpawn2/Monster/MonsterAnimation"]
+[editable path="MonsterSpawn3"]

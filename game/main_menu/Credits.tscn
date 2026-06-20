@@ -46,7 +46,8 @@ Visual assets (terrain, buildings, key icons, current background...): Kenney (ke
 Sound effects made with: sfxr.me
 Astronaut model: Free Animated Space Man! (Unity Store, by Honeti)
 Rocket launching turret: Poly Angel - Space Pack (Unity Store, by Poly Angel)
-Monster: Ultimate Monster Pack (Sketchfab, by quaternius)
+Alien: Ultimate Monster Pack (Sketchfab, by quaternius)
+Font: Kinesthesia, by Typodermic Fonts Inc.
 Additional icons (Pickaxe, Wrench, Undo): Iconpacks"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1422651245]

@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dovxg2kfhvsay" path="res://game/main_menu/main_menu.gd" id="1_f1bok"]
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_sp5am"]
-[ext_resource type="Texture2D" uid="uid://cn34h6xcxmpbl" path="res://assets/ui/menu/Sample.png" id="2_rlutr"]
+[ext_resource type="Texture2D" uid="uid://bk5vkjendoy5m" path="res://assets/ui/menu/main_menu.png" id="3_rlneu"]
 [ext_resource type="AudioStream" uid="uid://benob27huqwb1" path="res://assets/sounds/music/Indigo Main Theme.mp3" id="4_rlneu"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rlneu"]
-font_size = 96
-outline_size = 32
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxh41"]
+bg_color = Color(1, 0.3775, 0.17000002, 1)
+skew = Vector2(0.2, -0.1)
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [node name="MainMenu" type="Control" unique_id=1576864754]
 layout_mode = 3
@@ -27,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rlutr")
+texture = ExtResource("3_rlneu")
 expand_mode = 1
 stretch_mode = 6
 
@@ -38,53 +43,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.015686275, 0, 0.1254902, 0.67058825)
-
-[node name="Label" type="Label" parent="TextureRect" unique_id=1230459928]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -328.0
-offset_top = 64.0
-offset_right = -64.0
-offset_bottom = 180.0
-grow_horizontal = 0
-text = "Indigo"
-label_settings = SubResource("LabelSettings_rlneu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1371815301]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -33.0
-offset_right = 23.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BtnStart" type="Button" parent="VBoxContainer" unique_id=725932844]
-layout_mode = 2
-text = "Start"
-
-[node name="BtnCredits" type="Button" parent="VBoxContainer" unique_id=35795657]
-layout_mode = 2
-text = "Credits"
-
-[node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=1389899353]
-layout_mode = 2
-text = "Quit"
+color = Color(1, 1, 1, 0)
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=1267207975]
 stream = ExtResource("4_rlneu")
 volume_db = -20.0
 
-[connection signal="pressed" from="VBoxContainer/BtnStart" to="." method="_on_btn_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/BtnCredits" to="." method="_on_btn_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1301161111]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 68.0
+offset_right = 1071.0
+offset_bottom = 404.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxh41")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=128447999]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1371815301]
+layout_mode = 2
+
+[node name="BtnStart" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=725932844]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="BtnCredits" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=35795657]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = " Credits "
+
+[node name="BtnQuit" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1389899353]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="Label" type="Label" parent="." unique_id=942491214]
+layout_mode = 0
+offset_left = 107.99999
+offset_top = 1.9999971
+offset_right = 538.0
+offset_bottom = 233.0
+rotation = 0.35456166
+theme_override_colors/font_color = Color(0.29750007, 0, 0.51, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 192
+text = "INDIG"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/BtnStart" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/BtnCredits" to="." method="_on_btn_credits_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]
