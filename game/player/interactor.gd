@@ -7,6 +7,9 @@ var indication_container : ButtonIndicationContainer;
 
 var interactibles : Array[Node3D];
 
+var cur_target_repair:Node3D;
+var cur_repair_cost:int = 0;
+
 signal interaction_target_changed(old : Node3D, new : Node3D);
 
 var interaction_target : Node3D = null :
@@ -39,7 +42,46 @@ func _input(event):
 	elif event.is_action_pressed(&"uninteract"):
 		if (interaction_target.get("interactible") as Interactible).is_uninteractible():
 			interaction_target.uninteract();
-		
+	elif event.is_action_pressed(&"repair"):
+		if (cur_target_repair == null and (interaction_target.get("interactible") as Interactible).is_repairable()):
+			print("IF")
+			start_repair()
+
+func start_repair():
+	print("JE START RESTORE")
+	#Verification quand on sait que interaction target a une methode repair
+	#On verifie si  la cellule peut etre reparer (la cellule gere, mais pour l'instant
+	#C'est que si elle est pas full hp
+	if (!interaction_target.is_reperable):
+		print("FULL HP")
+		return
+	#Verification des cristaux
+	cur_target_repair = interaction_target;
+	var type:PlayerBaseCell.cell_type = cur_target_repair.building_type
+	var crystals: PlayerResource = $"../..".crystals;
+	var base_cell_cost: float = PlayerBaseCells.crystal_costs[type];
+	if cur_target_repair.buildingstatus == PlayerBaseCell.BuildingState.Destroyed:
+		base_cell_cost = base_cell_cost*0.8
+	else:
+		var health_ratio = float(cur_target_repair.health._current_health)/cur_target_repair.health.max_health
+		base_cell_cost = base_cell_cost*0.5*health_ratio
+	
+	cur_repair_cost = ceil(base_cell_cost)
+	
+	if (crystals.has_amount(cur_repair_cost) == false) :
+		#TODO Spawn du pop sur le batiments (rajouter un second timer dans interactor gerant le despawn de ce pop up
+		cur_target_repair = null
+		cur_repair_cost = 0
+		return
+	$Timer.start()
+	#TODO Spawn de la barre de chargement dans le cur_target_repair
+	pass
+
+func repair_interupted():
+	print("INTERUPTED")
+	cur_target_repair = null
+	$Timer.stop()
+
 func decide_interaction_target() -> void:
 	var pos : Vector3 = (get_parent() as Node3D).global_position;
 	var min_distance_squared : float = INF;
@@ -65,9 +107,13 @@ func on_interaction_target_change(old : Node3D, new : Node3D) -> void:
 		setup_indication(new_interactible);
 	
 func setup_indication(new_interactible : Interactible) -> void:
-	indication_container.add_indication(KEY_E, new_interactible.action);
+	if new_interactible.is_interactible():
+		indication_container.add_indication(KEY_E, new_interactible.action);
 	if new_interactible.is_uninteractible():
 		indication_container.add_indication(KEY_Q, Interactible.Action.UNDO);
+	if new_interactible.is_repairable():#Si la fct repair est presente
+		if (interaction_target.is_reperable): #Si la cell se declare pouvant etre reparer
+			indication_container.add_indication(KEY_R, Interactible.Action.REPAIR);
 	
 func entered(node : Node3D) -> void:
 	var node_parent : Node3D = node.get_parent();
@@ -91,3 +137,13 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	exited(body);
+
+
+func _on_repair_finished() -> void:
+	cur_target_repair.restore_building()
+	cur_target_repair = null
+	#On reinitalise le interaction_target (Actualiser les bouton afficher)
+	on_interaction_target_change(interaction_target,interaction_target)
+	#On retire les cristaux
+	var crystals: PlayerResource = $"../..".crystals;
+	crystals.remove(cur_repair_cost)

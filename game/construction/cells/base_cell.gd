@@ -26,6 +26,10 @@ var buildingstatus:BuildingState = BuildingState.Alive
 
 var building_type:cell_type = cell_type.BASE_CELL
 
+var interactible : Interactible;
+
+var is_reperable = false;
+
 enum BuildingState{
 	Alive,
 	Destroyed
@@ -34,8 +38,18 @@ enum BuildingState{
 static var destroyed_material:Material = load("res://assets/Material/construction_destroyed.tres")
 
 func _ready() -> void:
+	interactible = Interactible.new(Callable(), Interactible.Action.NONE, Callable(),Callable(self,&"restore_building"));
 	collision = $CollisionWalls;
 	health.died.connect(on_cell_death);
+	health.health_changed.connect(on_health_changed)
+	health.hurt(9999)
+
+func on_health_changed(_from : HealthComponent, new_hp: int) -> void:
+	print('JAI CHANGER')
+	if (new_hp == health.max_health):
+		is_reperable = false;
+	else:
+		is_reperable = true
 
 func on_cell_death(_from : HealthComponent) -> void:
 	buildingstatus = BuildingState.Destroyed
@@ -62,6 +76,7 @@ func restore_building():
 	else:
 		static_body[0].set_collision_layer_value(7, true)
 		static_body[0].set_collision_layer_value(8, false)
+	health.reset()
 	reactivate()
 
 #Fonction pour les enfants pour qu'il puisse desactiver ce qu'il on besoin

@@ -16,7 +16,7 @@ layers = 2
 mesh = ExtResource("2_rs1y8")
 
 [node name="CollisionWalls" type="StaticBody3D" parent="." index="1" unique_id=1814063526]
-collision_layer = 64
+collision_layer = 68
 
 [node name="CollisionShapeS" type="CollisionShape3D" parent="CollisionWalls" index="0" unique_id=594287780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.44999996)

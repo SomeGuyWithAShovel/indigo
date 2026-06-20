@@ -99,12 +99,12 @@ func start_repair():
 		return
 	indication_container.remove_all_indications()
 	
-	$Timer.start()
+
 	pass
 
 func repair_interupted():
 	setup_indication()
-	$Timer.stop()
+
 	pass
 
 func _on_area_3d_area_entered(area: Area3D) -> void:

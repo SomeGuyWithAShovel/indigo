@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dpp3a3jbw36ao" path="res://game/ui/ButtonIndicationContainer.tscn" id="6_5ghna"]
 [ext_resource type="AudioStream" uid="uid://ngqoeg28gsx5" path="res://assets/sounds/player_hurt.ogg" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="7_epvkq"]
-[ext_resource type="Script" uid="uid://dregg3q5mo5ao" path="res://game/player/reparator.gd" id="7_j0mij"]
 
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("2_4ste8")
@@ -27,10 +26,6 @@ height = 0.7
 [sub_resource type="Environment" id="Environment_b2mth"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a4w0n"]
-height = 0.5
-radius = 1.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_5ghna"]
 height = 0.5
 radius = 1.0
 
@@ -80,20 +75,9 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Interactor/Area3D" unique_id=153790821]
 shape = SubResource("CylinderShape3D_a4w0n")
 
-[node name="Reparator" type="Node3D" parent="CharacterBody3D" unique_id=369965932 node_paths=PackedStringArray("camera")]
-script = ExtResource("7_j0mij")
-camera = NodePath("../CameraPivot/Camera3D")
-button_indication_container_scene = ExtResource("6_5ghna")
-
-[node name="Timer" type="Timer" parent="CharacterBody3D/Reparator" unique_id=1519801330]
+[node name="Timer" type="Timer" parent="CharacterBody3D/Interactor" unique_id=764603742]
 wait_time = 3.0
 one_shot = true
-
-[node name="Area3D" type="Area3D" parent="CharacterBody3D/Reparator" unique_id=1020773271]
-collision_mask = 192
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Reparator/Area3D" unique_id=1580118884]
-shape = SubResource("CylinderShape3D_5ghna")
 
 [node name="PlayerConstruction" parent="." unique_id=1053297640 node_paths=PackedStringArray("player") instance=ExtResource("5_epvkq")]
 player = NodePath("..")
@@ -108,8 +92,4 @@ has_health_bar = false
 [connection signal="area_exited" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_area_exited"]
 [connection signal="body_entered" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="CharacterBody3D/Interactor/Area3D" to="CharacterBody3D/Interactor" method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="CharacterBody3D/Reparator/Timer" to="CharacterBody3D/Reparator" method="_on_fnished_repair"]
-[connection signal="area_entered" from="CharacterBody3D/Reparator/Area3D" to="CharacterBody3D/Reparator" method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="CharacterBody3D/Reparator/Area3D" to="CharacterBody3D/Reparator" method="_on_area_3d_area_exited"]
-[connection signal="body_entered" from="CharacterBody3D/Reparator/Area3D" to="CharacterBody3D/Reparator" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="CharacterBody3D/Reparator/Area3D" to="CharacterBody3D/Reparator" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="CharacterBody3D/Interactor/Timer" to="CharacterBody3D/Interactor" method="_on_repair_finished"]

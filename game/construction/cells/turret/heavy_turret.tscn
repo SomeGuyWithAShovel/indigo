@@ -91,10 +91,7 @@ meshinstance_array = [NodePath("Missile Space Launcher 01/Missile Space Launcher
 [node name="MeshInstance3D" parent="." index="0" unique_id=274420374]
 mesh = null
 
-[node name="StaticBody3D" parent="." index="2" unique_id=1616738968]
-collision_layer = 64
-
-[node name="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2003108133]
+[node name="CollisionShape3D" parent="StaticBody3D" parent_id_path=PackedInt32Array(1616738968) index="0" unique_id=2003108133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002532959, 0.87742305, -0.04096681)
 shape = SubResource("BoxShape3D_x38vp")
 

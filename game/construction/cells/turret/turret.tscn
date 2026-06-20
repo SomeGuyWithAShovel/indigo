@@ -28,6 +28,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_w0prb")
 [node name="Timer" type="Timer" parent="." unique_id=1903341105]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1616738968]
+collision_layer = 68
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2003108133]
 shape = SubResource("BoxShape3D_w0prb")

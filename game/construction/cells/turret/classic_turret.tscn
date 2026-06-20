@@ -47,9 +47,6 @@ meshinstance_array = [NodePath("Base"), NodePath("MeshInstance3D")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.008396336, 0)
 mesh = ExtResource("3_6mdwp")
 
-[node name="StaticBody3D" parent="." index="2" unique_id=1616738968]
-collision_layer = 64
-
 [node name="TowerRadius" parent="Area3D" parent_id_path=PackedInt32Array(424394434) index="0" unique_id=790276947]
 shape = SubResource("SphereShape3D_om3al")
 
