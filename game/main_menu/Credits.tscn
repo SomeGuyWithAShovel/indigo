@@ -49,6 +49,7 @@ Astronaut model: Free Animated Space Man! (Unity Store, by Honeti)
 Rocket launching turret: Poly Angel - Space Pack (Unity Store, by Poly Angel)
 Alien: Ultimate Monster Pack (Sketchfab, by quaternius)
 Font: Kinesthesia, by Typodermic Fonts Inc.
+Distant alien HUD icon border: Sci Fi Game UI collection (GameDev Market, by sgasset)
 Additional icons (Pickaxe, Wrench, Undo): Iconpacks"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1422651245]
