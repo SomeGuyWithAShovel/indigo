@@ -51,7 +51,8 @@ Sound effects: Kenney (kenney.nl)
 Additional sound effects: made with LMMS by Paul Villeneuve
 Font: Kinesthesia, by Typodermic Fonts Inc.
 Distant alien HUD icon border: Sci Fi Game UI collection (GameDev Market, by sgasset)
-Additional icons (Pickaxe, Wrench, Undo): Iconpacks"
+Additional icons (Pickaxe, Wrench, Undo): Iconpacks
+Shader to see through the base: Godot Shaders, by Trioxide"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1422651245]
 layout_mode = 2
