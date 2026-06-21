@@ -20,6 +20,7 @@ func _enter_tree() -> void :
 	return;
 
 func _ready() -> void:
+	super._ready()
 	collision = $StaticBody3D
 
 var turretlist: Array[String] = [

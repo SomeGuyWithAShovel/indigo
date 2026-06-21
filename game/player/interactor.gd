@@ -9,6 +9,8 @@ var interactibles : Array[Node3D];
 
 var cur_target_repair:Node3D;
 var cur_repair_cost:int = 0;
+var bar : TextureProgressBar
+var bar_parent : Control
 
 signal interaction_target_changed(old : Node3D, new : Node3D);
 
@@ -38,7 +40,8 @@ func _ready() -> void:
 func _input(event):
 	if interaction_target == null: return;
 	if event.is_action_pressed(&"interact"):
-		interaction_target.interact();
+		if (interaction_target.get("interactible") as Interactible).is_interactible():
+			interaction_target.interact();
 	elif event.is_action_pressed(&"uninteract"):
 		if (interaction_target.get("interactible") as Interactible).is_uninteractible():
 			interaction_target.uninteract();

@@ -205,8 +205,9 @@ func set_selected_construction_type(construction_type: ModuleId.Of) -> void :
 			ghost_building.add_child(ghost_label)
 			add_child(ghost_building)
 			
-	var cell = ghost_building as PlayerBaseCell;
-	if cell: cell.collision.collision_layer = 0b1000;
+	if (ghost_building != null):
+		var cell = ghost_building as PlayerBaseCell;
+		if cell: cell.collision.collision_layer = 0b1000;
 	
 	return;
 

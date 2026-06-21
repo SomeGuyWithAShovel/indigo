@@ -5,6 +5,12 @@ var crystal_tile: CrystalTile;
 
 var is_ghost = false;
 
+
+func _ready() -> void:
+	super._ready()
+	collision = $StaticBody3D
+
+
 func _enter_tree() -> void :
 	if is_ghost:
 		return

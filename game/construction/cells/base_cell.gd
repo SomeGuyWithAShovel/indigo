@@ -45,7 +45,6 @@ func _ready() -> void:
 	health.hurt(9999)
 
 func on_health_changed(_from : HealthComponent, new_hp: int) -> void:
-	print('JAI CHANGER')
 	if (new_hp == health.max_health):
 		is_reperable = false;
 	else:
