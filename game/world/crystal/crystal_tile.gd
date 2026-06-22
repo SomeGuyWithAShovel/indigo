@@ -79,14 +79,12 @@ func interact() -> void :
 		crystals_obtained = crystal_amount_per_operation * manual_multiplier;
 		player.crystals.add(crystals_obtained);
 		on_being_manually_mined.emit();
-		pass;
-		
-	if not is_day:
-		mining_tween = get_tree().create_tween();
-		mining_tween.tween_property(self, "scale", scale, 1.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
-	interaction_count += 1;
-	add_indication(crystals_obtained);
-	return;
+		interaction_count += 1;
+		add_indication(crystals_obtained);
+		if not is_day:
+			mining_tween = get_tree().create_tween();
+			mining_tween.tween_property(self, "scale", scale, 1.0).from(Vector3.ONE*0.1).set_ease(Tween.EASE_OUT);
+		return;
 	
 func add_indication(crystals_obtained : int) -> void:
 	var other_indication = UIManager.instance.get_children().find(crystal_obtained_icon);

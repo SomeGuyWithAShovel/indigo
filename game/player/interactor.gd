@@ -49,6 +49,8 @@ func _input(event):
 		if (cur_target_repair == null and (interaction_target.get("interactible") as Interactible).is_repairable()):
 			print("IF")
 			start_repair()
+	elif event.is_action_released(&"repair") and cur_target_repair != null:
+		repair_interupted();
 
 func start_repair():
 	print("JE START RESTORE")
@@ -130,7 +132,6 @@ func entered(node : Node3D) -> void:
 	interactibles.append(node_parent);
 		
 func exited(node : Node3D) -> void:
-	print("EXIT")
 	interactibles.erase(node.get_parent());
 	if (cur_target_repair == node.get_parent()):
 		print("NON")

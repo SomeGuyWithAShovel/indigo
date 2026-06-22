@@ -78,14 +78,11 @@ func shoot() -> void:
 	var direction: Vector3 = (target.global_position - origin).normalized();
 	if (projectile_scene != null) :
 		var projectile: Projectile = projectile_scene.instantiate();
-		var projectile_parent: Node = get_parent();
-		projectile.owner = projectile_parent;
-		
-		projectile.global_position = origin;
 		projectile.direction = direction;
-		print(direction)
-		print(projectile.direction)
+		var projectile_parent: Node = get_parent();
 		projectile_parent.add_child(projectile);
+		projectile.global_position = origin;
+		
 		pass;
 	
 	on_shoot.emit(origin, direction);

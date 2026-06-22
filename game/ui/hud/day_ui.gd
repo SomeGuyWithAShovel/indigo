@@ -54,7 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.is_action_pressed("move_forwards") or
 		Input.is_action_pressed("move_backwards")):
 			movement_indication.queue_free();
-			movement_indication = null;
 
 func set_crystal_count(value : int) -> void:
 	crystal_label.text = str(value);

@@ -3,6 +3,7 @@ extends Node
 signal globals_setup();
 
 var player: Player = null;
+var nav_mesh : NavMesh = null;
 var is_setup:bool = false;
 
 func _ready() -> void :
@@ -27,6 +28,11 @@ func regenerate_globals() -> void :
 	var players = get_tree().current_scene.find_children("*", "Player");
 	assert(len(players) == 1);
 	player = players[0];
+	
+	var nav_meshes = get_tree().current_scene.find_children("*", "NavMesh");
+	assert(len(nav_meshes) == 1);
+	nav_mesh = nav_meshes[0];
+	
 	is_setup = true;
 	globals_setup.emit();
 	return;

@@ -18,7 +18,6 @@ func _enter_tree() -> void :
 func _ready() -> void:
 	DayNightSystem.on_day_start.connect(day_mining);
 	DayNightSystem.on_night_start.connect(night_mining);
-	raw_set_base_cell_at(Vector2i(0, 0), Dir.Enum.None, 0);
 
 func day_mining() -> void:
 	night_timer.stop();

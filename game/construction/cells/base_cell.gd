@@ -18,8 +18,7 @@ enum cell_type {
 
 @onready var health : HealthComponent = $HealthComponent;
 var collision : CollisionObject3D;
-
-@onready var repair_bar : RepairBar;
+var repair_bar : RepairBar;
 
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
 @export var meshinstance_array:Array[MeshInstance3D] = [];
@@ -41,7 +40,7 @@ static var destroyed_material:Material = load("res://assets/Material/constructio
 
 func _ready() -> void:
 	interactible = Interactible.new(Callable(), Interactible.Action.NONE, Callable(),Callable(self,&"restore_building"));
-	collision = $CollisionWalls;
+	collision = get_node_or_null("CollisionWalls");
 	repair_bar = $RepairBar
 	if (repair_bar == null):
 		print("JE USIS NUL")
@@ -65,6 +64,8 @@ func on_cell_death(_from : HealthComponent) -> void:
 	assert(not static_body.is_empty());
 	static_body[0].set_collision_layer_value(8, true) 
 	static_body[0].set_collision_layer_value(7, false)
+	Globals.nav_mesh.recalculate_navmesh();
+	
 	deactivate()
 
 func restore_building():
@@ -80,8 +81,10 @@ func restore_building():
 	else:
 		static_body[0].set_collision_layer_value(7, true)
 		static_body[0].set_collision_layer_value(8, false)
+	Globals.nav_mesh.recalculate_navmesh();
 	health.reset()
 	reactivate()
+	
 
 #Fonction pour les enfants pour qu'il puisse desactiver ce qu'il on besoin
 func deactivate():
