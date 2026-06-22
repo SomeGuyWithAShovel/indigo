@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_qlusm"]
 [ext_resource type="PackedScene" uid="uid://cb4wuhu1gpd1m" path="res://game/construction/modules/slot/module_slot.tscn" id="4_e60wt"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="6_r1ras"]
+[ext_resource type="PackedScene" uid="uid://cqat5m87c17bn" path="res://game/components/RepairBar.tscn" id="7_rg2rx"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1j3n"]
 material = ExtResource("2_ltlhk")
@@ -80,5 +81,8 @@ shape = SubResource("BoxShape3D_w1j3n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4377396, 0)
 max_health = 50
 health_bar_color = Color(1, 0.78039217, 0.23137255, 1)
+
+[node name="RepairBar" parent="." index="4" unique_id=959901579 instance=ExtResource("7_rg2rx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2284918, 0.0011506081)
 
 [editable path="ModuleSlot"]

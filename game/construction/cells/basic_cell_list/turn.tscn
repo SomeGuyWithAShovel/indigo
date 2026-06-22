@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bqtdrajmulxt7" path="res://assets/3dModels/corridor_cornerRound.obj" id="2_ox2pn"]
 [ext_resource type="ArrayMesh" uid="uid://b2tylo6hbaqkh" path="res://assets/3dModels/corridor.obj" id="3_jwcp0"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="4_q0kab"]
+[ext_resource type="PackedScene" uid="uid://cqat5m87c17bn" path="res://game/components/RepairBar.tscn" id="5_86ru7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v3p24"]
 size = Vector3(0.6, 0.8, 0.1)
@@ -59,3 +60,6 @@ shape = SubResource("ConcavePolygonShape3D_86ru7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2846115, 0)
 max_health = 50
 health_bar_color = Color(1, 0.78039217, 0.23137255, 1)
+
+[node name="RepairBar" parent="." index="3" unique_id=959901579 instance=ExtResource("5_86ru7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2284918, 0.0011506081)

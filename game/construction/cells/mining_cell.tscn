@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://7jsd2xqe3oaa" path="res://assets/Material/base_white.tres" id="3_y8vi8"]
 [ext_resource type="ArrayMesh" uid="uid://bi70qfebeeu80" path="res://assets/3dModels/rocket_topA.obj" id="4_y8vi8"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="7_17xp3"]
+[ext_resource type="PackedScene" uid="uid://cqat5m87c17bn" path="res://game/components/RepairBar.tscn" id="8_4npw6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y8vi8"]
 size = Vector3(1.2, 1.5, 1.2)
@@ -57,3 +58,6 @@ mesh = SubResource("BoxMesh_kawp1")
 
 [node name="HealthComponent" parent="." unique_id=699209803 instance=ExtResource("7_17xp3")]
 health_bar_color = Color(1, 0.78183335, 0.23000002, 1)
+
+[node name="RepairBar" parent="." unique_id=959901579 instance=ExtResource("8_4npw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7632871, 0.0011506081)

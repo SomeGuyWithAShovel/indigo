@@ -76,5 +76,8 @@ one_shot = true
 stream = SubResource("AudioStreamRandomizer_yd23j")
 volume_db = -6.0
 
+[node name="RepairBar" parent="." index="9" unique_id=959901579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1143068, 0.0011506081)
+
 [connection signal="on_shoot" from="." to="." method="_on_shoot"]
 [connection signal="timeout" from="laser/Timer" to="." method="_on_laser_timer_timeout"]

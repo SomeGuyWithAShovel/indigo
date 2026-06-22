@@ -19,6 +19,8 @@ enum cell_type {
 @onready var health : HealthComponent = $HealthComponent;
 var collision : CollisionObject3D;
 
+@onready var repair_bar : RepairBar;
+
 @export var moduleslots_array:Array[PlayerBaseModuleSlot] = [];
 @export var meshinstance_array:Array[MeshInstance3D] = [];
 
@@ -40,6 +42,9 @@ static var destroyed_material:Material = load("res://assets/Material/constructio
 func _ready() -> void:
 	interactible = Interactible.new(Callable(), Interactible.Action.NONE, Callable(),Callable(self,&"restore_building"));
 	collision = $CollisionWalls;
+	repair_bar = $RepairBar
+	if (repair_bar == null):
+		print("JE USIS NUL")
 	health.died.connect(on_cell_death);
 	health.health_changed.connect(on_health_changed)
 	health.hurt(9999)
@@ -51,6 +56,7 @@ func on_health_changed(_from : HealthComponent, new_hp: int) -> void:
 		is_reperable = true
 
 func on_cell_death(_from : HealthComponent) -> void:
+	health.update_bar_value()
 	buildingstatus = BuildingState.Destroyed
 	for i:MeshInstance3D in meshinstance_array:
 		i.material_overlay = destroyed_material

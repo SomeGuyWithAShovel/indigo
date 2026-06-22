@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cqat5m87c17bn"]
+
+[ext_resource type="Script" uid="uid://drg3ssi1dpdf6" path="res://game/components/repair_bar.gd" id="1_w02no"]
+[ext_resource type="Texture2D" uid="uid://dl2g3kjyn15w4" path="res://assets/ui/bars/border.png" id="2_lntva"]
+[ext_resource type="Texture2D" uid="uid://cnlr3lgsuhw1a" path="res://assets/ui/bars/health_bar.png" id="3_w02no"]
+[ext_resource type="PackedScene" uid="uid://nlvu45xdklnw" path="res://game/ui/Unprojector.tscn" id="4_w02no"]
+
+[node name="RepairBar" type="Node3D" unique_id=959901579]
+script = ExtResource("1_w02no")
+
+[node name="Control" type="Control" parent="." unique_id=865306410]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control" unique_id=1361300818]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+step = 0.0
+value = 75.0
+texture_over = ExtResource("2_lntva")
+texture_progress = ExtResource("3_w02no")
+
+[node name="Timer" type="Timer" parent="." unique_id=1690523158]
+wait_time = 3.0
+one_shot = true
+
+[node name="Unprojector" parent="." unique_id=1907429657 node_paths=PackedStringArray("unprojected") instance=ExtResource("4_w02no")]
+unprojected = NodePath("../Control")
+max_scale = 0.7

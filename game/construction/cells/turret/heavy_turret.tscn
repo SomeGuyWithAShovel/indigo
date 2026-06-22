@@ -110,3 +110,6 @@ mesh = SubResource("ArrayMesh_s5ts5")
 [node name="Missile Base" type="MeshInstance3D" parent="Missile Space Launcher 01" index="1" unique_id=1368058573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2289817, 0.1255753)
 mesh = SubResource("ArrayMesh_4kwbs")
+
+[node name="RepairBar" parent="." index="7" unique_id=959901579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.452701, 0.0011506081)

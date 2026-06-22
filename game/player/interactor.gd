@@ -76,14 +76,17 @@ func start_repair():
 		cur_target_repair = null
 		cur_repair_cost = 0
 		return
+	cur_target_repair.repair_bar.setRepairTime($Timer.wait_time)
 	$Timer.start()
-	#TODO Spawn de la barre de chargement dans le cur_target_repair
+	cur_target_repair.repair_bar.start_repair()
 	pass
 
 func repair_interupted():
 	print("INTERUPTED")
+	cur_target_repair.repair_bar.Interupt()
 	cur_target_repair = null
 	$Timer.stop()
+	
 
 func decide_interaction_target() -> void:
 	var pos : Vector3 = (get_parent() as Node3D).global_position;
@@ -127,7 +130,11 @@ func entered(node : Node3D) -> void:
 	interactibles.append(node_parent);
 		
 func exited(node : Node3D) -> void:
+	print("EXIT")
 	interactibles.erase(node.get_parent());
+	if (cur_target_repair == node.get_parent()):
+		print("NON")
+		repair_interupted()
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	entered(area);
@@ -144,9 +151,11 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_repair_finished() -> void:
 	cur_target_repair.restore_building()
+	cur_target_repair.repair_bar.Interupt()
 	cur_target_repair = null
 	#On reinitalise le interaction_target (Actualiser les bouton afficher)
 	on_interaction_target_change(interaction_target,interaction_target)
 	#On retire les cristaux
 	var crystals: PlayerResource = $"../..".crystals;
 	crystals.remove(cur_repair_cost)
+	

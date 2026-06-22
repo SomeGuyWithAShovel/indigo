@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mavlx3ylpdvn" path="res://game/construction/cells/turret/turret.gd" id="1_w0prb"]
 [ext_resource type="PackedScene" uid="uid://kovewu821de5" path="res://game/components/HealthComponent.tscn" id="2_ygro0"]
+[ext_resource type="PackedScene" uid="uid://cqat5m87c17bn" path="res://game/components/RepairBar.tscn" id="3_itfos"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w0prb"]
 size = Vector3(1, 2, 1)
@@ -46,6 +47,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="HealthComponent" parent="." unique_id=699209803 instance=ExtResource("2_ygro0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5256014, 0)
 health_bar_color = Color(1, 0.78039217, 0.23137255, 1)
+
+[node name="RepairBar" parent="." unique_id=959901579 instance=ExtResource("3_itfos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2284918, 0.0011506081)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
