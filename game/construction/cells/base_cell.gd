@@ -47,7 +47,6 @@ func _ready() -> void:
 		print("JE USIS NUL")
 	health.died.connect(on_cell_death);
 	health.health_changed.connect(on_health_changed)
-	health.hurt(9999)
 
 func on_health_changed(_from : HealthComponent, new_hp: int) -> void:
 	if (new_hp == health.max_health):
