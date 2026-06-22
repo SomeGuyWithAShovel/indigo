@@ -10,7 +10,6 @@ var bar_step = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !$Timer.is_stopped():
-		print($Control/TextureProgressBar.value)
 		$Control/TextureProgressBar.value += bar_step*delta*100
 
 func setRepairTime(max_time:float):

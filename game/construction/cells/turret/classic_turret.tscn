@@ -40,7 +40,7 @@ script = ExtResource("2_om3al")
 laser_timer = NodePath("laser/Timer")
 laser = NodePath("laser")
 laser_sound = NodePath("AudioStreamPlayer3D")
-shot_cd = 0.2
+shot_cd = 0.4
 meshinstance_array = [NodePath("Base"), NodePath("MeshInstance3D")]
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=274420374]
