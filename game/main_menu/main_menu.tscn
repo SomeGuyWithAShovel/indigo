@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://55vpf5y7nvu2" path="res://assets/ui/theme.tres" id="1_sp5am"]
 [ext_resource type="Texture2D" uid="uid://bk5vkjendoy5m" path="res://assets/ui/menu/main_menu.png" id="3_rlneu"]
 [ext_resource type="AudioStream" uid="uid://benob27huqwb1" path="res://assets/sounds/music/Indigo Main Theme.mp3" id="4_rlneu"]
+[ext_resource type="Script" uid="uid://fgnj06tu5v1j" path="res://game/components/audio_fader.gd" id="5_gxh41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxh41"]
 bg_color = Color(1, 0.3775, 0.17000002, 1)
@@ -48,6 +49,13 @@ color = Color(1, 1, 1, 0)
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=1267207975]
 stream = ExtResource("4_rlneu")
 volume_db = -20.0
+
+[node name="Node" type="Node" parent="MainMenuMusic" unique_id=1790403565 node_paths=PackedStringArray("_audio_player")]
+script = ExtResource("5_gxh41")
+_audio_player = NodePath("..")
+fade_out_length = 10.0
+fade_in_length = 3.0
+silence_length = 2.0
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1301161111]
 layout_mode = 1
